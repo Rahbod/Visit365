@@ -1,0 +1,169 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.rahbod.visit365.Fragment.Step_2">
+
+
+    <RelativeLayout
+        android:id="@+id/header_step_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f9f9f9">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/circel_2" />
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="33dp"
+            android:layout_toLeftOf="@+id/imageView"
+            android:text="مرحله دوم"
+            android:textColor="@color/hint"
+            android:textSize="11dp" />
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_toLeftOf="@+id/imageView"
+            android:text="تاریخ و زمان"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@+id/header_step_2">
+
+    </RelativeLayout>
+
+    <com.rahbod.visit365.Font.FontTextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rel"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:text="لطفا بازه زمانی را مشخص کنید"
+        android:textColor="@color/black"
+        android:textSize="13dp" />
+
+    <LinearLayout
+        android:id="@+id/lin_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView8"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.rahbod.visit365.Font.FontTextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="30dp"
+                android:text="تا"
+                android:textColor="@color/black" />
+
+            <com.rahbod.visit365.Font.EditTextFont
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView9"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/border_edittext_selector"
+                android:hint="انتخاب کنید"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/hint"
+                android:textSize="11dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.rahbod.visit365.Font.FontTextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="30dp"
+                android:text="از"
+                android:textColor="@color/black" />
+
+            <com.rahbod.visit365.Font.EditTextFont
+                android:id="@+id/editText15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView10"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/border_edittext_selector"
+                android:hint="انتخاب کنید"
+                android:inputType="textPersonName"
+                android:textSize="11dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lin_data"
+        android:layout_marginTop="30dp">
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:text="تاریخ های حضور"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/relativeLayout3"
+            android:layout_marginRight="10dp"
+            android:textSize="13dp"
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:id="@+id/textView11" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

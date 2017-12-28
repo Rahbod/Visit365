@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    tools:context="com.rahbod.visit365.Login">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/lin_imageViewLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp">
+
+                <ImageView
+                    android:id="@+id/imageView_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:src="@drawable/logo_visit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_txtLogin"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_imageViewLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp">
+
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/textView_login"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="ورود به حساب کاربری"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_userLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_txtLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp">
+
+                <com.rahbod.visit365.Font.EditTextFont
+                    android:id="@+id/user_login"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_edittext_selector"
+                    android:hint="شماره موبایل، کد ملی یا پست الکترونیکی"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/hint"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_passwordLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_userLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp">
+
+                <com.rahbod.visit365.Font.EditTextFont
+                    android:id="@+id/password_login"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_edittext_selector"
+                    android:hint="کلمه عبور"
+                    android:inputType="textPassword"
+                    android:textAlignment="textStart"
+                    android:textColorHint="@color/hint"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_buttonLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_passwordLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="27dp">
+
+                <com.rahbod.visit365.Font.ButtonFont
+                    android:id="@+id/button_login"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="220dp"
+                    android:layout_height="37dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/button_shape"
+                    android:onClick="Login"
+                    android:text="ورود"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_forgetLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_buttonLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp">
+
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/forget_login"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="کلمه عبور خود را فراموش کرده اید؟"
+                    android:textAlignment="center"
+                    android:textColor="@color/hint"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_registerLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lin_forgetLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp">
+
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/register_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="ثبت نام"
+                    android:textColor="@color/green1"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

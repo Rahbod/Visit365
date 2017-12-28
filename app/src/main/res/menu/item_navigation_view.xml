@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_NavigationView"
+        android:icon="@drawable/home_item_nv"
+        android:title="داشبورد"/>
+    <item
+        android:id="@+id/checklist_NavigationView"
+        android:icon="@drawable/checklist_item_nv"
+        android:title="نوبت های گرفته شده"/>
+    <item
+        android:id="@+id/credit_card_NavigationView"
+        android:icon="@drawable/card_item_nv"
+        android:title="تراکنش ها"/>
+    <item
+        android:id="@+id/user_NavigationView"
+        android:icon="@drawable/user_item_nv"
+        android:title="پروفایل" />
+    <item
+        android:id="@+id/help_NavigationView"
+        android:icon="@drawable/question_item_nv"
+        android:title="راهنما" />
+
+
+
+</menu>
