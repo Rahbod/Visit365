@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rahbod.visit365">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AppController"
@@ -12,22 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.rahbod.visit365.Login"
+            android:name=".Login"
             android:theme="@style/Login">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name="com.rahbod.visit365.Index"
-            android:theme="@style/Index">
-
-
-
-        </activity>
+        <activity
+            android:name=".Index"
+            android:theme="@style/Index"></activity>
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
