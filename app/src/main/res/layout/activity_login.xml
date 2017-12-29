@@ -105,12 +105,10 @@
 
                 <com.rahbod.visit365.Font.ButtonFont
                     android:id="@+id/button_login"
-                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="220dp"
                     android:layout_height="37dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/button_shape"
-                    android:onClick="Login"
                     android:text="ورود"
                     android:textColor="@color/white" />
 

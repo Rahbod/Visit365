@@ -23,7 +23,7 @@ public class Index extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.navigationdraw);
+        setContentView(R.layout.fragment_step4);
 
         Select_Dr select_dr = new Select_Dr();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

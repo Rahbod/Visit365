@@ -25,20 +25,20 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.fragment_step2);
 
-        user = (EditText) findViewById(R.id.user_login);
-        password = (EditText) findViewById(R.id.password_login);
-
-        Button button_login = (Button) findViewById(R.id.button_login);
-        button_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String strUser = user.getText().toString();
-                String strPassword = password.getText().toString();
-                getAuthorize(strUser, strPassword);
-            }
-        });
+//        user = (EditText) findViewById(R.id.user_login);
+//        password = (EditText) findViewById(R.id.password_login);
+//
+//        Button button_login = (Button) findViewById(R.id.button_login);
+//        button_login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String strUser = user.getText().toString();
+//                String strPassword = password.getText().toString();
+//                getAuthorize(strUser, strPassword);
+//            }
+//        });
     }
 
     private void getAuthorize(String user, String pass) {

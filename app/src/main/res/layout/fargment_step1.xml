@@ -6,11 +6,13 @@
     android:background="#fff"
     tools:context="com.rahbod.visit365.Fragment.Step_1">
 
+
+    <!--header-->
     <RelativeLayout
         android:id="@+id/header_step_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f9f9f9">
+        android:background="#efefef">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
@@ -20,30 +22,30 @@
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/circel_1" />
-
-        <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="33dp"
-            android:layout_toLeftOf="@+id/imageView"
-            android:text="مرحله اول"
-            android:textColor="@color/hint"
-            android:textSize="11dp" />
+            android:src="@drawable/circle_1" />
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="37dp"
             android:layout_toLeftOf="@+id/imageView"
             android:text="یافتن پزشک"
             android:textColor="@color/black"
             android:textSize="13dp" />
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/imageView"
+            android:text="مرحله اول"
+            android:textColor="@color/hint"
+            android:textSize="11dp" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -57,8 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:text="پزشک فلان"
+            android:layout_marginTop="25dp"
+            android:text="پزشک"
             android:textColor="@color/black"
             android:textSize="15dp" />
 
