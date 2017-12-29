@@ -31,7 +31,7 @@
                     android:id="@+id/imageView_login"
                     android:layout_width="wrap_content"
                     android:layout_height="120dp"
-                    android:src="@drawable/logo_visit" />
+                    app:srcCompat="@drawable/logo_visit" />
 
             </LinearLayout>
 
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
                     android:hint="شماره موبایل، کد ملی یا پست الکترونیکی"
-                    android:inputType="textPersonName"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="@color/hint"
                     android:textSize="11dp" />
 

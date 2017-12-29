@@ -1,19 +1,17 @@
-package com.rahbod.visit365.Fragment;
+package com.rahbod.visit365;
 
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rahbod.visit365.R;
+
+public class Step1Fragment extends Fragment {
 
 
-public class Step_1 extends Fragment {
-
-
-    public Step_1() {
+    public Step1Fragment() {
     }
 
 
