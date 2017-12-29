@@ -18,24 +18,21 @@ public class AccessTokenHelper {
         return false;
     }
 
-    public static String getAccessToken(Context context)
-    {
+    public static String getAccessToken(Context context) {
         DbHelper dbHelper = new DbHelper(context);
         Cursor c = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM token", null);
         c.moveToFirst();
         return c.getString(c.getColumnIndex("access_token"));
     }
 
-    public static String getRefreshToken(Context context)
-    {
+    public static String getRefreshToken(Context context) {
         DbHelper dbHelper = new DbHelper(context);
         Cursor c = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM token", null);
         c.moveToFirst();
         return c.getString(c.getColumnIndex("refresh_token"));
     }
 
-    public static String getExpireTime(Context context)
-    {
+    public static String getExpireTime(Context context) {
         DbHelper dbHelper = new DbHelper(context);
         Cursor c = dbHelper.getReadableDatabase().rawQuery("SELECT * FROM token", null);
         c.moveToFirst();
