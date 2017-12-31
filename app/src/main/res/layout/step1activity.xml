@@ -9,20 +9,51 @@
 
     <!--header-->
     <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/green1">
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="ویزیت 365"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnNvv"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/menu_index" />
+    </RelativeLayout>
+
+    <!--header2-->
+    <RelativeLayout
         android:id="@+id/header_step_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
         android:background="#efefef">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/circle_1" />
+            android:src="@drawable/circle_1"
+            tools:ignore="VectorDrawableCompat" />
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"
@@ -30,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_marginTop="37dp"
-            android:layout_toLeftOf="@+id/imageView"
+            android:layout_toLeftOf="@+id/image"
             android:text="یافتن پزشک"
             android:textColor="@color/black"
             android:textSize="13dp" />
@@ -41,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
             android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/imageView"
+            android:layout_toLeftOf="@+id/image"
             android:text="مرحله اول"
             android:textColor="@color/hint"
             android:textSize="11dp" />

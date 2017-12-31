@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rel_rec"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
+
+    <ImageView
+        android:id="@+id/exp_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/heart_index" />
+
+    <com.rahbod.visit365.Font.FontTextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/exp_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:layout_weight="1"
+        android:text="قلب و عروق"
+        android:textColor="@color/textView_index"
+        android:textSize="@dimen/textSize_txtIndex" />
+
+
+</RelativeLayout>
+

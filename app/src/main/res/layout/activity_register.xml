@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_register"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
@@ -31,7 +31,7 @@
                     android:id="@+id/imageView_register"
                     android:layout_width="wrap_content"
                     android:layout_height="120dp"
-                    android:src="@drawable/logo_visit" />
+                    app:srcCompat="@drawable/logo_visit" />
 
             </LinearLayout>
 
@@ -64,12 +64,12 @@
                 android:layout_marginTop="30dp">
 
                 <com.rahbod.visit365.Font.EditTextFont
-                    android:id="@+id/email_register"
+                    android:id="@+id/user_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
-                    android:hint="پست الکترونیکی"
-                    android:inputType="textPersonName"
+                    android:hint="پست الکترونیک"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="@color/hint"
                     android:textSize="11dp" />
 
@@ -105,7 +105,6 @@
 
                 <com.rahbod.visit365.Font.ButtonFont
                     android:id="@+id/button_register"
-                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="220dp"
                     android:layout_height="37dp"
                     android:layout_centerHorizontal="true"
@@ -118,13 +117,13 @@
             <LinearLayout
                 android:id="@+id/lin_registerLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/lin_buttonRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="120dp">
 
                 <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/register_login"
+                    android:id="@+id/login_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -132,7 +131,9 @@
                     android:text="ورود"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="goToLogin"
+                    tools:ignore="OnClick" />
 
             </LinearLayout>
 

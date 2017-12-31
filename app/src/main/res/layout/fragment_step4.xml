@@ -14,7 +14,7 @@
         android:background="#efefef">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_alignParentRight="true"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_marginTop="37dp"
-            android:layout_toLeftOf="@+id/imageView"
+            android:layout_toLeftOf="@+id/image"
             android:text="دریافت نوبت"
             android:textColor="@color/black"
             android:textSize="13dp" />
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
             android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/imageView"
+            android:layout_toLeftOf="@+id/image"
             android:text="مرحله چهارم"
             android:textColor="@color/hint"
             android:textSize="11dp" />

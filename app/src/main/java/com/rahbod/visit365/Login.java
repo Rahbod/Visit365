@@ -3,7 +3,6 @@ package com.rahbod.visit365;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +31,8 @@ public class Login extends AppCompatActivity {
         }
 
         // Do Login
-        user = (EditText) findViewById(R.id.user_login);
-        password = (EditText) findViewById(R.id.password_login);
+        user = (EditText) findViewById(R.id.user_register);
+        password = (EditText) findViewById(R.id.password_register);
 
         Button button_login = (Button) findViewById(R.id.button_login);
         button_login.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +59,13 @@ public class Login extends AppCompatActivity {
     public void afterLogin(){
         Intent index = new Intent(this, Index.class);
         startActivity(index);
+        finish();
+    }
+
+    public void goToRegister(View view) {
+
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
         finish();
     }
 }

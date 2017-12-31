@@ -21,14 +21,14 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/lin_imageViewLogin"
+                android:id="@+id/lin_imageViewRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="80dp">
 
                 <ImageView
-                    android:id="@+id/imageView_login"
+                    android:id="@+id/imageView_register"
                     android:layout_width="wrap_content"
                     android:layout_height="120dp"
                     app:srcCompat="@drawable/logo_visit" />
@@ -36,15 +36,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lin_txtLogin"
+                android:id="@+id/lin_txtRegister"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_imageViewLogin"
+                android:layout_below="@+id/lin_imageViewRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp">
 
                 <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/textView_login"
+                    android:id="@+id/textView_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:text="ورود به حساب کاربری"
@@ -56,15 +56,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lin_userLogin"
+                android:id="@+id/lin_userRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_txtLogin"
+                android:layout_below="@+id/lin_txtRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp">
 
                 <com.rahbod.visit365.Font.EditTextFont
-                    android:id="@+id/user_login"
+                    android:id="@+id/user_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
@@ -76,15 +76,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lin_passwordLogin"
+                android:id="@+id/lin_passwordRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_userLogin"
+                android:layout_below="@+id/lin_userRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp">
 
                 <com.rahbod.visit365.Font.EditTextFont
-                    android:id="@+id/password_login"
+                    android:id="@+id/password_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
@@ -96,10 +96,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lin_buttonLogin"
+                android:id="@+id/lin_buttonRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_passwordLogin"
+                android:layout_below="@+id/lin_passwordRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="27dp">
 
@@ -118,7 +118,7 @@
                 android:id="@+id/lin_forgetLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_buttonLogin"
+                android:layout_below="@+id/lin_buttonRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp">
 
@@ -138,7 +138,7 @@
                 android:id="@+id/lin_registerLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_buttonLogin"
+                android:layout_below="@+id/lin_buttonRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="120dp">
 
@@ -151,7 +151,9 @@
                     android:text="ثبت نام"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="goToRegister"
+                    tools:ignore="OnClick" />
 
             </LinearLayout>
 
