@@ -45,7 +45,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listVi
                 Intent intent = new Intent(context, Step1Activity.class);
                 intent.putExtra("Id", data.get(position)[0]);
                 context.startActivity(intent);
-                Log.e("abcd", intent.toString());
             }
         });
 

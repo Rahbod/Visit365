@@ -1,8 +1,12 @@
 package com.rahbod.visit365;
 
 import android.app.Application;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -10,7 +14,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.rahbod.visit365.helper.AccessTokenHelper;
 
 import org.json.JSONObject;
 
@@ -31,6 +37,7 @@ public class AppController extends Application {
     private RequestQueue mRequestQueue;
 
     private static AppController mInstance;
+    private boolean async = true;
 
     @Override
     public void onCreate() {
@@ -66,34 +73,122 @@ public class AppController extends Application {
         getRequestQueue().add(req);
     }
 
+    /**
+     * Cancel pending request
+     * @param tag of request
+     */
     public void cancelPendingRequests(Object tag) {
         if (mRequestQueue != null) {
             mRequestQueue.cancelAll(tag);
         }
     }
 
+    /**
+     * Send Restful request with volley library to server
+     * @param url for request
+     * @param params is Json object for request
+     * @param resListener response listener has run after get response
+     */
     public void sendRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener) {
         sendRequest(url, params, resListener, TAG);
     }
 
+    /**
+     * Send Restful request with volley library to server
+     * @param url for request
+     * @param params is Json object for request
+     * @param resListener response listener has run after get response
+     * @param tag of request
+     */
     public void sendRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener, final String tag) {
-        final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        if (!isNetworkConnected())
+            Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
+        else {
+            final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, "On Response Error");
+                    Log.e(TAG, error.getMessage());
+                }
+            }) {
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    String token = Base64.encodeToString(
+                            (CLIENT_ID + ":" + CLIENT_SECRET).getBytes(),
+                            Base64.NO_WRAP);
+                    headers.put("Authorization", "Basic " + token);
+                    return headers;
+                }
+            };
+            req.setTag(tag);
+            addToRequestQueue(req);
+            Log.e(TAG, "Request to " + BASE_URL + url + " sent.");
+        }
+    }
 
+
+    /**
+     * Send Authenticate Restful request with volley library to server
+     * @param url for request
+     * @param params is Json object for request
+     * @param resListener response listener has run after get response
+     */
+    public void sendAuthRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener) {
+        sendRequest(url, params, resListener, TAG);
+    }
+
+    /**
+     * Send Authenticate Restful request with volley library to server
+     * @param url for request
+     * @param params is Json object for request
+     * @param resListener response listener has run after get response
+     * @param tag of request
+     */
+    public void sendAuthRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener, final String tag) {
+        if (!isNetworkConnected())
+            Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
+        else {
+            final String accessToken = AccessTokenHelper.getAccessToken(getApplicationContext());
+            if(accessToken != null) {
+                final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "On Response Error");
+                        Log.e(TAG, error.getMessage());
+                    }
+                }) {
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        headers.put("Authorization", "Bearer " + accessToken);
+                        return headers;
+                    }
+                };
+                req.setTag(tag);
+                addToRequestQueue(req);
+                Log.e(TAG, "Request to " + BASE_URL + url + " sent.");
             }
-        }) {
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                String token = Base64.encodeToString(
-                        (CLIENT_ID + ":" + CLIENT_SECRET).getBytes(),
-                        Base64.NO_WRAP);
-                headers.put("Authorization", "Basic " + token);
-                return headers;
-            }
-        };
-        req.setTag(tag);
-        addToRequestQueue(req);
+        }
+    }
+
+
+
+    /**
+     * Check Network and internet accessible or not.
+     *
+     * @return bool
+     */
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected() && cm.getActiveNetworkInfo().isAvailable();
+    }
+
+    /**
+     * Volley Callback interface for run callback after get volley response
+     */
+    public interface VolleyCallback {
+        void onSuccessResponse(String result);
+        void onErrorResponse(String result);
     }
 }

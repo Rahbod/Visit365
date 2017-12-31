@@ -3,11 +3,17 @@ package com.rahbod.visit365;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
 import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.rahbod.visit365.helper.SessionManager;
+
+import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
@@ -20,10 +26,9 @@ public class Login extends AppCompatActivity {
 
         // check user login
         SessionManager sessionManager = new SessionManager(this);
-        if(sessionManager.isLoggedIn()){
-            Intent index = new Intent(this, Index.class);
-            startActivity(index);
-            finish();
+        if (sessionManager.isLoggedIn()) {
+            Log.e("ATH","logged in");
+            afterLogin();
         }
 
         // Do Login
@@ -36,14 +41,32 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String strUser = user.getText().toString();
                 String strPassword = password.getText().toString();
-                AccessTokenHelper.getAccessToken(getApplicationContext(), strUser, strPassword);
+                String acc = AccessTokenHelper.getAccessToken(getApplicationContext(), strUser, strPassword, new AppController.VolleyCallback() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        Log.e("ATH","login");
+                        afterLogin();
+                    }
+
+                    @Override
+                    public void onErrorResponse(String result) {
+                        Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
+    }
+
+    public void afterLogin(){
+        Intent index = new Intent(this, Index.class);
+        startActivity(index);
+        finish();
     }
 
     public void goToRegister(View view) {
 
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+        finish();
     }
 }
