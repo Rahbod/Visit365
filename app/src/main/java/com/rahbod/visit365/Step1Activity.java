@@ -9,7 +9,7 @@ public class Step1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.step1Activity);
+        setContentView(R.layout.step1activity);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){

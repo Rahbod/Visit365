@@ -9,13 +9,13 @@
 
     <!--header-->
     <RelativeLayout
-        android:id="@+id/header_step1"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@color/green1">
 
         <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/textView"
+            android:id="@+id/textw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -27,15 +27,13 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnNv"
+            android:id="@+id/btnNvv"
             android:layout_width="24dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/menu_index"
-            android:onClick="openNv"
-            tools:ignore="OnClick" />
+            android:background="@drawable/menu_index" />
     </RelativeLayout>
 
     <!--header2-->
@@ -43,8 +41,8 @@
         android:id="@+id/header_step_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#efefef"
-        android:layout_below="@+id/header_step1">
+        android:layout_below="@+id/header"
+        android:background="#efefef">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
@@ -55,7 +53,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/circle_1"
-            tools:ignore="VectorDrawableCompat"/>
+            tools:ignore="VectorDrawableCompat" />
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"

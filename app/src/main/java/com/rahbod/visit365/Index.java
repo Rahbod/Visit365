@@ -27,7 +27,7 @@ public class Index extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index);
+        setContentView(R.layout.navigationdraw);
 
 
         ArrayList<String[]> expertises = new ArrayList<String[]>();
@@ -55,7 +55,7 @@ public class Index extends AppCompatActivity {
 
     public void openNv(View view){
 
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLy);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         drawerLayout.openDrawer(Gravity.LEFT);
 
     }
