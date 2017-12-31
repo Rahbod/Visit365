@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".Step1Activity"></activity>
+        <activity android:name=".Step1Activity"
+            android:theme="@style/Index"></activity>
     </application>
 
 </manifest>
