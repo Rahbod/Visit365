@@ -34,14 +34,14 @@ public class AccessTokenHelper {
         return null;
     }
 
-    public static String getAccessToken(Context context, String username, String password) {
+    public static String getAccessToken(Context context, String username, String password, final AppController.VolleyCallback volleyCallback) {
         mContext = context;
         sessionManager = new SessionManager(context);
-        getAuthorize(username, password);
+        getAuthorize(username, password, volleyCallback);
         return null;
     }
 
-    private static String getAuthorize(String username, String password) {
+    private static String getAuthorize(String username, String password, final AppController.VolleyCallback volleyCallback) {
         JSONObject params = new JSONObject();
         try {
             params.put("email", username);
@@ -49,11 +49,18 @@ public class AccessTokenHelper {
             AppController.getInstance().sendRequest("oauth/authorize", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    Log.e(ETAG+"response", response.toString());
                     try {
-                        if (response.getBoolean("status")) {
-                            gerAccessTokenFromServer(response.getString("authorization_code"));
-                        } else
-                            Log.e(ETAG, "Error in get Authorization Code.");
+                        if (response.getBoolean("status"))
+                        {
+                            Log.e(ETAG,response.getString("authorization_code"));
+                            gerAccessTokenFromServer(response.getString("authorization_code"), volleyCallback);
+                        }
+                        else
+                        {
+                            Log.e(ETAG, "Get authorization code error.");
+                            volleyCallback.onErrorResponse(response.getString("message"));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -65,7 +72,7 @@ public class AccessTokenHelper {
         return null;
     }
 
-    private static String gerAccessTokenFromServer(String authorizationCode) {
+    private static String gerAccessTokenFromServer(String authorizationCode, final AppController.VolleyCallback volleyCallback) {
         JSONObject params = new JSONObject();
         try {
             params.put("authorization_code", authorizationCode);
@@ -79,10 +86,12 @@ public class AccessTokenHelper {
                             JSONObject token = response.getJSONObject("token");
                             Log.e(ETAG, token.toString());
                             sessionManager.setToken(token.getString("access_token"), token.getString("refresh_token"), token.getLong("expire_in"));
-                            sessionManager.getAccessToken();
-                            Log.e(ETAG, sessionManager.getAccessToken());
+                            volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
                         } else
+                        {
                             Log.e(ETAG, "Get access token error.");
+                            volleyCallback.onErrorResponse(response.getString("message"));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -94,7 +103,11 @@ public class AccessTokenHelper {
         return null;
     }
 
-    private static String RefreshToken(String refreshToken) {
+    static void RefreshToken(String refreshToken) {
+        RefreshToken(refreshToken, null);
+    }
+
+    public static void RefreshToken(String refreshToken, final AppController.VolleyCallback volleyCallback) {
         JSONObject params = new JSONObject();
         try {
             params.put("refresh_token", refreshToken);
@@ -102,14 +115,17 @@ public class AccessTokenHelper {
             AppController.getInstance().sendRequest("oauth/token", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
+                    Log.e("asdj", response.toString());
                     try {
                         if (response.getBoolean("status")) {
                             // update in shared preference
                             JSONObject token = response.getJSONObject("token");
                             long exp = getNowTime() + token.getInt("expire_in");
                             sessionManager.updateToken(token.getString("access_token"), exp);
-                        } else
+                        } else {
                             Log.e(ETAG, "Error refresh token.");
+                            volleyCallback.onErrorResponse(response.getString("message"));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -118,18 +134,23 @@ public class AccessTokenHelper {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    static boolean isExpired(Long expire) {
+    public static boolean isExpired(Long expire) {
         return getNowTime() > (expire - 30);
     }
 
     public static boolean isExpired() {
-        return getNowTime() > (sessionManager.getExpireTime()- 30);
+        return getNowTime() > (sessionManager.getExpireTime() - 30);
     }
 
-    static Long getNowTime() {
+    public static Long getNowTime() {
         return System.currentTimeMillis() / 1000;
+    }
+
+    public static boolean logout() {
+        if (sessionManager == null)
+            sessionManager = new SessionManager(mContext);
+        return sessionManager.clear();
     }
 }

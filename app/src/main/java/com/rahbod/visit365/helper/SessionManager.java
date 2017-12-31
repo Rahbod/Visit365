@@ -62,4 +62,13 @@ public class SessionManager {
     public Long getExpireTime() {
         return LoginPref.getLong("expireIn", 0);
     }
+
+    public boolean clear() {
+        loginEditor.remove("accessToken");
+        loginEditor.remove("refreshToken");
+        loginEditor.remove("expireIn");
+        loginEditor.putBoolean(KEY_IS_LOGGEDIN, false);
+        loginEditor.commit();
+        return true;
+    }
 }
