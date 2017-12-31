@@ -81,11 +81,16 @@ public class Index extends AppCompatActivity {
         listExp.setAdapter(adapter);
     }
 
-    public void openNv(View view){
-        AccessTokenHelper.logout();
-        restart();
-//        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-//        drawerLayout.openDrawer(Gravity.LEFT);
+    public void openNv(View view) {
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        drawerLayout.openDrawer(Gravity.LEFT);
+        drawerLayout.findViewById(R.id.btnExit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AccessTokenHelper.logout(getApplicationContext());
+                restart();
+            }
+        });
     }
 
     public void restart() {

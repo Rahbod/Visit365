@@ -49,15 +49,12 @@ public class AccessTokenHelper {
             AppController.getInstance().sendRequest("oauth/authorize", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.e(ETAG+"response", response.toString());
+                    Log.e(ETAG + "response", response.toString());
                     try {
-                        if (response.getBoolean("status"))
-                        {
-                            Log.e(ETAG,response.getString("authorization_code"));
+                        if (response.getBoolean("status")) {
+                            Log.e(ETAG, response.getString("authorization_code"));
                             gerAccessTokenFromServer(response.getString("authorization_code"), volleyCallback);
-                        }
-                        else
-                        {
+                        } else {
                             Log.e(ETAG, "Get authorization code error.");
                             volleyCallback.onErrorResponse(response.getString("message"));
                         }
@@ -87,8 +84,7 @@ public class AccessTokenHelper {
                             Log.e(ETAG, token.toString());
                             sessionManager.setToken(token.getString("access_token"), token.getString("refresh_token"), token.getLong("expire_in"));
                             volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
-                        } else
-                        {
+                        } else {
                             Log.e(ETAG, "Get access token error.");
                             volleyCallback.onErrorResponse(response.getString("message"));
                         }
@@ -148,9 +144,9 @@ public class AccessTokenHelper {
         return System.currentTimeMillis() / 1000;
     }
 
-    public static boolean logout() {
+    public static boolean logout(Context context) {
         if (sessionManager == null)
-            sessionManager = new SessionManager(mContext);
+            sessionManager = new SessionManager(context);
         return sessionManager.clear();
     }
 }

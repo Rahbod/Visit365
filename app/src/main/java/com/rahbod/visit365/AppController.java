@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.rahbod.visit365.helper.AccessTokenHelper;
 
 import org.json.JSONObject;
 
@@ -123,6 +124,51 @@ public class AppController extends Application {
             req.setTag(tag);
             addToRequestQueue(req);
             Log.e(TAG, "Request to " + BASE_URL + url + " sent.");
+        }
+    }
+
+
+    /**
+     * Send Authenticate Restful request with volley library to server
+     * @param url for request
+     * @param params is Json object for request
+     * @param resListener response listener has run after get response
+     */
+    public void sendAuthRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener) {
+        sendRequest(url, params, resListener, TAG);
+    }
+
+    /**
+     * Send Authenticate Restful request with volley library to server
+     * @param url for request
+     * @param params is Json object for request
+     * @param resListener response listener has run after get response
+     * @param tag of request
+     */
+    public void sendAuthRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener, final String tag) {
+        if (!isNetworkConnected())
+            Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
+        else {
+            final String accessToken = AccessTokenHelper.getAccessToken(getApplicationContext());
+            if(accessToken != null) {
+                final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "On Response Error");
+                        Log.e(TAG, error.getMessage());
+                    }
+                }) {
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        headers.put("Authorization", "Bearer " + accessToken);
+                        return headers;
+                    }
+                };
+                req.setTag(tag);
+                addToRequestQueue(req);
+                Log.e(TAG, "Request to " + BASE_URL + url + " sent.");
+            }
         }
     }
 
