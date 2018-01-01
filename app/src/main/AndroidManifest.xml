@@ -24,25 +24,19 @@
         </activity>
         <activity
             android:name=".Index"
-            android:theme="@style/Index">
-
-        </activity>
+            android:theme="@style/Index"></activity>
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Register">
-
-        </activity>
+            android:theme="@style/Register"></activity>
         <activity
             android:name=".Step1Activity"
-            android:theme="@style/Step1">
-
-        </activity>
+            android:theme="@style/Step1"></activity>
         <activity
             android:name=".TransactionActivity"
-            android:theme="@style/Index">
-
-
-        </activity>
+            android:theme="@style/Index"></activity>
+        <activity
+            android:name=".ForgetActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

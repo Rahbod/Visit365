@@ -44,7 +44,7 @@ public class AccessTokenHelper {
     private static String getAuthorize(String username, String password, final AppController.VolleyCallback volleyCallback) {
         JSONObject params = new JSONObject();
         try {
-            params.put("email", username);
+            params.put("mobile", username);
             params.put("password", password);
             AppController.getInstance().sendRequest("oauth/authorize", params, new Response.Listener<JSONObject>() {
                 @Override

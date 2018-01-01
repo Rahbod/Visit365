@@ -47,7 +47,7 @@
                     android:id="@+id/textView_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:text="ایجاد حساب کاربری"
+                    android:text="بازیابی کلمه عبور"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14dp"
@@ -56,7 +56,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lin_userRegister"
+                android:id="@+id/lin_userForget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lin_txtRegister"
@@ -64,53 +64,37 @@
                 android:layout_marginTop="30dp">
 
                 <com.rahbod.visit365.Font.EditTextFont
-                    android:id="@+id/user_register"
+                    android:id="@+id/user_forget"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
-                    android:hint="پست الکترونیک"
-                    android:inputType="textEmailAddress"
+                    android:hint="شماره موبایل"
+                    android:inputType="number"
                     android:textColorHint="@color/hint"
                     android:textSize="11dp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/lin_passwordRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_userRegister"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp">
 
-                <com.rahbod.visit365.Font.EditTextFont
-                    android:id="@+id/password_register"
-                    android:layout_width="220dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_edittext_selector"
-                    android:hint="کلمه عبور"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/hint"
-                    android:textSize="11dp" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lin_buttonRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_passwordRegister"
+                android:layout_below="@+id/lin_userForget"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="27dp">
 
                 <com.rahbod.visit365.Font.ButtonFont
-                    android:id="@+id/button_register"
+                    android:id="@+id/button_forget"
                     android:layout_width="220dp"
                     android:layout_height="37dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/button_shape"
-                    android:text="ثبت نام"
-                    android:textColor="@color/white" />
+                    android:text="ارسال"
+                    android:textColor="@color/white"
+                    android:onClick="SendSms"
+                    tools:ignore="OnClick" />
 
             </LinearLayout>
 
@@ -120,10 +104,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lin_buttonRegister"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="120dp">
+                android:layout_marginTop="140dp">
 
                 <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/login_register"
+                    android:id="@+id/login_forget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

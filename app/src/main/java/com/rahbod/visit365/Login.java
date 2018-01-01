@@ -7,22 +7,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
 import com.android.volley.toolbox.ImageLoader;
 import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.rahbod.visit365.helper.SessionManager;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
     EditText user, password;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        user = (EditText) findViewById(R.id.user_register);
 
         // check user login
         SessionManager sessionManager = new SessionManager(this);
@@ -32,7 +36,7 @@ public class Login extends AppCompatActivity {
         }
 
         // Do Login
-        user = (EditText) findViewById(R.id.user_register);
+
         password = (EditText) findViewById(R.id.password_register);
 
         Button button_login = (Button) findViewById(R.id.button_login);
@@ -68,5 +72,10 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void goToForget(View view) {
+        Intent intent = new Intent(this, ForgetActivity.class);
+        startActivity(intent);
     }
 }

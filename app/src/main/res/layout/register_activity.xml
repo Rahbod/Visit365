@@ -47,7 +47,7 @@
                     android:id="@+id/textView_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:text="ورود به حساب کاربری"
+                    android:text="ایجاد حساب کاربری"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="14dp"
@@ -68,7 +68,7 @@
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
-                    android:hint="شماره موبایل یا کد ملی"
+                    android:hint="شماره موبایل"
                     android:inputType="number"
                     android:textColorHint="@color/hint"
                     android:textSize="11dp" />
@@ -104,35 +104,13 @@
                 android:layout_marginTop="27dp">
 
                 <com.rahbod.visit365.Font.ButtonFont
-                    android:id="@+id/button_login"
+                    android:id="@+id/button_register"
                     android:layout_width="220dp"
                     android:layout_height="37dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/button_shape"
-                    android:text="ورود"
+                    android:text="ثبت نام"
                     android:textColor="@color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lin_forgetLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lin_buttonRegister"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp">
-
-                <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/forget_login"
-                    android:layout_width="220dp"
-                    android:layout_height="wrap_content"
-                    android:text="کلمه عبور خود را فراموش کرده اید؟"
-                    android:textAlignment="center"
-                    android:textColor="@color/hint"
-                    android:textSize="11dp"
-                    android:textStyle="bold"
-                    android:onClick="goToForget"
-                    tools:ignore="OnClick" />
 
             </LinearLayout>
 
@@ -145,16 +123,16 @@
                 android:layout_marginTop="120dp">
 
                 <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/register_login"
+                    android:id="@+id/login_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:text="ثبت نام"
+                    android:text="ورود"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
                     android:textStyle="bold"
-                    android:onClick="goToRegister"
+                    android:onClick="goToLogin"
                     tools:ignore="OnClick" />
 
             </LinearLayout>

@@ -108,7 +108,9 @@ public class AppController extends Application {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG, "On Response Error");
-                    Log.e(TAG, error.getMessage());
+                    try {
+                        Log.e(TAG, error.getMessage());
+                    }catch (Exception e){e.printStackTrace();}
                 }
             }) {
                 public Map<String, String> getHeaders() throws AuthFailureError {
