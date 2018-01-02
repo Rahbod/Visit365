@@ -16,15 +16,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.rahbod.visit365.helper.AccessTokenHelper;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import saman.zamani.persiandate.PersianDate;
 import saman.zamani.persiandate.PersianDateFormat;
@@ -46,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         drName = (TextView) findViewById(R.id.drNameProfile);
         drEmail = (TextView) findViewById(R.id.drEmailProfile);
         memberShipDate = (TextView) findViewById(R.id.drShipDate);
-        memberShipDate = (TextView) findViewById(R.id.drShipDate);
+        drExp = (TextView) findViewById(R.id.drExp);
         drAvatar = (ImageView) findViewById(R.id.drAvatarProfile);
 
 //      data
@@ -71,15 +74,29 @@ public class ProfileActivity extends AppCompatActivity {
                             JSONObject doctor = response.getJSONObject("doctor");
                             String drname = doctor.getString("name");
                             String dremail = doctor.getString("email");
-                            String membershipsate = doctor.getString("membershipDate");
+                            String membershipdate = doctor.getString("membershipDate");
+                            String dravatar = doctor.getString("avatar");
 
-                            PersianDate pdate = new PersianDate(Long.parseLong(membershipsate) * 1000);
+                            PersianDate pdate = new PersianDate(Long.parseLong(membershipdate) * 1000);
                             PersianDateFormat pdformater = new PersianDateFormat("j  F  13y");
-                            String str =pdformater.format(pdate);
+                            String str = pdformater.format(pdate);
 
+                            JSONArray Exp = doctor.getJSONArray("expertises");
+                            String expertises = "";
+                            for (int i = 0; i < Exp.length(); i++) {
+                                if (expertises.isEmpty())
+                                    expertises += Exp.getString(i);
+                                else
+                                    expertises += "، " + Exp.getString(i);
+                            }
+
+                            drExp.setText(expertises);
                             drName.setText(drname);
                             drEmail.setText(dremail);
                             memberShipDate.setText(str);
+                            if (!dravatar.isEmpty()) {
+                                Picasso.with(ProfileActivity.this).load(dravatar).into(drAvatar);
+                            }
 
                             JSONObject clinic = response.getJSONObject("clinic");
                             String clinicname = clinic.getString("name");
