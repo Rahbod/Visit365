@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class Index extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-
+        Log.d("TAG", "@@@@@@@@@@@@@@@ ");
 //        btnLogout = (Button) findViewById(R.id.btnLogout);
 //        btnLogout.setOnClickListener(new View.OnClickListener() {
 //            @Override
