@@ -1,7 +1,13 @@
 package com.rahbod.visit365;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +16,7 @@ import android.widget.Toast;
 import com.rahbod.visit365.Font.ButtonFont;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.models.DrList;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -20,22 +24,23 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListViewHolder> {
 
-    private Context context;
-    private List<DrList> drLists = new ArrayList<>();
+    private AppCompatActivity context;
+    private List<DrList> drLists;
 
-    public AdapterDrList(Context context, List<DrList> drLists) {
+    public AdapterDrList(AppCompatActivity context, List<DrList> drLists) {
         this.context = context;
         this.drLists = drLists;
     }
 
     @Override
     public DrListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_item_dr_list, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.step_1_rec, parent, false);
         return new DrListViewHolder(view);
     }
+
     @Override
-    public void onBindViewHolder(DrListViewHolder holder, int position) {
-        Picasso.with(context).load(drLists.get(position).getAvatar()).into(holder.imgAvatarDr);
+    public void onBindViewHolder(DrListViewHolder holder, final int position) {
+        //Picasso.with(context).load(drLists.get(position).getAvatar()).error(R.drawable.doctor).into(holder.imgAvatarDr);
         holder.txtTitleDr.setText(drLists.get(position).getName());
         holder.txtPresentDayDr.setText(drLists.get(position).getReserveDay());
         holder.btnProfileDr.setOnClickListener(new View.OnClickListener() {
@@ -47,14 +52,23 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
         holder.btnReserveDr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "reserve", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putInt("doctorId",drLists.get(position).getDoctorId());
+                bundle.putInt("clinicId",drLists.get(position).getClinicId());
+                Log.d("moein",String.valueOf(drLists.get(position).getDoctorId()));
+                Step2Fragment step2Fragment = new Step2Fragment();
+                step2Fragment.setArguments(bundle);
+
+                android.support.v4.app.FragmentManager fm = context.getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction transaction = context.getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, step2Fragment).commit();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return drLists.size();
     }
 
     public class DrListViewHolder extends RecyclerView.ViewHolder {
