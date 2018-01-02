@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
-    android:id="@+id/drawer_index">
+    android:id="@+id/drawer_profile">
 
-    <include layout="@layout/activity_index" />
+    <include layout="@layout/activity_profile" />
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             android:layout_marginLeft="10dp">
 
             <Button
-                android:id="@+id/btnExit"
+                android:id="@+id/btnExitProfile"
                 android:layout_width="50dp"
                 android:layout_height="17dp"
                 android:layout_alignParentBottom="true"

@@ -11,7 +11,7 @@
         android:layout_height="24dp"
         android:layout_alignParentRight="true"
         android:src="@drawable/date_icon"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
 
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/dateVisitS2"

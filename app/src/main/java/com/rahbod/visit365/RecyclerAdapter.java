@@ -4,24 +4,21 @@ package com.rahbod.visit365;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.security.PublicKey;
 import java.util.List;
 
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listViewHolder> {
 
     List<String[]> data;
     Context context;
 
-    public RecyclerAdapter(List<String[]> data,  Context context) {
+    public RecyclerAdapter(List<String[]> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -55,7 +52,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listVi
         return data.size();
     }
 
-    public class listViewHolder extends RecyclerView.ViewHolder{
+    public static class listViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtName;
         ImageView imgIcon;

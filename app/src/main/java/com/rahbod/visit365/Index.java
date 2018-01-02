@@ -82,7 +82,7 @@ public class Index extends AppCompatActivity {
     }
 
     public void openNv(View view) {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
         drawerLayout.openDrawer(Gravity.LEFT);
         drawerLayout.findViewById(R.id.btnExit).setOnClickListener(new View.OnClickListener() {
             @Override

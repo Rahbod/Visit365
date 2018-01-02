@@ -55,7 +55,7 @@
         android:layout_below="@+id/header_step_2">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/drAvatarProfile"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentRight="true"
@@ -66,11 +66,11 @@
             android:layout_marginRight="10dp"/>
 
         <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/textView12"
+            android:id="@+id/drNameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imageView3"
-            android:layout_alignRight="@+id/imageView3"
+            android:layout_alignTop="@+id/drAvatarProfile"
+            android:layout_alignRight="@+id/drAvatarProfile"
             android:layout_marginRight="100dp"
             android:text="دکتر سعید امامی"
             android:textColor="@color/black"
@@ -78,22 +78,22 @@
             android:layout_marginTop="15dp"/>
 
         <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/textView17"
+            android:id="@+id/drEmailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/textView12"
-            android:layout_below="@+id/textView12"
+            android:layout_alignRight="@+id/drNameProfile"
+            android:layout_below="@+id/drNameProfile"
             android:text="بیمارستان میلاد"
             android:textColor="@color/hint"
             android:textSize="10dp"/>
 
         <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/textView18"
+            android:id="@+id/drPhoneProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/textView17"
+            android:layout_alignRight="@+id/drEmailProfile"
             android:layout_marginRight="100dp"
-            android:layout_below="@+id/textView12"
+            android:layout_below="@+id/drNameProfile"
             android:text="شماره تماس : 09193493576"
             android:textColor="@color/hint"
             android:textSize="10dp"/>
