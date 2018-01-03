@@ -75,7 +75,7 @@
                     android:textSize="13dp" />
 
                 <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/drEmailProfile"
+                    android:id="@+id/tvClinicTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@+id/drNameProfile"

@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity {
 
         // check user login
         SessionManager sessionManager = new SessionManager(this);
+        Log.e("ATH","logged in");
         if (sessionManager.isLoggedIn()) {
             Log.e("ATH","logged in");
             afterLogin();
@@ -39,24 +40,32 @@ public class Login extends AppCompatActivity {
 
         password = (EditText) findViewById(R.id.password_register);
 
-        Button button_login = (Button) findViewById(R.id.button_login);
+        final Button button_login = (Button) findViewById(R.id.button_login);
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String strUser = user.getText().toString();
                 String strPassword = password.getText().toString();
-                String acc = AccessTokenHelper.getAccessToken(getApplicationContext(), strUser, strPassword, new AppController.VolleyCallback() {
-                    @Override
-                    public void onSuccessResponse(String result) {
-                        Log.e("ATH","login");
-                        afterLogin();
-                    }
+                if(strUser.isEmpty() || strPassword.isEmpty())
+                    Toast.makeText(Login.this, "فیلدهای ورود نباید خالی باشند.", Toast.LENGTH_SHORT).show();
+                else {
+                    button_login.setEnabled(false);
+                    button_login.setText("در حال انتقال ...");
+                    AccessTokenHelper.getAccessToken(getApplicationContext(), strUser, strPassword, new AppController.VolleyCallback() {
+                        @Override
+                        public void onSuccessResponse(String result) {
+                            Log.e("ATH", "login");
+                            afterLogin();
+                        }
 
-                    @Override
-                    public void onErrorResponse(String result) {
-                        Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onErrorResponse(String result) {
+                            button_login.setEnabled(true);
+                            button_login.setText("ورود");
+                            Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
     }
