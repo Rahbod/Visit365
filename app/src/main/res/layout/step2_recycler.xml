@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -15,7 +16,8 @@
 
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/dateVisitS2"
-        android:layout_width="wrap_content"
+        android:gravity="right"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
@@ -26,34 +28,12 @@
 
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/textView13"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/dateVisitS2"
         android:layout_below="@+id/imageView4"
-        android:layout_marginTop="13dp"
-        android:text="11-9 صبح"
-        android:textColor="@color/hint" />
-
-    <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView13"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/dateVisitS2"
-        android:layout_toStartOf="@+id/textView13"
-        android:text="/"
-        android:textColor="@color/hint"/>
-
-    <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView14"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/textView14"
-        android:layout_toStartOf="@+id/textView14"
-        android:text="4-6 بعدازظهر"
+        android:layout_marginTop="5dp"
+        android:text="11-9   صبح"
         android:textColor="@color/hint" />
 
     <com.rahbod.visit365.Font.ButtonFont
@@ -61,7 +41,7 @@
         android:layout_width="100dp"
         android:textColor="@color/white"
         android:layout_height="37dp"
-        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignBottom="@+id/textView13"
         android:layout_alignParentLeft="true"
         android:background="@drawable/button_shape"
         android:text="انتخاب" />

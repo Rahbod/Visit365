@@ -37,11 +37,19 @@
             android:background="@drawable/menu_index" />
     </RelativeLayout>
 
+
+
+
+
     <FrameLayout
+        android:layout_below="@id/header"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/fragment_container">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <!--header2-->
         <RelativeLayout
             android:id="@+id/header_step_1"
@@ -87,8 +95,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/header_step_1">
+            android:layout_height="wrap_content">
 
             <com.rahbod.visit365.Font.FontTextView
                 android:id="@+id/textView5"
@@ -108,6 +115,6 @@
                 android:layout_below="@+id/textView5"
                 android:padding="10dp" />
         </RelativeLayout>
-
+        </LinearLayout>
     </FrameLayout>
 </RelativeLayout>

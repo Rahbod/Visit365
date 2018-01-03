@@ -1,9 +1,5 @@
-package com.rahbod.visit365;
+package com.rahbod.visit365.Adapters;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +11,8 @@ import android.widget.Toast;
 
 import com.rahbod.visit365.Font.ButtonFont;
 import com.rahbod.visit365.Font.FontTextView;
+import com.rahbod.visit365.R;
+import com.rahbod.visit365.Step2Fragment;
 import com.rahbod.visit365.models.DrList;
 
 import java.util.List;
