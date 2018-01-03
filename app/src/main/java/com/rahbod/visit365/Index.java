@@ -35,6 +35,7 @@ public class Index extends AppCompatActivity {
     RecyclerView listExp;
     String accessToken;
     Button btnLogout;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -48,6 +49,8 @@ public class Index extends AppCompatActivity {
         setContentView(R.layout.activity_index);
         setContentView(R.layout.navigationdraw);
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -57,6 +60,29 @@ public class Index extends AppCompatActivity {
                     case R.id.credit_card_NavigationView:
                         Intent goTransactions = new Intent(Index.this, TransactionActivity.class);
                         startActivity(goTransactions);
+                        break;
+
+                    case R.id.help_NavigationView:
+                        Intent goHelp = new Intent(Index.this, HelpActivity.class);
+                        startActivity(goHelp);
+                        break;
+
+                    case R.id.user_NavigationView:
+                        Intent goProfile = new Intent(Index.this, ProfileUserActivity.class);
+                        startActivity(goProfile);
+                        break;
+
+                    case R.id.abut_NavigationView:
+                        Intent goAbout = new Intent(Index.this, AboutActivity.class);
+                        startActivity(goAbout);
+                        break;
+
+                    case R.id.home_NavigationView:
+                        drawerLayout.closeDrawer(Gravity.LEFT);
+                        break;
+
+
+
                 }
 
                 return true;
@@ -88,7 +114,6 @@ public class Index extends AppCompatActivity {
     }
 
     public void openNv(View view) {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
         drawerLayout.openDrawer(Gravity.LEFT);
         drawerLayout.findViewById(R.id.btnExit).setOnClickListener(new View.OnClickListener() {
             @Override

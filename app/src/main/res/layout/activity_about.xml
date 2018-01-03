@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rahbod.visit365.HelpActivity">
+
+    <!--header-->
+    <RelativeLayout
+        android:id="@+id/headerAbout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/green1">
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="ویزیت 365"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnNv"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/menu_index"
+            android:onClick="openNv"
+            tools:ignore="OnClick" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@+id/headerAbout"
+        android:id="@+id/scrollViewAbout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.rahbod.visit365.Font.FontTextView
+                android:id="@+id/txtHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:text="درباره ما"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <com.rahbod.visit365.Font.FontTextView
+                android:id="@+id/webViewHelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtHelp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
