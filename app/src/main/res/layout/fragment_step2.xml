@@ -78,7 +78,7 @@
             android:layout_marginTop="15dp"/>
 
         <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/drEmailProfile"
+            android:id="@+id/tvClinicTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/drNameProfile"
@@ -91,7 +91,7 @@
             android:id="@+id/drPhoneProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/drEmailProfile"
+            android:layout_alignRight="@+id/tvClinicTitle"
             android:layout_marginRight="100dp"
             android:layout_below="@+id/drNameProfile"
             android:text="شماره تماس : 09193493576"

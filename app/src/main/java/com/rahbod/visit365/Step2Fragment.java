@@ -1,10 +1,8 @@
 package com.rahbod.visit365;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.volley.Response;
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.rahbod.visit365.Adapters.DateAdapter;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.models.Dates;
@@ -35,7 +31,7 @@ public class Step2Fragment extends Fragment {
     JSONObject jsonObject;
     List<Dates> dates = new ArrayList<>();
     DateAdapter dateAdapter;
-    PersianCalendar calendar;
+//    PersianCalendar calendar;
     private static final String TAG = "Tag";
 
     public Step2Fragment() {
@@ -54,9 +50,9 @@ public class Step2Fragment extends Fragment {
 
         JSONObject params = new JSONObject();
         recyclerView = (RecyclerView) view.findViewById(R.id.rec_present_day);
-        doctorTitle = (FontTextView) view.findViewById(R.id.textView12);
-        doctorPhone = (FontTextView) view.findViewById(R.id.textView18);
-        clinicTitle = (FontTextView) view.findViewById(R.id.textView17);
+        doctorTitle = (FontTextView) view.findViewById(R.id.drNameProfile);
+        doctorPhone = (FontTextView) view.findViewById(R.id.drPhoneProfile);
+        clinicTitle = (FontTextView) view.findViewById(R.id.tvClinicTitle);
         tvFromDate = (FontTextView) view.findViewById(R.id.tv_from);
         tvToDate = (FontTextView) view.findViewById(R.id.tv_to);
         try {
@@ -87,13 +83,13 @@ public class Step2Fragment extends Fragment {
         tvFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getSupportFragmentManager();
-               calendar = new PersianCalendar();
-                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
-                        (DatePickerDialog.OnDateSetListener) getActivity(),calendar.getPersianYear(),calendar.getPersianMonth(),calendar.getPersianDay()
-                );
-                datePickerDialog.setThemeDark(true);
-                datePickerDialog.show(,"sdsdsd");
+//                FragmentManager fm = getSupportFragmentManager();
+//               calendar = new PersianCalendar();
+//                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
+//                        (DatePickerDialog.OnDateSetListener) getActivity(),calendar.getPersianYear(),calendar.getPersianMonth(),calendar.getPersianDay()
+//                );
+//                datePickerDialog.setThemeDark(true);
+//                datePickerDialog.show(,"sdsdsd");
             }
         });
     }
