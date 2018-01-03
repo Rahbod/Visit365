@@ -14,12 +14,14 @@ public class DrList {
     public DrList() {
     }
 
-    public DrList(String name, String avatar, int clinicId, int doctorId) {
+    public DrList(String name, String avatar, int doctorId, int clinicId , String reserveDay) {
         this.name = name;
         this.avatar = avatar;
         this.clinicId = clinicId;
         this.doctorId = doctorId;
+        this.reserveDay = reserveDay;
     }
+
     public String getReserveDay() {
         return reserveDay;
     }
@@ -65,7 +67,6 @@ public class DrList {
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
-
 
 
 }

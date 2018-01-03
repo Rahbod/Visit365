@@ -1,18 +1,18 @@
-package com.rahbod.visit365;
+package com.rahbod.visit365.Adapters;
 
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.security.PublicKey;
+import com.rahbod.visit365.R;
+import com.rahbod.visit365.Step1Activity;
+
 import java.util.List;
 
 

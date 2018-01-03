@@ -1,7 +1,6 @@
 package com.rahbod.visit365;
 
 import android.app.AlarmManager;
-import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -14,14 +13,11 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
-import com.rahbod.visit365.Fragment.Select_Dr;
+import com.rahbod.visit365.Adapters.RecyclerAdapter;
 import com.rahbod.visit365.helper.AccessTokenHelper;
-import com.rahbod.visit365.helper.SessionManager;
 
-import org.json.JSONObject;
 import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;

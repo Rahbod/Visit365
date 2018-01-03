@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rahbod.visit365.R;
-import com.rahbod.visit365.RecyclerAdapter;
+import com.rahbod.visit365.Adapters.RecyclerAdapter;
 
 import java.util.ArrayList;
 

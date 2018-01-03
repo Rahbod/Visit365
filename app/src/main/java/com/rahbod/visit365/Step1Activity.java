@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Response;
+import com.rahbod.visit365.Adapters.AdapterDrList;
 import com.rahbod.visit365.models.DrList;
 
 import org.json.JSONArray;
@@ -47,7 +48,7 @@ public class Step1Activity extends AppCompatActivity {
                             JSONArray json = response.getJSONArray("doctors");
                             for (int i = 0; i < json.length(); i++) {
                                 doctor = json.getJSONObject(i);
-                                DrList.add(new DrList(doctor.getString("name"), doctor.getString("avatar"), doctor.getInt("doctorID"), doctor.getInt("clinicID")));
+                                DrList.add(new DrList(doctor.getString("name"), doctor.getString("avatar"), doctor.getInt("doctorID"), doctor.getInt("clinicID"),doctor.getString("days")));
                             }
                             Toast.makeText(Step1Activity.this, String.valueOf(DrList.size()), Toast.LENGTH_SHORT).show();
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

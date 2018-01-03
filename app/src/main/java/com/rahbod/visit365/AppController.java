@@ -107,8 +107,8 @@ public class AppController extends Application {
             final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e(TAG, "On Response Error");
-                    Log.e(TAG, error.getMessage());
+//                    Log.e(TAG, "On Response Error");
+//                    Log.e(TAG, error.getMessage());
                 }
             }) {
                 public Map<String, String> getHeaders() throws AuthFailureError {

@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -38,4 +39,7 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'junit:junit:4.12'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
+    compile 'com.alirezaafkar:sundatepicker:2.0.8'
+    compile 'com.github.hamsaadev:Persian-Date-Picker-Dialog:V1.2'
 }
