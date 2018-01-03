@@ -22,7 +22,7 @@ SessionManager sessionManager = new SessionManager(this);
         AppController.getInstance().sendAuthRequest("api/transactions", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("abcd", response.toString());
+                Log.e("abcd", response+"");
             }
         });
     }
