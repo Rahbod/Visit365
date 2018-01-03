@@ -16,12 +16,12 @@ import com.rahbod.visit365.Step1Activity;
 import java.util.List;
 
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listViewHolder> {
 
     List<String[]> data;
     Context context;
 
-    public RecyclerAdapter(List<String[]> data,  Context context) {
+    public RecyclerAdapter(List<String[]> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -55,7 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listVi
         return data.size();
     }
 
-    public class listViewHolder extends RecyclerView.ViewHolder{
+    public static class listViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtName;
         ImageView imgIcon;

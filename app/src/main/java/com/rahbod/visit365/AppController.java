@@ -107,8 +107,10 @@ public class AppController extends Application {
             final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-//                    Log.e(TAG, "On Response Error");
-//                    Log.e(TAG, error.getMessage());
+                    Log.e(TAG, "On Response Error");
+                    try {
+                        Log.e(TAG, error.getMessage());
+                    }catch (Exception e){e.printStackTrace();}
                 }
             }) {
                 public Map<String, String> getHeaders() throws AuthFailureError {
@@ -162,6 +164,7 @@ public class AppController extends Application {
                         Map<String, String> headers = new HashMap<>();
                         headers.put("Content-Type", "application/json");
                         headers.put("Authorization", "Bearer " + accessToken);
+                        Log.e("abcd", accessToken+"");
                         return headers;
                     }
                 };

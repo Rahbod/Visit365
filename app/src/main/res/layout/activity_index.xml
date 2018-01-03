@@ -9,7 +9,7 @@
 
     <!--header-->
     <RelativeLayout
-        android:id="@+id/header_index"
+        android:id="@+id/header_transaction"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@color/green1">
@@ -42,7 +42,7 @@
         android:id="@+id/textView_index"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header_index"
+        android:layout_below="@+id/header_transaction"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:text="جهت رزرو نوبت، یکی از تخصص های زیر را انتخاب کنید"

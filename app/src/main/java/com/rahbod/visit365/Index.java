@@ -5,12 +5,15 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,20 +42,22 @@ public class Index extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-        Log.d("TAG", "@@@@@@@@@@@@@@@ ");
-//        btnLogout = (Button) findViewById(R.id.btnLogout);
-//        btnLogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(Index.this, "Tis", Toast.LENGTH_SHORT).show();
-////                if (AccessTokenHelper.logout())
-////                    restart();
-//            }
-//        });
-
-//        SessionManager sessionManager = new SessionManager(getApplicationContext());
-//        sessionManager.clear();
         setContentView(R.layout.navigationdraw);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.credit_card_NavigationView:
+                        Intent goTransactions = new Intent(Index.this, TransactionActivity.class);
+                        startActivity(goTransactions);
+                }
+
+                return true;
+            }
+        });
 
 
         ArrayList<String[]> expertises = new ArrayList<String[]>();
@@ -79,7 +84,7 @@ public class Index extends AppCompatActivity {
     }
 
     public void openNv(View view) {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
         drawerLayout.openDrawer(Gravity.LEFT);
         drawerLayout.findViewById(R.id.btnExit).setOnClickListener(new View.OnClickListener() {
             @Override
