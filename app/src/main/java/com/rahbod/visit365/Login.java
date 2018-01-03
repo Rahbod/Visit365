@@ -34,7 +34,6 @@ public class Login extends AppCompatActivity {
             public void onSuccessResponse(String result) {
                 afterLogin();
             }
-
             @Override
             public void onErrorResponse(String result) {
                 Log.e("LOGIN", "Refresh token error!");
@@ -79,7 +78,7 @@ public class Login extends AppCompatActivity {
 
     public void afterLogin(){
         Log.e("ATH","logged in");
-        Intent index = new Intent(this, TransactionActivity.class);
+        Intent index = new Intent(this, Index.class);
         startActivity(index);
         finish();
     }

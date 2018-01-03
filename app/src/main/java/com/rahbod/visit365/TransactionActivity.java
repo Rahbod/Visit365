@@ -16,7 +16,9 @@ public class TransactionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction_activity);
-
+SessionManager sessionManager = new SessionManager(this);
+        Log.e("ResponseError", sessionManager.isLoggedIn()+"");
+        Log.e("ResponseError", sessionManager.getAccessToken()+"");
         AppController.getInstance().sendAuthRequest("api/transactions", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

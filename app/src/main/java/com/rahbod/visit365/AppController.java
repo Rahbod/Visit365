@@ -160,7 +160,7 @@ public class AppController extends Application {
             Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
         else {
             final String accessToken = AccessTokenHelper.getAccessToken(getApplicationContext());
-            Log.e("ATH","AC: "+accessToken);
+            Log.e("ATH", "AC: " + accessToken);
             if (accessToken != null) {
                 if (params == null)
                     params = new JSONObject();
@@ -207,33 +207,18 @@ public class AppController extends Application {
 
     private void errorHandler(VolleyError error) {
         if (error instanceof TimeoutError) {
-            Toast.makeText(getApplicationContext(),
-                    "زمان انتظار برای پاسخ از سرور به اتمام رسید.",
-                    Toast.LENGTH_LONG).show();
+            Log.e("ResponseError", "زمان انتظار برای پاسخ از سرور به اتمام رسید.");
         } else if (error instanceof NoConnectionError) {
-            Toast.makeText(getApplicationContext(),
-                    "خطای اتصال به اینترنت رخ داده است.",
-                    Toast.LENGTH_LONG).show();
+            Log.e("ResponseError", "خطای اتصال به اینترنت رخ داده است.");
         } else if (error instanceof AuthFailureError) {
-            Toast.makeText(getApplicationContext(),
-                    "خطای احراز هویت رخ داده است.",
-                    Toast.LENGTH_LONG).show();
+            Log.e("ResponseError", "خطای احراز هویت رخ داده است.");
         } else if (error instanceof ServerError) {
-            Toast.makeText(getApplicationContext(),
-                    "خطای سرور رخ داده است.",
-                    Toast.LENGTH_LONG).show();
+            Log.e("ResponseError", "خطای سرور رخ داده است.");
         } else if (error instanceof NetworkError) {
-            Toast.makeText(getApplicationContext(),
-                    "خطای دسترسی به شبکه رخ داده است.",
-                    Toast.LENGTH_LONG).show();
+            Log.e("ResponseError", "خطای دسترسی به شبکه رخ داده است.");
         } else if (error instanceof ParseError) {
-            Toast.makeText(getApplicationContext(),
-                    "خطای پردازش پاسخ سرور رخ داده است.",
-                    Toast.LENGTH_LONG).show();
-        }else
-            Toast.makeText(getApplicationContext(),
-                    error.getMessage(),
-                    Toast.LENGTH_LONG).show();
-
+            Log.e("ResponseError", "خطای پردازش پاسخ سرور رخ داده است.");
+        } else
+            Log.e("ResponseError", error.getMessage());
     }
 }
