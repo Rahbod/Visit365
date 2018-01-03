@@ -29,8 +29,6 @@ public class Index extends AppCompatActivity {
 
     RecyclerAdapter adapter;
     RecyclerView listExp;
-    String accessToken;
-    Button btnLogout;
     DrawerLayout drawerLayout;
 
     @Override
@@ -86,7 +84,7 @@ public class Index extends AppCompatActivity {
         });
 
 
-        ArrayList<String[]> expertises = new ArrayList<String[]>();
+        ArrayList<String[]> expertises = new ArrayList<>();
         expertises.add(new String[]{"1", "قلب و عروق", "heart_index"});
         expertises.add(new String[]{"2", "گوش و حلق و بینی", "listen_index"});
         expertises.add(new String[]{"3", "چشم پزشکی", "eye_index"});

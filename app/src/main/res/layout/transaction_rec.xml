@@ -2,47 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_rec">
 
     <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/gha"
+        android:id="@+id/AmountRec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
         android:text="20.000 هزار تومان"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="14dp"/>
 
     <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/gh"
+        android:id="@+id/dataRec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/gha"
+        android:layout_below="@+id/AmountRec"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:text="5 دی 1396"
-        android:textColor="@color/black"
-        android:textSize="12dp" />
+        android:textColor="@color/hint"
+        android:textSize="10dp" />
 
     <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/textView43"
+        android:id="@+id/gatewayRec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/gh"
+        android:layout_alignTop="@+id/dataRec"
         android:layout_centerHorizontal="true"
         android:text="درگاه بانک ملت"
-        android:textColor="@color/black"
-        android:textSize="12dp" />
+        android:textColor="@color/hint"
+        android:textSize="10dp" />
 
     <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/gh2"
+        android:id="@+id/codeRec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/gha"
+        android:layout_below="@+id/AmountRec"
         android:layout_marginTop="10dp"
         android:text="کد رهگیری:542459"
-        android:textColor="@color/black"
-        android:textSize="12dp" />
+        android:textColor="@color/hint"
+        android:textSize="10dp" />
 
 </RelativeLayout>
