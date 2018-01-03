@@ -164,6 +164,7 @@ public class AppController extends Application {
                         Map<String, String> headers = new HashMap<>();
                         headers.put("Content-Type", "application/json");
                         headers.put("Authorization", "Bearer " + accessToken);
+                        Log.e("abcd", accessToken+"");
                         return headers;
                     }
                 };

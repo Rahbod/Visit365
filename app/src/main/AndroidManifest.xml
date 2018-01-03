@@ -17,6 +17,12 @@
             android:name=".Login"
             android:theme="@style/Login">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".Index"
@@ -31,7 +37,8 @@
             android:theme="@style/Step1" />
         <activity
             android:name=".TransactionActivity"
-            android:theme="@style/Index" />
+            android:theme="@style/Index" >
+        </activity>
         <activity
             android:name=".ForgetActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -39,11 +46,7 @@
             android:name=".ProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
     </application>
