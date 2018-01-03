@@ -1,6 +1,8 @@
 package com.rahbod.visit365;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,22 +58,26 @@ public class Login extends AppCompatActivity {
                 if(strUser.isEmpty() || strPassword.isEmpty())
                     Toast.makeText(Login.this, "فیلدهای ورود نباید خالی باشند.", Toast.LENGTH_SHORT).show();
                 else {
-                    button_login.setEnabled(false);
-                    button_login.setText("در حال انتقال ...");
-                    AccessTokenHelper.getAccessToken(getApplicationContext(), strUser, strPassword, new AppController.VolleyCallback() {
-                        @Override
-                        public void onSuccessResponse(String result) {
-                            Log.e("ATH", "login");
-                            afterLogin();
-                        }
+                    if (isNetworkConnected()) {
+                        button_login.setEnabled(false);
+                        button_login.setText("در حال انتقال ...");
+                        AccessTokenHelper.getAccessToken(getApplicationContext(), strUser, strPassword, new AppController.VolleyCallback() {
+                            @Override
+                            public void onSuccessResponse(String result) {
+                                Log.e("ATH", "login");
+                                afterLogin();
+                            }
 
-                        @Override
-                        public void onErrorResponse(String result) {
-                            button_login.setEnabled(true);
-                            button_login.setText("ورود");
-                            Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
-                        }
-                    });
+                            @Override
+                            public void onErrorResponse(String result) {
+                                button_login.setEnabled(true);
+                                button_login.setText("ورود");
+                                Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }else{
+                        Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -79,7 +85,7 @@ public class Login extends AppCompatActivity {
 
     public void afterLogin(){
         Log.e("ATH","logged in");
-        Intent index = new Intent(this, TransactionActivity.class);
+        Intent index = new Intent(this, Index.class);
         startActivity(index);
         finish();
     }
@@ -94,5 +100,10 @@ public class Login extends AppCompatActivity {
     public void goToForget(View view) {
         Intent intent = new Intent(this, ForgetActivity.class);
         startActivity(intent);
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected() && cm.getActiveNetworkInfo().isAvailable();
     }
 }
