@@ -29,10 +29,17 @@ public class Login extends AppCompatActivity {
         user = (EditText) findViewById(R.id.user_register);
 
         // check user login
-        SessionManager sessionManager = new SessionManager(this);
-        Log.e("ATH","logged in");
-        if (sessionManager.isLoggedIn()) {
-            Log.e("ATH","logged in");
+        if (AccessTokenHelper.checkAccessToken(this,new AppController.VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                afterLogin();
+            }
+
+            @Override
+            public void onErrorResponse(String result) {
+                Log.e("LOGIN", "Refresh token error!");
+            }
+        })) {
             afterLogin();
         }
 
@@ -71,7 +78,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void afterLogin(){
-        Intent index = new Intent(this, Index.class);
+        Log.e("ATH","logged in");
+        Intent index = new Intent(this, TransactionActivity.class);
         startActivity(index);
         finish();
     }
