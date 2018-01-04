@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.android.volley.Response;
 import com.rahbod.visit365.Adapters.DateAdapter;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.models.Dates;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import ir.hamsaa.persiandatepicker.Listener;
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
 import ir.hamsaa.persiandatepicker.util.PersianCalendar;
@@ -31,16 +32,17 @@ import saman.zamani.persiandate.PersianDate;
 import saman.zamani.persiandate.PersianDateFormat;
 
 public class Step2Fragment extends Fragment {
-    FontTextView doctorTitle, clinicTitle, doctorPhone, tvFromDate, tvToDate;
+    private static final String TAG = "Tag";
+    long miliFrom, miliTo, miliNow;
+    CircleImageView avatarDoctor ;
+    FontTextView doctorTitle, clinicTitle, clinicPhone, tvFromDate, tvToDate ;
     RecyclerView recyclerView;
-    JSONObject jsonObject;
+    JSONObject jsonObject , objectDoctor , objectClinic;
     List<Dates> dates = new ArrayList<>();
     DateAdapter dateAdapter;
     PersianDate persianDate;
     PersianDateFormat persianDateFormat;
-    long miliFrom, miliTo, miliNow;
-    private static final String TAG = "Tag";
-    JSONObject object;
+    String dateShow;
 
     public Step2Fragment() {
     }
@@ -60,10 +62,11 @@ public class Step2Fragment extends Fragment {
         miliNow = System.currentTimeMillis();
         recyclerView = (RecyclerView) view.findViewById(R.id.rec_present_day);
         doctorTitle = (FontTextView) view.findViewById(R.id.drNameProfile);
-        doctorPhone = (FontTextView) view.findViewById(R.id.drPhoneProfile);
+        clinicPhone = (FontTextView) view.findViewById(R.id.drPhoneProfile);
         clinicTitle = (FontTextView) view.findViewById(R.id.tvClinicTitle);
         tvFromDate = (FontTextView) view.findViewById(R.id.tv_from);
         tvToDate = (FontTextView) view.findViewById(R.id.tv_to);
+        avatarDoctor = (CircleImageView) view.findViewById(R.id.drAvatarProfile);
 
         try {
             params.put("doctor_id", bundle.getInt("doctorId"));
@@ -75,8 +78,22 @@ public class Step2Fragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    object = new JSONObject();
-                    object = response;
+
+                    objectDoctor = new JSONObject();
+                    objectDoctor = response.getJSONObject("doctor");
+                    doctorTitle.setText(objectDoctor.getString("name"));
+                    String doctorAvatar = objectDoctor.getString("avatar");
+                    if(!doctorAvatar.isEmpty())
+                    {
+                        Picasso.with(getActivity()).load(doctorAvatar).into(avatarDoctor);
+                    }
+
+                    objectClinic = response.getJSONObject("clinic");
+                    String clinicName = objectClinic.getString("name");
+                    clinicTitle.setText(clinicName);
+                    String phoneClinic = objectClinic.getString("phone");
+                    clinicPhone.setText(phoneClinic);
+
                     if (response.getBoolean("status")) {
 
                         PersianDate persianDateFrom = new PersianDate(Long.parseLong(response.getString("from")) * 1000);
@@ -94,8 +111,9 @@ public class Step2Fragment extends Fragment {
                             jsonObject = jsonArray.getJSONObject(i);
                             persianDate = new PersianDate(Long.parseLong(jsonObject.getString("date")) * 1000);
                             persianDateFormat = new PersianDateFormat("13y-n-j");
+                            dateShow = jsonObject.getString("dateShow");
                             String str = persianDateFormat.format(persianDate);
-                            dates.add(new Dates(str));
+                            dates.add(new Dates(str,dateShow));
                         }
                         dateAdapter = new DateAdapter(dates, getActivity());
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

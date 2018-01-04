@@ -39,11 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.navigationdraw_profile);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            String a = bundle.getString("doctorId");
-            Log.d("moien", "@@@ " + String.valueOf(a));
-            //Log.d("TAG", "@@@ "+bundle.getInt("clinicId"));
-        }
+
 //      profile
         drName = (TextView) findViewById(R.id.drNameProfile);
         drEmail = (TextView) findViewById(R.id.tvClinicTitle);

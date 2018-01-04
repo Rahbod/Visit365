@@ -6,17 +6,13 @@ package com.rahbod.visit365.models;
 
 public class Dates {
     private String date;
-
-    public Dates(String am, String pm) {
-        this.am = am;
-        this.pm = pm;
-    }
-
     private String am;
     private String pm;
+    private String dateShow;
 
-    public Dates(String date) {
+    public Dates(String date, String dateShow) {
         this.date = date;
+        this.dateShow = dateShow;
     }
 
     public String getDate() {
@@ -41,5 +37,13 @@ public class Dates {
 
     public void setPm(String pm) {
         this.pm = pm;
+    }
+
+    public String getDateShow() {
+        return dateShow;
+    }
+
+    public void setDateShow(String dateShow) {
+        this.dateShow = dateShow;
     }
 }
