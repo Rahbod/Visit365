@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Response;
+import com.android.volley.toolbox.RequestFuture;
 import com.rahbod.visit365.AppController;
 import com.rahbod.visit365.DbHelper;
 import com.rahbod.visit365.Login;
@@ -24,14 +25,25 @@ public class AccessTokenHelper {
         if (sessionManager.isLoggedIn()) {
             if (!isExpired(sessionManager.getExpireTime()))
                 return sessionManager.getAccessToken();
-            else {
+            else
+                Log.e(ETAG, "Access token has expired");
+        }
+        return "";
+    }
+
+    public static boolean checkAccessToken(Context context, AppController.VolleyCallback volleyCallback) {
+        mContext = context;
+        sessionManager = new SessionManager(context);
+        if (sessionManager.isLoggedIn()) {
+            if (isExpired(sessionManager.getExpireTime())){
                 String refreshToken = sessionManager.getRefreshToken();
                 if (refreshToken != null) {
-                    RefreshToken(refreshToken);
+                    RefreshToken(refreshToken, volleyCallback);
                 }
-            }
+            }else
+                return true;
         }
-        return null;
+        return false;
     }
 
     public static String getAccessToken(Context context, String username, String password, final AppController.VolleyCallback volleyCallback) {
@@ -100,10 +112,20 @@ public class AccessTokenHelper {
     }
 
     static void RefreshToken(String refreshToken) {
-        RefreshToken(refreshToken, null);
+        RefreshToken(refreshToken, new AppController.VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+
+            }
+
+            @Override
+            public void onErrorResponse(String result) {
+
+            }
+        });
     }
 
-    public static void RefreshToken(String refreshToken, final AppController.VolleyCallback volleyCallback) {
+    static void RefreshToken(String refreshToken, final AppController.VolleyCallback volleyCallback) {
         JSONObject params = new JSONObject();
         try {
             params.put("refresh_token", refreshToken);
@@ -118,6 +140,7 @@ public class AccessTokenHelper {
                             JSONObject token = response.getJSONObject("token");
                             long exp = getNowTime() + token.getInt("expire_in");
                             sessionManager.updateToken(token.getString("access_token"), exp);
+                            volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
                         } else {
                             Log.e(ETAG, "Error refresh token.");
                             volleyCallback.onErrorResponse(response.getString("message"));

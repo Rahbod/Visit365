@@ -9,9 +9,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
@@ -75,6 +80,7 @@ public class AppController extends Application {
 
     /**
      * Cancel pending request
+     *
      * @param tag of request
      */
     public void cancelPendingRequests(Object tag) {
@@ -85,8 +91,9 @@ public class AppController extends Application {
 
     /**
      * Send Restful request with volley library to server
-     * @param url for request
-     * @param params is Json object for request
+     *
+     * @param url         for request
+     * @param params      is Json object for request
      * @param resListener response listener has run after get response
      */
     public void sendRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener) {
@@ -95,10 +102,11 @@ public class AppController extends Application {
 
     /**
      * Send Restful request with volley library to server
-     * @param url for request
-     * @param params is Json object for request
+     *
+     * @param url         for request
+     * @param params      is Json object for request
      * @param resListener response listener has run after get response
-     * @param tag of request
+     * @param tag         of request
      */
     public void sendRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener, final String tag) {
         if (!isNetworkConnected())
@@ -108,9 +116,7 @@ public class AppController extends Application {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG, "On Response Error");
-                    try {
-                        Log.e(TAG, error.getMessage());
-                    }catch (Exception e){e.printStackTrace();}
+                    errorHandler(error);
                 }
             }) {
                 public Map<String, String> getHeaders() throws AuthFailureError {
@@ -132,39 +138,43 @@ public class AppController extends Application {
 
     /**
      * Send Authenticate Restful request with volley library to server
-     * @param url for request
-     * @param params is Json object for request
+     *
+     * @param url         for request
+     * @param params      is Json object for request
      * @param resListener response listener has run after get response
      */
     public void sendAuthRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener) {
-        sendRequest(url, params, resListener, TAG);
+        sendAuthRequest(url, params, resListener, TAG);
     }
 
     /**
      * Send Authenticate Restful request with volley library to server
-     * @param url for request
-     * @param params is Json object for request
+     *
+     * @param url         for request
+     * @param params      is Json object for request
      * @param resListener response listener has run after get response
-     * @param tag of request
+     * @param tag         of request
      */
-    public void sendAuthRequest(String url, final JSONObject params, Response.Listener<JSONObject> resListener, final String tag) {
+    public void sendAuthRequest(String url, JSONObject params, Response.Listener<JSONObject> resListener, final String tag) {
         if (!isNetworkConnected())
             Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
         else {
             final String accessToken = AccessTokenHelper.getAccessToken(getApplicationContext());
-            if(accessToken != null) {
+            Log.e("ATH", "AC: " + accessToken);
+            if (accessToken != null) {
+                if (params == null)
+                    params = new JSONObject();
                 final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e(TAG, "On Response Error");
-                        Log.e(TAG, error.getMessage());
+                        errorHandler(error);
                     }
                 }) {
                     public Map<String, String> getHeaders() throws AuthFailureError {
                         Map<String, String> headers = new HashMap<>();
                         headers.put("Content-Type", "application/json");
                         headers.put("Authorization", "Bearer " + accessToken);
-                        Log.e("abcd", accessToken+"");
                         return headers;
                     }
                 };
@@ -174,7 +184,6 @@ public class AppController extends Application {
             }
         }
     }
-
 
 
     /**
@@ -192,6 +201,24 @@ public class AppController extends Application {
      */
     public interface VolleyCallback {
         void onSuccessResponse(String result);
+
         void onErrorResponse(String result);
+    }
+
+    private void errorHandler(VolleyError error) {
+        if (error instanceof TimeoutError) {
+            Log.e("ResponseError", "زمان انتظار برای پاسخ از سرور به اتمام رسید.");
+        } else if (error instanceof NoConnectionError) {
+            Log.e("ResponseError", "خطای اتصال به اینترنت رخ داده است.");
+        } else if (error instanceof AuthFailureError) {
+            Log.e("ResponseError", "خطای احراز هویت رخ داده است.");
+        } else if (error instanceof ServerError) {
+            Log.e("ResponseError", "خطای سرور رخ داده است.");
+        } else if (error instanceof NetworkError) {
+            Log.e("ResponseError", "خطای دسترسی به شبکه رخ داده است.");
+        } else if (error instanceof ParseError) {
+            Log.e("ResponseError", "خطای پردازش پاسخ سرور رخ داده است.");
+        } else
+            Log.e("ResponseError", error.getMessage());
     }
 }

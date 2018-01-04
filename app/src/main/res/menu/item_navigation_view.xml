@@ -22,6 +22,11 @@
         android:icon="@drawable/question_item_nv"
         android:title="راهنما" />
 
+    <item
+        android:id="@+id/abut_NavigationView"
+        android:icon="@drawable/exclamation_nv_item"
+        android:title="درباره ما" />
+
 
 
 </menu>

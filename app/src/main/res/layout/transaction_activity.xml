@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rahbod.visit365.TransactionActivity">
+    tools:context="com.rahbod.visit365.TransactionActivity"
+    android:background="#ffffff">
 
     <!--header-->
     <RelativeLayout
@@ -31,8 +32,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/menu_index"
-            android:onClick="openNv"/>
+            android:background="@drawable/menu_index" />
     </RelativeLayout>
 
     <!--header-->
@@ -40,8 +40,8 @@
         android:id="@+id/header_step_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#efefef"
-        android:layout_below="@+id/header_transaction">
+        android:layout_below="@+id/header_transaction"
+        android:background="#efefef">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
@@ -84,57 +84,72 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/header_step_1">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/relativeLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="25dp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <com.rahbod.visit365.Font.FontTextView
-                android:id="@+id/tex"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:text="تعداد:"
-                android:textColor="@color/green1"
-                android:textSize="13dp" />
+                android:layout_weight="1"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
 
-            <com.rahbod.visit365.Font.FontTextView
-                android:id="@+id/textVie"
-                android:layout_width="wrap_content"
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/tex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="تعداد:"
+                    android:textColor="@color/green1"
+                    android:textSize="13dp" />
+
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/countTrans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/tex"
+                    android:layout_toStartOf="@+id/tex"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/tex"
-                android:layout_toStartOf="@+id/tex"
-                android:text="5 تراکنش"
-                android:textColor="@color/black"
-                android:textSize="13dp" />
+                android:layout_weight="1"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal">
 
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/sumTrans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
 
-            <com.rahbod.visit365.Font.FontTextView
-                android:id="@+id/tex1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/textVie1"
-                android:text="تعداد:"
-                android:textColor="@color/green1"
-                android:textSize="13dp"
-                tools:ignore="RtlCompat" />
+                <com.rahbod.visit365.Font.FontTextView
+                    android:id="@+id/tex1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/sumTrans"
+                    android:text="تعداد:"
+                    android:textColor="@color/green1"
+                    android:textSize="13dp"
+                    tools:ignore="RtlCompat" />
 
-            <com.rahbod.visit365.Font.FontTextView
-                android:id="@+id/textVie1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:text="200.000 هزار تومان"
-                android:textColor="@color/black"
-                android:textSize="13dp" />
+            </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -142,6 +157,7 @@
             android:layout_below="@+id/relativeLayout">
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recTrans"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
