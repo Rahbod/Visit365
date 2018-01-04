@@ -1,5 +1,6 @@
 package com.rahbod.visit365;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,20 +19,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ir.hamsaa.persiandatepicker.Listener;
+import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
+import ir.hamsaa.persiandatepicker.util.PersianCalendar;
+import saman.zamani.persiandate.PersianDate;
+import saman.zamani.persiandate.PersianDateFormat;
+
 public class Step2Fragment extends Fragment {
-    FontTextView doctorTitle;
-    FontTextView clinicTitle;
-    FontTextView doctorPhone;
-    FontTextView tvFromDate;
-    FontTextView tvToDate;
+    FontTextView doctorTitle, clinicTitle , doctorPhone , tvFromDate , tvToDate;
     RecyclerView recyclerView;
     JSONObject jsonObject;
     List<Dates> dates = new ArrayList<>();
     DateAdapter dateAdapter;
-//    PersianCalendar calendar;
+    PersianDate persianDate;
+    PersianDateFormat persianDateFormat;
+    String from , to;
     private static final String TAG = "Tag";
 
     public Step2Fragment() {
@@ -55,6 +61,7 @@ public class Step2Fragment extends Fragment {
         clinicTitle = (FontTextView) view.findViewById(R.id.tvClinicTitle);
         tvFromDate = (FontTextView) view.findViewById(R.id.tv_from);
         tvToDate = (FontTextView) view.findViewById(R.id.tv_to);
+
         try {
             params.put("doctor_id", bundle.getInt("doctorId"));
             params.put("clinic_id", bundle.getInt("clinicId"));
@@ -80,17 +87,40 @@ public class Step2Fragment extends Fragment {
                 }
             }
         });
+        persianDate = new PersianDate();
+        persianDateFormat = new PersianDateFormat();
+        persianDateFormat.format(persianDate);
+
+
         tvFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FragmentManager fm = getSupportFragmentManager();
-//               calendar = new PersianCalendar();
-//                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
-//                        (DatePickerDialog.OnDateSetListener) getActivity(),calendar.getPersianYear(),calendar.getPersianMonth(),calendar.getPersianDay()
-//                );
-//                datePickerDialog.setThemeDark(true);
-//                datePickerDialog.show(,"sdsdsd");
+               showCalender(tvFromDate);
             }
         });
+        tvToDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCalender(tvToDate);
+            }
+        });
+    }
+    private void showCalender(final FontTextView tv)
+    {
+        PersianDatePickerDialog picker2 = new PersianDatePickerDialog(getActivity())
+                .setPositiveButtonString("تایید")
+                .setNegativeButton("لغو")
+                .setActionTextColor(Color.GRAY)
+                .setListener(new Listener() {
+                    @Override
+                    public void onDateSelected(PersianCalendar persianCalendar) {
+                        tv.setText(persianCalendar.getPersianYear() + "-" + persianCalendar.getPersianMonth() + "-" + persianCalendar.getPersianDay());
+                    }
+
+                    @Override
+                    public void onDisimised() {
+                    }
+                });
+        picker2.show();
     }
 }

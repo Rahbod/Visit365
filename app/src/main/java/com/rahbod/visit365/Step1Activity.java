@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Step1Activity extends AppCompatActivity {
-    JSONObject params;
+    JSONObject params , doctor;
     AdapterDrList adapterDrList;
     RecyclerView recyclerView;
     List<DrList> DrList = new ArrayList<>();
-    JSONObject doctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

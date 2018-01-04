@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,12 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         setContentView(R.layout.navigationdraw_profile);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String a = bundle.getString("doctorId");
+            Log.d("moien", "@@@ " + String.valueOf(a));
+            //Log.d("TAG", "@@@ "+bundle.getInt("clinicId"));
+        }
 //      profile
         drName = (TextView) findViewById(R.id.drNameProfile);
         drEmail = (TextView) findViewById(R.id.tvClinicTitle);
@@ -55,8 +62,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         try {
             JSONObject params = new JSONObject();
-            params.put("doctor_id", 45);
-            params.put("clinic_id", 1);
+            params.put("doctor_id", bundle.getInt("doctorId"));
+            params.put("clinic_id", bundle.getInt("clinicId"));
 
             AppController.getInstance().sendRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
                 @Override
