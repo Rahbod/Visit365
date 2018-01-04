@@ -59,7 +59,6 @@ public class ProfileActivity extends AppCompatActivity {
         clinicContracts = (TextView) findViewById(R.id.clinicContracts);
         clinicFax = (TextView) findViewById(R.id.clinicFax);
         clinicPhone = (TextView) findViewById(R.id.clinicPhone);
-
         try {
             JSONObject params = new JSONObject();
             params.put("doctor_id", bundle.getInt("doctorId"));
