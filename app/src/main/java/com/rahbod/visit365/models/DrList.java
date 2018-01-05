@@ -5,21 +5,59 @@ package com.rahbod.visit365.models;
  */
 
 public class DrList {
-    public String name;
-    public String reserveDay;
-    public String avatar;
-    public int clinicId;
-    public int doctorId;
+    private String doctorName;
+    private String reserveDay;
+    private String avatar;
+    private String clinicName;
+    private long clinicPhone;
+    private int clinicId;
+    private int doctorId;
 
     public DrList() {
     }
 
-    public DrList(String name, String avatar, int doctorId, int clinicId , String reserveDay) {
-        this.name = name;
+
+    public DrList(String name, String avatar, int doctorId, int clinicId, String reserveDay) {
+        this.doctorName = name;
         this.avatar = avatar;
         this.clinicId = clinicId;
         this.doctorId = doctorId;
         this.reserveDay = reserveDay;
+    }
+
+    public DrList(String doctorName, String avatar) {
+        this.doctorName = doctorName;
+        this.avatar = avatar;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getClinicName() {
+        return clinicName;
+    }
+
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
+    }
+
+    public long getClinicPhone() {
+        return clinicPhone;
+    }
+
+    public void setClinicPhone(long clinicPhone) {
+        this.clinicPhone = clinicPhone;
+    }
+
+    public DrList(String clinicName, long clinicPhone) {
+        this.clinicName = clinicName;
+        this.clinicPhone = clinicPhone;
+
     }
 
     public String getReserveDay() {
@@ -37,11 +75,11 @@ public class DrList {
 
 
     public String getName() {
-        return name;
+        return doctorName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.doctorName = name;
     }
 
     public String getAvatar() {

@@ -34,7 +34,8 @@
         android:layout_below="@+id/imageView4"
         android:layout_marginTop="5dp"
         android:text="11-9   صبح"
-        android:textColor="@color/hint" />
+        android:textColor="@color/hint"
+        android:textSize="12sp"/>
 
     <com.rahbod.visit365.Font.ButtonFont
         android:id="@+id/button4"

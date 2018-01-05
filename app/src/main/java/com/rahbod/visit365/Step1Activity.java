@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Step1Activity extends AppCompatActivity {
-    JSONObject params;
+    JSONObject params, doctor;
     AdapterDrList adapterDrList;
     RecyclerView recyclerView;
     List<DrList> DrList = new ArrayList<>();
-    JSONObject doctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class Step1Activity extends AppCompatActivity {
         setContentView(R.layout.step1activity);
         recyclerView = (RecyclerView) findViewById(R.id.rec_step1);
         params = new JSONObject();
-        Log.d("TAG", "onCreate:*** ");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             try {
@@ -48,9 +46,8 @@ public class Step1Activity extends AppCompatActivity {
                             JSONArray json = response.getJSONArray("doctors");
                             for (int i = 0; i < json.length(); i++) {
                                 doctor = json.getJSONObject(i);
-                                DrList.add(new DrList(doctor.getString("name"), doctor.getString("avatar"), doctor.getInt("doctorID"), doctor.getInt("clinicID"),doctor.getString("days")));
+                                DrList.add(new DrList(doctor.getString("name"), doctor.getString("avatar"), doctor.getInt("doctorID"), doctor.getInt("clinicID"), doctor.getString("days")));
                             }
-                            Toast.makeText(Step1Activity.this, String.valueOf(DrList.size()), Toast.LENGTH_SHORT).show();
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             adapterDrList = new AdapterDrList(Step1Activity.this, DrList);
                             recyclerView.setAdapter(adapterDrList);

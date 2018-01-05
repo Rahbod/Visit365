@@ -3,6 +3,10 @@ package com.rahbod.visit365;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_dr);
         setContentView(R.layout.navigationdraw_profile_dr);
 
+        Bundle bundle = getIntent().getExtras();
+
 //      profile
         drName = (TextView) findViewById(R.id.drNameProfile);
         drEmail = (TextView) findViewById(R.id.tvClinicTitle);
@@ -44,11 +50,10 @@ public class ProfileActivity extends AppCompatActivity {
         clinicContracts = (TextView) findViewById(R.id.clinicContracts);
         clinicFax = (TextView) findViewById(R.id.clinicFax);
         clinicPhone = (TextView) findViewById(R.id.clinicPhone);
-
         try {
             JSONObject params = new JSONObject();
-            params.put("doctor_id", 45);
-            params.put("clinic_id", 1);
+            params.put("doctor_id", bundle.getInt("doctorId"));
+            params.put("clinic_id", bundle.getInt("clinicId"));
 
             AppController.getInstance().sendRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
                 @Override

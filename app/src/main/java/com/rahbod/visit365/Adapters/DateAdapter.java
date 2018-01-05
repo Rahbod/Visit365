@@ -37,6 +37,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
     @Override
     public void onBindViewHolder(dateViewHolder holder, int position) {
         holder.time.setText(datesList.get(position).getDate());
+        holder.dataShow.setText(datesList.get(position).getDateShow());
         //holder.time.setText("1111111");
     }
 
@@ -46,13 +47,14 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
     }
 
     public class dateViewHolder extends RecyclerView.ViewHolder {
-        FontTextView time;
+        FontTextView time , dataShow;
         ButtonFont button;
 
         public dateViewHolder(View itemView) {
             super(itemView);
             time = (FontTextView) itemView.findViewById(R.id.dateVisitS2);
             button = (ButtonFont) itemView.findViewById(R.id.button4);
+            dataShow = (FontTextView) itemView.findViewById(R.id.textView13);
         }
     }
 }

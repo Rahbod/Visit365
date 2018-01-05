@@ -1,16 +1,16 @@
 package com.rahbod.visit365.Adapters;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.rahbod.visit365.Font.ButtonFont;
 import com.rahbod.visit365.Font.FontTextView;
+import com.rahbod.visit365.ProfileActivity;
 import com.rahbod.visit365.R;
 import com.rahbod.visit365.Step2Fragment;
 import com.rahbod.visit365.models.DrList;
@@ -20,10 +20,13 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
+
 public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListViewHolder> {
 
     private AppCompatActivity context;
     private List<DrList> drLists;
+    private int doctorId;
+    private int clinicId;
 
     public AdapterDrList(AppCompatActivity context, List<DrList> drLists) {
         this.context = context;
@@ -37,29 +40,31 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
     }
 
     @Override
-    public void onBindViewHolder(DrListViewHolder holder, final int position) {
+    public void onBindViewHolder(DrListViewHolder holder, int position) {
+        doctorId = drLists.get(position).getDoctorId();
+        clinicId = drLists.get(position).getClinicId();
         //Picasso.with(context).load(drLists.get(position).getAvatar()).error(R.drawable.doctor).into(holder.imgAvatarDr);
         holder.txtTitleDr.setText(drLists.get(position).getName());
         holder.txtPresentDayDr.setText(drLists.get(position).getReserveDay());
-        holder.btnProfileDr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Profile", Toast.LENGTH_SHORT).show();
-            }
-        });
         holder.btnReserveDr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putInt("doctorId",drLists.get(position).getDoctorId());
-                bundle.putInt("clinicId",drLists.get(position).getClinicId());
-                Log.d("moein",String.valueOf(drLists.get(position).getDoctorId()));
+                bundle.putInt("doctorId", doctorId);
+                bundle.putInt("clinicId", clinicId);
                 Step2Fragment step2Fragment = new Step2Fragment();
                 step2Fragment.setArguments(bundle);
-
-                android.support.v4.app.FragmentManager fm = context.getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction transaction = context.getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, step2Fragment).commit();
+            }
+        });
+        holder.btnProfileDr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra("doctorId", doctorId);
+                intent.putExtra("clinicId", clinicId);
+                context.startActivity(intent);
             }
         });
     }

@@ -4,7 +4,7 @@ android {
     signingConfigs {
     }
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.rahbod.visit365"
         minSdkVersion 15
@@ -42,4 +42,6 @@ dependencies {
     compile 'junit:junit:4.12'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.samanzamani.persiandate:PersianDate:0.1'
+    compile 'com.alirezaafkar:sundatepicker:2.0.8'
+    compile 'com.github.hamsaadev:Persian-Date-Picker-Dialog:V1.0'
 }
