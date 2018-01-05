@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    android:id="@+id/drawer_profile">
+    android:layoutDirection="rtl">
 
-    <include layout="@layout/activity_profile" />
+    <include layout="@layout/activity_about" />
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigationViewAbout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="left"
@@ -27,7 +28,7 @@
             android:layout_marginLeft="10dp">
 
             <Button
-                android:id="@+id/btnExitProfile"
+                android:id="@+id/btnExitAbout"
                 android:layout_width="50dp"
                 android:layout_height="17dp"
                 android:layout_alignParentBottom="true"

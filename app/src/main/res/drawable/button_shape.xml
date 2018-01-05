@@ -13,7 +13,6 @@
             android:shape="rectangle">
             <solid android:color="#107669" />
             <corners android:radius="30dp" />
-
         </shape>
     </item>
     <item android:state_focused="true" >
@@ -21,7 +20,6 @@
             android:shape="rectangle">
             <solid android:color="#18b29e" />
             <corners android:radius="30dp" />
-
         </shape>
     </item>
     <item>
@@ -29,7 +27,6 @@
             android:shape="rectangle">
             <solid android:color="#18b29e" />
             <corners android:radius="30dp" />
-
         </shape>
     </item>
 </selector>

@@ -31,7 +31,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/menu_index"
-            android:onClick="openNv"/>
+            android:onClick="openNvProfile"
+            tools:ignore="OnClick" />
     </RelativeLayout>
 
     <ScrollView
@@ -170,7 +171,8 @@
                 android:layout_marginTop="23dp"
                 android:background="@drawable/button_shape"
                 android:text="ثبت"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                style="?android:attr/borderlessButtonStyle"/>
 
         </RelativeLayout>
 

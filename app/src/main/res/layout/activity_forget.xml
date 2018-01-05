@@ -76,7 +76,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:id="@+id/lin_buttonRegister"
                 android:layout_width="wrap_content"
@@ -87,13 +86,14 @@
 
                 <com.rahbod.visit365.Font.ButtonFont
                     android:id="@+id/button_forget"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="220dp"
                     android:layout_height="37dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/button_shape"
+                    android:onClick="SendSms"
                     android:text="ارسال"
                     android:textColor="@color/white"
-                    android:onClick="SendSms"
                     tools:ignore="OnClick" />
 
             </LinearLayout>
@@ -112,11 +112,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:onClick="goToLogin"
                     android:text="ورود"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
                     android:textStyle="bold"
-                    android:onClick="goToLogin"
                     tools:ignore="OnClick" />
 
             </LinearLayout>

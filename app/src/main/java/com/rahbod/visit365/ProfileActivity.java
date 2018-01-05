@@ -1,20 +1,12 @@
 package com.rahbod.visit365;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Response;
-import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -34,8 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        setContentView(R.layout.navigationdraw_profile);
+        setContentView(R.layout.activity_profile_dr);
+        setContentView(R.layout.navigationdraw_profile_dr);
 
 //      profile
         drName = (TextView) findViewById(R.id.drNameProfile);
@@ -117,36 +109,5 @@ public class ProfileActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        Button btn = (Button) findViewById(R.id.btnNvProfile);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNvProfile();
-            }
-        });
     }
-
-    public void openNvProfile() {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_profile);
-        drawerLayout.openDrawer(Gravity.LEFT);
-        drawerLayout.findViewById(R.id.btnExitProfile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AccessTokenHelper.logout(getApplicationContext());
-                restart();
-            }
-        });
-    }
-
-    public void restart() {
-        Intent intent = new Intent(this, Login.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
-        finish();
-        System.exit(2);
-    }
-
 }
