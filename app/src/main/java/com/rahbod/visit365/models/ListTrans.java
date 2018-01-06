@@ -1,4 +1,4 @@
-package com.rahbod.visit365.Adapters;
+package com.rahbod.visit365.models;
 
 /**
  * Created by Behnam on 1/4/2018.

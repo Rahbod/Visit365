@@ -6,7 +6,7 @@
         android:icon="@drawable/home_item_nv"
         android:title="داشبورد"/>
     <item
-        android:id="@+id/checklist_NavigationView"
+        android:id="@+id/visit_NavigationView"
         android:icon="@drawable/checklist_item_nv"
         android:title="نوبت های گرفته شده"/>
     <item

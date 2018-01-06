@@ -37,34 +37,40 @@
             android:onClick="openNv"/>
     </RelativeLayout>
 
+    <ScrollView
+        android:id="@+id/scrollViewIndex"
+        android:layout_below="@+id/header_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <!--text view-->
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/textView_index"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header_transaction"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:text="جهت رزرو نوبت، یکی از تخصص های زیر را انتخاب کنید"
         android:textAlignment="center"
         android:textColor="@color/black" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_index"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recSelectExp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="2dp"
-            android:paddingRight="2dp">
+            android:paddingRight="2dp"
+            android:layout_below="@+id/textView_index">
 
         </android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

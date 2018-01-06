@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rahbod.visit365.R;
+import com.rahbod.visit365.models.ListTrans;
 
 import java.util.ArrayList;
 

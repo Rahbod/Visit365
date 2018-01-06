@@ -56,7 +56,8 @@
             android:background="@drawable/button_shape2"
             android:text="اطلاعات پزشک"
             android:textColor="@color/white"
-            android:textSize="11dp" />
+            android:textSize="11dp"
+            style="?android:attr/borderlessButtonStyle"/>
 
         <com.rahbod.visit365.Font.ButtonFont
             android:id="@+id/button2"
@@ -70,7 +71,8 @@
             android:background="@drawable/button_shape"
             android:text="رزرو نوبت"
             android:textColor="@color/white"
-            android:textSize="11dp" />
+            android:textSize="11dp"
+            style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>
 </RelativeLayout>

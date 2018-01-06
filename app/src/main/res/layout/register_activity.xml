@@ -110,7 +110,8 @@
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/button_shape"
                     android:text="ثبت نام"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    style="?android:attr/borderlessButtonStyle"/>
 
             </LinearLayout>
 

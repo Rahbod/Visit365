@@ -27,7 +27,7 @@ public class Select_Dr extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.select_dr_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.activity_index, container, false);
 
         ArrayList<String[]> expertises = new ArrayList<String[]>();
         expertises.add(new String[]{"1", "قلب و عروق", "heart_index"});

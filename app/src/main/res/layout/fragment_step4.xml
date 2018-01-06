@@ -21,7 +21,8 @@
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/circle_4" />
+            android:src="@drawable/circle_4"
+            tools:ignore="VectorDrawableCompat" />
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"
@@ -386,7 +387,8 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/button_shape2"
                     android:text="پرداخت"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    style="?android:attr/borderlessButtonStyle"/>
             </RelativeLayout>
 
         </RelativeLayout>

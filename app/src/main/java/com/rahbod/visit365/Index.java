@@ -11,11 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.rahbod.visit365.Adapters.RecyclerAdapter;
@@ -30,6 +29,8 @@ public class Index extends AppCompatActivity {
     RecyclerAdapter adapter;
     RecyclerView listExp;
     DrawerLayout drawerLayout;
+    private static final int time =1500;
+    private static long BackPressed;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -41,7 +42,7 @@ public class Index extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-        setContentView(R.layout.navigationdraw);
+        setContentView(R.layout.navigationdraw_index);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
 
@@ -50,33 +51,34 @@ public class Index extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.credit_card_NavigationView:
                         Intent goTransactions = new Intent(Index.this, TransactionActivity.class);
                         startActivity(goTransactions);
+                        finish();
                         break;
 
                     case R.id.help_NavigationView:
                         Intent goHelp = new Intent(Index.this, HelpActivity.class);
                         startActivity(goHelp);
+                        finish();
                         break;
 
                     case R.id.user_NavigationView:
                         Intent goProfile = new Intent(Index.this, ProfileUserActivity.class);
                         startActivity(goProfile);
+                        finish();
                         break;
 
                     case R.id.abut_NavigationView:
                         Intent goAbout = new Intent(Index.this, AboutActivity.class);
                         startActivity(goAbout);
+                        finish();
                         break;
 
                     case R.id.home_NavigationView:
                         drawerLayout.closeDrawer(Gravity.LEFT);
                         break;
-
-
-
                 }
 
                 return true;
@@ -126,5 +128,16 @@ public class Index extends AppCompatActivity {
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
         finish();
         System.exit(2);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (time + BackPressed>System.currentTimeMillis()){
+            super.onBackPressed();
+        }
+        else
+            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
+
+        BackPressed = System.currentTimeMillis();
     }
 }

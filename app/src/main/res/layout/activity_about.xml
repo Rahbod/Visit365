@@ -33,7 +33,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/menu_index"
-            android:onClick="openNv"
+            android:onClick="openNvAbout"
             tools:ignore="OnClick" />
     </RelativeLayout>
 
