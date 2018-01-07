@@ -79,6 +79,11 @@ public class Index extends AppCompatActivity {
                     case R.id.home_NavigationView:
                         drawerLayout.closeDrawer(Gravity.LEFT);
                         break;
+                    case R.id.visit_NavigationView:
+                        Intent goVisits = new Intent(Index.this, VisitList.class);
+                        startActivity(goVisits);
+                        finish();
+                        break;
                 }
 
                 return true;

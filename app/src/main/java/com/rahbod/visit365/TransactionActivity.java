@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,8 +98,6 @@ public class TransactionActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
 
         AppController.getInstance().sendAuthRequest("api/transactions", null, new Response.Listener<JSONObject>() {
             @Override

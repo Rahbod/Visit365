@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rahbod.visit365.TransactionActivity"
+    android:background="#ffffff">
+
+    <!--header-->
+    <RelativeLayout
+        android:id="@+id/header_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/green1">
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="ویزیت 365"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnNv"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/menu_index"
+            android:onClick="openNvTrans"
+            tools:ignore="OnClick" />
+    </RelativeLayout>
+
+    <!--header-->
+    <RelativeLayout
+        android:id="@+id/header_step_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_transaction"
+        android:background="#efefef">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/list_visit"/>
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="37dp"
+            android:layout_toLeftOf="@+id/image"
+            android:text="نوبت های گرفته شده"
+            android:textColor="@color/black"
+            android:textSize="13dp" />
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/image"
+            android:text="لیست نوبت هایی که تا کنون گرفته اید"
+            android:textColor="@color/hint"
+            android:textSize="11dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_step_1">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relativeLayout">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recVisitsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

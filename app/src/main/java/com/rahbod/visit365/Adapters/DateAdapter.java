@@ -38,7 +38,6 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
     public void onBindViewHolder(dateViewHolder holder, int position) {
         holder.time.setText(datesList.get(position).getDate());
         holder.dataShow.setText(datesList.get(position).getDateShow());
-        //holder.time.setText("1111111");
     }
 
     @Override
