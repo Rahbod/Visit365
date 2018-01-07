@@ -67,7 +67,6 @@ public class TransactionActivity extends AppCompatActivity {
 
                     case R.id.credit_card_NavigationView:
                         drTrans.closeDrawer(Gravity.LEFT);
-                        finish();
                         break;
 
                     case R.id.help_NavigationView:

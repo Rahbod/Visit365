@@ -1,5 +1,6 @@
 package com.rahbod.visit365;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -15,10 +15,31 @@ import com.android.volley.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class ForgetActivity extends AppCompatActivity {
 
     Button btnSms;
     EditText user;
+    private static final int time =1500;
+    private static long BackPressed;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (time + BackPressed>System.currentTimeMillis()){
+            super.onBackPressed();
+        }
+        else
+            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
+
+        BackPressed = System.currentTimeMillis();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
