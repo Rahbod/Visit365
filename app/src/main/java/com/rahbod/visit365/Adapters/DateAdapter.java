@@ -57,4 +57,10 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
             dataShow = (FontTextView) itemView.findViewById(R.id.textView13);
         }
     }
+    public void refreshList(List<Dates> datesList)
+    {
+        this.datesList.clear();
+        this.datesList.addAll(datesList);
+        this.notifyDataSetChanged();
+    }
 }
