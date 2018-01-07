@@ -111,7 +111,7 @@ public class Index extends AppCompatActivity {
 
     public void openNv(View view) {
         drawerLayout.openDrawer(Gravity.LEFT);
-        drawerLayout.findViewById(R.id.btnExit).setOnClickListener(new View.OnClickListener() {
+        drawerLayout.findViewById(R.id.btnExitIndex).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AccessTokenHelper.logout(getApplicationContext());

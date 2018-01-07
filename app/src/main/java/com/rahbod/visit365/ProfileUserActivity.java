@@ -1,5 +1,7 @@
 package com.rahbod.visit365;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +13,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import com.rahbod.visit365.helper.AccessTokenHelper;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -77,6 +81,23 @@ public class ProfileUserActivity extends AppCompatActivity {
     public void openNvProfile(View view) {
         drawerProfileUser = (DrawerLayout) findViewById(R.id.drawer_profile_user);
         drawerProfileUser.openDrawer(Gravity.LEFT);
+        drawerProfileUser.findViewById(R.id.btnExitProfileUser).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AccessTokenHelper.logout(getApplicationContext());
+                restart();
+            }
+        });
+    }
+
+    public void restart() {
+        Intent intent = new Intent(this, Login.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+        finish();
+        System.exit(2);
     }
     @Override
     public void onBackPressed() {

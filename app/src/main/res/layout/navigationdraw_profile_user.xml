@@ -28,7 +28,7 @@
             android:layout_marginLeft="10dp">
 
             <Button
-                android:id="@+id/btnExitProfile"
+                android:id="@+id/btnExitProfileUser"
                 android:layout_width="50dp"
                 android:layout_height="17dp"
                 android:layout_alignParentBottom="true"

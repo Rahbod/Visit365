@@ -17,8 +17,20 @@ import org.json.JSONObject;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText user, password;
-
     Button register;
+    private static final int time =1500;
+    private static long BackPressed;
+
+    @Override
+    public void onBackPressed() {
+        if (time + BackPressed>System.currentTimeMillis()){
+            super.onBackPressed();
+        }
+        else
+            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
+
+        BackPressed = System.currentTimeMillis();
+    }
 
 
     @Override
