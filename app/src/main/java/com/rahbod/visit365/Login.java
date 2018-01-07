@@ -20,11 +20,19 @@ import com.rahbod.visit365.helper.SessionManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class Login extends AppCompatActivity {
 
     EditText user, password;
     private static final int time =1500;
     private static long BackPressed;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+
+    }
 
     @Override
     public void onBackPressed() {
