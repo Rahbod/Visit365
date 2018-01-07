@@ -1,47 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-<LinearLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/radius"
-    >
+    android:orientation="vertical">
 
-</LinearLayout>
-    <android.support.v7.widget.CardView
+    <LinearLayout
+        android:id="@+id/one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/title_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="23dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/radius"
-        >
+        android:layout_below="@+id/one">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_select_time"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-            >
+    </LinearLayout>
 
-            <com.rahbod.visit365.Font.FontTextView
-                android:id="@+id/title_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="25dp"
-                android:text="Date"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rec_select_time"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
