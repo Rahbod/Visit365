@@ -10,10 +10,25 @@ public class Dates {
     private String pm;
     private String dateShow;
 
-    public Dates(String date, String dateShow) {
+    public Dates(String date, String dateShow, String am, String pm) {
         this.date = date;
         this.dateShow = dateShow;
+        this.pm = pm;
+        this.am = am;
     }
+
+    public Dates(String am, String pm) {
+        this.am = am;
+        this.pm = pm;
+    }
+
+
+    public Dates(String pm) {
+        this.pm = pm;
+    }
+
+
+
 
     public String getDate() {
         return date;
