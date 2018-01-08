@@ -10,6 +10,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.rahbod.visit365.Adapters.SelectTimeAdapter;
 import com.rahbod.visit365.Font.FontBoldTextView;
@@ -52,15 +53,16 @@ public class SelectTimeDialogFragment extends DialogFragment {
 
         return view;
     }
-//    @Override
-//    public void onStart()
-//    {
-//        super.onStart();
-//
-//        if (getDialog() == null)
-//            return;
-//
-//        getDialog().getWindow().setLayout(600, );
-//
-//    }
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        if (getDialog() == null)
+            return;
+
+        getDialog().getWindow().setLayout(550,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+    }
 }
