@@ -90,7 +90,7 @@ public class Step2Fragment extends Fragment {
                     public void onDateSelected(PersianCalendar persianCalendar) {
                         miliFrom = persianCalendar.getTimeInMillis() / 1000;
                         if (miliFrom >= miliNow)
-                            tvFromDate.setText(persianCalendar.getPersianYear() + "-" + persianCalendar.getPersianMonth() + "-" + persianCalendar.getPersianDay());
+                            tvFromDate.setText(persianCalendar.getPersianYear() + "-" + persianCalendar.getPersianMonthName() + "-" + persianCalendar.getPersianDay());
                         else {
                             tvToDate.setText("");
                             tvFromDate.setText("");
@@ -100,6 +100,7 @@ public class Step2Fragment extends Fragment {
 
                     @Override
                     public void onDisimised() {
+
                     }
                 });
             }
@@ -147,6 +148,8 @@ public class Step2Fragment extends Fragment {
         PersianDatePickerDialog picker2 = new PersianDatePickerDialog(getActivity())
                 .setPositiveButtonString("تایید")
                 .setNegativeButton("لغو")
+                .setTodayButtonVisible(true)
+                .setTodayButton("امروز")
                 .setActionTextColor(Color.GRAY)
                 .setListener(listener);
         picker2.show();
