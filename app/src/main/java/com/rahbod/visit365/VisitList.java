@@ -34,36 +34,42 @@ public class VisitList extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getBoolean("status")){
+                    if (response.getBoolean("status")) {
 
                         JSONArray visits = response.getJSONArray("visits");
 
                         data = new ArrayList<>();
 
-                        for (int i=0; i < visits.length(); i++){
+                        for (int i = 0; i < visits.length(); i++) {
                             JSONObject visitsList = visits.getJSONObject(i);
 
-                            String clinic = visitsList.getString("clinic");
-                            String doctor = visitsList.getString("doctor");
-                            String status = visitsList.getString("status");
-                            String createDate = visitsList.getString("createDate");
-                            String date = visitsList.getString("date");
-                            String visitDate = visitsList.getString("visitDate");
-                            String trackingCode = visitsList.getString("trackingCode");
+                            String objClinic = visitsList.getString("clinic");
+                            String objDoctor = visitsList.getString("doctor");
+                            String objStatus = visitsList.getString("status");
+                            String objCreateDate = visitsList.getString("createDate");
+                            String objDate = visitsList.getString("date");
+                            String objVisitDate = visitsList.getString("visitDate");
+                            String objTrackingCode = visitsList.getString("trackingCode");
 
-                            PersianDate pdate = new PersianDate(Long.parseLong(date) * 1000);
-                            PersianDateFormat pdformater = new PersianDateFormat("j  F  13y");
-                            String strData = pdformater.format(pdate);
+                            PersianDate perDate = new PersianDate(Long.parseLong(objDate) * 1000);
+                            PersianDateFormat perDateFormat = new PersianDateFormat("j  F  13y");
+                            String strData = perDateFormat.format(perDate);
 
-                            PersianDate pDate = new PersianDate(Long.parseLong(createDate) * 1000);
-                            PersianDateFormat pdFormater = new PersianDateFormat("j  F  13y");
-                            String strData2 = pdFormater.format(pDate);
+                            PersianDate perCreateDate = new PersianDate(Long.parseLong(objCreateDate) * 1000);
+                            PersianDateFormat perCreateDateFormat = new PersianDateFormat("j  F  13y");
+                            String strCreateData = perCreateDateFormat.format(perCreateDate);
 
-                            PersianDate pVisitData = new PersianDate(Long.parseLong(trackingCode) * 1000);
-                            PersianDateFormat Formater = new PersianDateFormat("j  F  13y");
-                            String strData3 = Formater.format(pVisitData);
+                            String strVisitData;
+                            if (!objVisitDate.isEmpty()) {
+                                PersianDate perVisitDate = new PersianDate(Long.parseLong(objVisitDate) * 1000);
+                                PersianDateFormat perVisitDateFormat = new PersianDateFormat("j  F  13y");
+                                strVisitData = perVisitDateFormat.format(perVisitDate);
+                            }
+                            else
+                                strVisitData = "---";
 
-                            data.add(new VisList(clinic, doctor, status, strData2, strData, strData3, "کد رهگیری: "+trackingCode));
+
+                            data.add(new VisList(objClinic, objDoctor, strCreateData, strData, strVisitData, objTrackingCode, objStatus));
 
                             adapter = new AdapterVisitList(data, VisitList.this);
 

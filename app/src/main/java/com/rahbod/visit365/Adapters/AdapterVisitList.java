@@ -37,13 +37,13 @@ public class AdapterVisitList extends RecyclerView.Adapter<AdapterVisitList.list
     @Override
     public void onBindViewHolder(listViewHolder holder, int position) {
 
-        holder.txtClinic.setText(data.get(position).getClinic());
-        holder.txtDoctor.setText(data.get(position).getDoctor());
-        holder.txtStatus.setText(data.get(position).getStatus());
-        holder.txtCreateDate.setText(data.get(position).getCreateDate());
-        holder.txtDate.setText(data.get(position).getDate());
-        holder.txtVisitDate.setText(data.get(position).getVisitDate());
-        holder.txtTrackingCode.setText(data.get(position).getTrackingCode());
+        holder.txtClinic.setText(data.get(position).getStrClinic());
+        holder.txtDoctor.setText(data.get(position).getStrDoctor());
+        holder.txtStatus.setText("وضعیت: "+data.get(position).getStrStatus());
+        holder.txtCreateDate.setText("تاریخ ثبت: "+data.get(position).getStrCreateDate());
+        holder.txtDate.setText("تاریخ مراجعه: "+data.get(position).getStrDate());
+        holder.txtVisitDate.setText("تاریخ ویزیت: "+data.get(position).getStrVisitDate());
+        holder.txtTrackingCode.setText("کد رهگیری: "+data.get(position).getStrTrackingCode());
 
     }
 
@@ -64,13 +64,16 @@ public class AdapterVisitList extends RecyclerView.Adapter<AdapterVisitList.list
         public listViewHolder(View itemView) {
             super(itemView);
 
-            txtClinic = (TextView) itemView.findViewById(R.id.txtClinicRecList);
-            txtDoctor = (TextView) itemView.findViewById(R.id.txtDrRecList);
-            txtStatus = (TextView) itemView.findViewById(R.id.txtStatusDate);
-            txtCreateDate = (TextView) itemView.findViewById(R.id.txtCreateDate);
-            txtDate = (TextView) itemView.findViewById(R.id.txtDateRecList);
-            txtVisitDate = (TextView) itemView.findViewById(R.id.txtVisitDate);
+            txtClinic = (TextView) itemView.findViewById(R.id.txtClinic);
+            txtDoctor = (TextView) itemView.findViewById(R.id.txtDr);
             txtTrackingCode = (TextView) itemView.findViewById(R.id.txtTrackingCode);
+            txtDate = (TextView) itemView.findViewById(R.id.txtDate);
+            txtVisitDate = (TextView) itemView.findViewById(R.id.txtVisitDate);
+            txtCreateDate = (TextView) itemView.findViewById(R.id.txtCreateDate);
+            txtStatus = (TextView) itemView.findViewById(R.id.txtStatusDate);
+
+
+
 
         }
     }

@@ -6,77 +6,78 @@ package com.rahbod.visit365.models;
 
 public class VisList {
 
-    String Clinic;
-    String Doctor;
-    String CreateDate;
-    String Date;
-    String VisitDate;
-    String TrackingCode;
-    String Status;
+    String strClinic;
+    String strDoctor;
+    String strCreateDate;
+    String strDate;
+    String strVisitDate;
+    String strTrackingCode;
+    String strStatus;
 
-    public VisList(String clinic, String doctor, String createDate, String date, String visitDate, String trackingCode, String status) {
-        Clinic = clinic;
-        Doctor = doctor;
-        CreateDate = createDate;
-        Date = date;
-        VisitDate = visitDate;
-        TrackingCode = trackingCode;
-        Status = status;
+    public VisList(String strClinic, String strDoctor, String strCreateDate, String strDate, String strVisitDate, String strTrackingCode, String strStatus) {
+        this.strClinic = strClinic;
+        this.strDoctor = strDoctor;
+        this.strCreateDate = strCreateDate;
+        this.strDate = strDate;
+        this.strVisitDate = strVisitDate;
+        this.strTrackingCode = strTrackingCode;
+        this.strStatus = strStatus;
     }
 
-    public String getClinic() {
-        return Clinic;
+    public String getStrClinic() {
+        return strClinic;
     }
 
-    public void setClinic(String clinic) {
-        Clinic = clinic;
+    public void setStrClinic(String strClinic) {
+        this.strClinic = strClinic;
     }
 
-    public String getDoctor() {
-        return Doctor;
+    public String getStrDoctor() {
+        return strDoctor;
     }
 
-    public void setDoctor(String doctor) {
-        Doctor = doctor;
+    public void setStrDoctor(String strDoctor) {
+        this.strDoctor = strDoctor;
     }
 
-    public String getCreateDate() {
-        return CreateDate;
+    public String getStrCreateDate() {
+        return strCreateDate;
     }
 
-    public void setCreateDate(String createDate) {
-        CreateDate = createDate;
+    public void setStrCreateDate(String strCreateDate) {
+        this.strCreateDate = strCreateDate;
     }
 
-    public String getDate() {
-        return Date;
+    public String getStrDate() {
+        return strDate;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setStrDate(String strDate) {
+        this.strDate = strDate;
     }
 
-    public String getVisitDate() {
-        return VisitDate;
+    public String getStrVisitDate() {
+        return strVisitDate;
     }
 
-    public void setVisitDate(String visitDate) {
-        VisitDate = visitDate;
+    public void setStrVisitDate(String strVisitDate) {
+        this.strVisitDate = strVisitDate;
     }
 
-    public String getTrackingCode() {
-        return TrackingCode;
+    public String getStrTrackingCode() {
+        return strTrackingCode;
     }
 
-    public void setTrackingCode(String trackingCode) {
-        TrackingCode = trackingCode;
+    public void setStrTrackingCode(String strTrackingCode) {
+        this.strTrackingCode = strTrackingCode;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getStrStatus() {
+        return strStatus;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setStrStatus(String strStatus) {
+        this.strStatus = strStatus;
     }
 }
+
