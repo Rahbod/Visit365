@@ -46,6 +46,7 @@ public class Step2Fragment extends Fragment {
     PersianDate persianDate;
     PersianDateFormat persianDateFormat;
     String dateShow, am, pm;
+    boolean detailsFilled = false;
 
     public Step2Fragment() {
     }
@@ -77,65 +78,9 @@ public class Step2Fragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        AppController.getInstance().sendRequest("api/getDates", params, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Log.e("moien", "@@@@@@@@@@@ " + response);
-                    objectDoctor = new JSONObject();
-                    objectDoctor = response.getJSONObject("doctor");
-                    doctorTitle.setText(objectDoctor.getString("name"));
-                    String doctorAvatar = objectDoctor.getString("avatar");
-                    if (!doctorAvatar.isEmpty()) {
-                        Picasso.with(getActivity()).load(doctorAvatar).into(avatarDoctor);
-                    }
 
-                    objectClinic = response.getJSONObject("clinic");
-                    String clinicName = objectClinic.getString("name");
-                    clinicTitle.setText(clinicName);
-                    String phoneClinic = objectClinic.getString("phone");
-                    clinicPhone.setText(phoneClinic);
-
-                    if (response.getBoolean("status")) {
-                        Log.e("moien", "@@@@@@@@@@@ " + response.getBoolean("status"));
-                        miliFrom = Long.parseLong(response.getString("from"));
-                        PersianDate persianDateFrom = new PersianDate(miliFrom * 1000);
-                        PersianDateFormat persianDateFormatFrom = new PersianDateFormat("j F 13y");
-                        String defaultFrom = persianDateFormatFrom.format(persianDateFrom);
-                        tvFromDate.setText(defaultFrom);
-
-                        miliTo = Long.parseLong(response.getString("to"));
-                        PersianDate persianDateTo = new PersianDate(miliTo * 1000);
-                        PersianDateFormat persianDateFormatTo = new PersianDateFormat("j F 13y");
-                        String defaultTo = persianDateFormatTo.format(persianDateTo);
-                        tvToDate.setText(defaultTo);
-
-                        jsonArray = response.getJSONArray("days");
-                        Log.e("moien", "@@@@@@@@@@@ " + jsonArray.length());
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            jsonObject = jsonArray.getJSONObject(i);
-                            Log.e("moien", "@@@@@@@@@@@ " + jsonObject.getString("AM"));
-                            persianDate = new PersianDate(Long.parseLong(jsonObject.getString("date")) * 1000);
-                            persianDateFormat = new PersianDateFormat("j F 13y");
-                            dateShow = jsonObject.getString("dateShow");
-                            String am = jsonObject.getString("AM");
-                            String pm = jsonObject.getString("PM");
-                            String str = persianDateFormat.format(persianDate);
-                            dates.add(new Dates(str, dateShow, am, pm));
-                            Log.e("moein", "******************" + dates.size());
-
-                        }
-                        Log.e("moein", "******************" + dates.size());
-
-                        dateAdapter = new DateAdapter(dates, (AppCompatActivity) getActivity());
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        recyclerView.setAdapter(dateAdapter);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        // send choose request
+        ChooseDateRequest(params);
 
         tvFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,47 +121,9 @@ public class Step2Fragment extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                AppController.getInstance().sendRequest("api/getDates", params, new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        objectDoctor = new JSONObject();
-                                        try {
-                                            jsonArray = response.getJSONArray("days");
-                                            for (int i = 0; i < jsonArray.length(); i++) {
-                                                try {
-                                                    jsonObject = jsonArray.getJSONObject(i);
-                                                    persianDate = new PersianDate(Long.parseLong(jsonObject.getString("date")) * 1000);
-                                                    persianDateFormat = new PersianDateFormat("j F 13y");
-                                                    dateShow = jsonObject.getString("dateShow");
-                                                    am = "";
-                                                    pm = "";
-                                                    if (jsonObject.has("AM")) {
-                                                        am = jsonObject.getString("AM");
-                                                    }
-                                                    if (jsonObject.has("PM")) {
-                                                        pm = jsonObject.getString("PM");
-                                                    }
-                                                    String str = persianDateFormat.format(persianDate);
-                                                    dates.add(new Dates(str, dateShow, am, pm));
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
-                                            if (dateAdapter == null) {
-                                                dateAdapter = new DateAdapter(dates, (AppCompatActivity) getActivity());
-                                                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                                recyclerView.setAdapter(dateAdapter);
-                                            } else {
-                                                dateAdapter = new DateAdapter(dates, (AppCompatActivity) getActivity());
-                                                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                                                recyclerView.setAdapter(dateAdapter);
-                                                dateAdapter.notifyDataSetChanged();
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
+
+                                // send choose request
+                                ChooseDateRequest(params);
 
                             } else {
                                 tvToDate.setText("");
@@ -243,5 +150,85 @@ public class Step2Fragment extends Fragment {
                 .setActionTextColor(Color.GRAY)
                 .setListener(listener);
         picker2.show();
+    }
+
+    private void ChooseDateRequest(JSONObject params) {
+        AppController.getInstance().sendRequest("api/getDates", params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getBoolean("status")) {
+
+                        // fill doctor and clinic details
+                        if (!detailsFilled) {
+                            objectDoctor = new JSONObject();
+                            objectDoctor = response.getJSONObject("doctor");
+                            doctorTitle.setText(objectDoctor.getString("name"));
+                            String doctorAvatar = objectDoctor.getString("avatar");
+                            if (!doctorAvatar.isEmpty()) {
+                                Picasso.with(getActivity()).load(doctorAvatar).into(avatarDoctor);
+                            }
+
+                            objectClinic = response.getJSONObject("clinic");
+                            String clinicName = objectClinic.getString("name");
+                            clinicTitle.setText(clinicName);
+                            String phoneClinic = objectClinic.getString("phone");
+                            clinicPhone.setText(phoneClinic);
+
+                            // set default date values
+                            miliFrom = Long.parseLong(response.getString("from"));
+                            PersianDate persianDateFrom = new PersianDate(miliFrom * 1000);
+                            PersianDateFormat persianDateFormatFrom = new PersianDateFormat("j F 13y");
+                            String defaultFrom = persianDateFormatFrom.format(persianDateFrom);
+                            tvFromDate.setText(defaultFrom);
+
+                            miliTo = Long.parseLong(response.getString("to"));
+                            PersianDate persianDateTo = new PersianDate(miliTo * 1000);
+                            PersianDateFormat persianDateFormatTo = new PersianDateFormat("j F 13y");
+                            String defaultTo = persianDateFormatTo.format(persianDateTo);
+                            tvToDate.setText(defaultTo);
+
+                            detailsFilled = true;
+                        }
+                        //
+
+                        //
+                        jsonArray = response.getJSONArray("days");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            try {
+                                jsonObject = jsonArray.getJSONObject(i);
+                                persianDate = new PersianDate(Long.parseLong(jsonObject.getString("date")) * 1000);
+                                persianDateFormat = new PersianDateFormat("j F 13y");
+                                dateShow = jsonObject.getString("dateShow");
+                                am = "";
+                                pm = "";
+                                if (jsonObject.has("AM")) {
+                                    am = jsonObject.getString("AM");
+                                }
+                                if (jsonObject.has("PM")) {
+                                    pm = jsonObject.getString("PM");
+                                }
+                                String str = persianDateFormat.format(persianDate);
+                                dates.add(new Dates(str, dateShow, am, pm));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (dateAdapter == null) {
+                            dateAdapter = new DateAdapter(dates, (AppCompatActivity) getActivity());
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            recyclerView.setAdapter(dateAdapter);
+                        } else {
+                            dateAdapter = new DateAdapter(dates, (AppCompatActivity) getActivity());
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            recyclerView.setAdapter(dateAdapter);
+                            dateAdapter.notifyDataSetChanged();
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
