@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.rahbod.visit365.Index">
 
-    <!--header-->
+    header
     <RelativeLayout
         android:id="@+id/header_transaction"
         android:layout_width="match_parent"
@@ -60,15 +60,12 @@
             android:layout_height="match_parent">
 
     <!--text view-->
-
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recSelectExp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:layout_below="@+id/textView_index">
+            android:paddingRight="2dp">
 
         </android.support.v7.widget.RecyclerView>
 

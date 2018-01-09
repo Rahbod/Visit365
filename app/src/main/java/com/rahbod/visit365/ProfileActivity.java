@@ -37,9 +37,6 @@ public class ProfileActivity extends AppCompatActivity {
     TextView drName, drEmail, clinicName, clinicTown, clinicCity, clinicAddress, clinicContracts, clinicFax, clinicPhone;
     TextView memberShipDate, drExp;
     ImageView drAvatar;
-    private static final int time =1500;
-    private static long BackPressed;
-    DrawerLayout drawerLayout;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -50,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_dr);
-        setContentView(R.layout.navigationdraw_profile_dr);
 
         Bundle bundle = getIntent().getExtras();
 
@@ -135,35 +131,12 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    public void openNvProfileDr(View view) {
-        drawerLayout.openDrawer(Gravity.LEFT);
-        drawerLayout.findViewById(R.id.btnExitProfileDr).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AccessTokenHelper.logout(getApplicationContext());
-                restart();
-            }
-        });
-    }
-
-    public void restart() {
-        Intent intent = new Intent(this, Login.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+    public void openStep1(View view) {
         finish();
-        System.exit(2);
     }
 
     @Override
     public void onBackPressed() {
-        if (time + BackPressed>System.currentTimeMillis()){
-            super.onBackPressed();
-        }
-        else
-            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
-
-        BackPressed = System.currentTimeMillis();
+        finish();
     }
 }

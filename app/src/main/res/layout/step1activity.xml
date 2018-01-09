@@ -29,12 +29,14 @@
 
         <Button
             android:id="@+id/btnNvv"
-            android:layout_width="24dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/menu_index" />
+            android:background="@drawable/back"
+            android:onClick="openIndex"
+            tools:ignore="OnClick" />
     </RelativeLayout>
 
 
