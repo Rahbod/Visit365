@@ -46,7 +46,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
                 SelectTimeDialogFragment selectTimeDialogFragment = new SelectTimeDialogFragment();
                 selectTimeDialogFragment.setCancelable(true);
                 selectTimeDialogFragment.setArguments(bundle);
-                selectTimeDialogFragment.show(context.getFragmentManager(), "asd");
+                selectTimeDialogFragment.show(context.getSupportFragmentManager(), "stdf");
             }
         });
     }

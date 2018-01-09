@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.rahbod.visit365.Adapters.RecyclerAdapter;
+import com.rahbod.visit365.Fragment.UserInfoDialogFragment;
 import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.rahbod.visit365.helper.SessionManager;
 
@@ -45,6 +46,12 @@ public class Index extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
         setContentView(R.layout.navigationdraw_index);
+
+        // show dialog fragment
+        if(!SessionManager.validUserInfo(this)){
+            UserInfoDialogFragment udf = new UserInfoDialogFragment();
+            udf.show(getSupportFragmentManager(),"UserInfoDialog");
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
 
@@ -119,9 +126,7 @@ public class Index extends AppCompatActivity {
         adapter = new RecyclerAdapter(expertises, this);
 
         listExp = (RecyclerView) findViewById(R.id.recSelectExp);
-
         listExp.setLayoutManager(new GridLayoutManager(this, 2));
-
         listExp.setAdapter(adapter);
     }
 
