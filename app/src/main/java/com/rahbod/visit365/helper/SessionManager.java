@@ -135,10 +135,6 @@ public class SessionManager {
         return !(userInfo.get("firstName").isEmpty() ||
                 userInfo.get("lastName").isEmpty() ||
                 userInfo.get("mobile").isEmpty() ||
-                userInfo.get("email").isEmpty() ||
-                userInfo.get("phone").isEmpty() ||
-                userInfo.get("address").isEmpty() ||
-                userInfo.get("zipCode").isEmpty() ||
                 userInfo.get("nationalCode").isEmpty());
     }
 }

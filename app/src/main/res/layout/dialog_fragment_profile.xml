@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/headerProfileUser">
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollView3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/headerProfileUser">-->
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:padding="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <com.rahbod.visit365.Font.FontTextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
                 android:text="لطفا اطلاعات حساب کاربری خود را وارد کنید"
                 android:textColor="@color/black" />
 
@@ -62,26 +63,12 @@
                 android:textColorHint="@color/hint"
                 android:textSize="11dp" />
 
-            <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/etMobile"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/etLastName"
-                android:layout_alignStart="@+id/etLastName"
-                android:layout_below="@+id/etLastName"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/border_edittext_selector"
-                android:hint="تلفن همراه *"
-                android:inputType="number"
-                android:textColorHint="@color/hint"
-                android:textSize="11dp" />
-
             <com.rahbod.visit365.Font.ButtonFont
                 android:id="@+id/btnSave"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="210dp"
                 android:layout_height="37dp"
-                android:layout_below="@+id/etMobile"
+                android:layout_below="@+id/etLastName"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="23dp"
                 android:background="@drawable/button_shape"
@@ -90,6 +77,6 @@
 
         </RelativeLayout>
 
-    </ScrollView>
+    <!--</ScrollView>-->
 
 </RelativeLayout>

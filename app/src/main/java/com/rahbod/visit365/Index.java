@@ -1,31 +1,26 @@
 package com.rahbod.visit365;
 
-import android.animation.ObjectAnimator;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.rahbod.visit365.Adapters.RecyclerAdapter;
 import com.rahbod.visit365.Fragment.UserInfoDialogFragment;
 import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.rahbod.visit365.helper.SessionManager;
-
 import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -53,6 +48,7 @@ public class Index extends AppCompatActivity {
         // show dialog fragment
         if(!SessionManager.validUserInfo(this)){
             UserInfoDialogFragment udf = new UserInfoDialogFragment();
+            udf.setCancelable(false);
             udf.show(getSupportFragmentManager(),"UserInfoDialog");
         }
 
@@ -108,7 +104,12 @@ public class Index extends AppCompatActivity {
                         startActivity(goVisits);
                         break;
                 }
-
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        drawerLayout.closeDrawer(Gravity.LEFT);
+                    }
+                }, 250);
                 return true;
             }
         });
