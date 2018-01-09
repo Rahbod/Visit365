@@ -69,14 +69,11 @@ public class HelpActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Index.class);
-        startActivity(intent);
+        super.onBackPressed();
         finish();
     }
 
     public void goToIndex_Help(View view) {
-        Intent intent = new Intent(this, Index.class);
-        startActivity(intent);
         finish();
     }
 }

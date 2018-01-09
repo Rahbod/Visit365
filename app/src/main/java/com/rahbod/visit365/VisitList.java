@@ -89,14 +89,12 @@ public class VisitList extends AppCompatActivity {
         });
     }
     public void goToIndex_VisitList(View view) {
-        Intent intent = new Intent(this, Index.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, Index.class);
+//        startActivity(intent);
         finish();
     }
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Index.class);
-        startActivity(intent);
         finish();
     }
 }

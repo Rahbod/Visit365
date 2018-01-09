@@ -1,6 +1,5 @@
 package com.rahbod.visit365;
 
-import android.animation.ObjectAnimator;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,15 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import  android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,11 +64,9 @@ public class Index extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
 
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 switch (item.getItemId()) {
                     case R.id.credit_card_NavigationView:
                         Intent goTransactions = new Intent(Index.this, TransactionActivity.class);
@@ -161,5 +156,12 @@ public class Index extends AppCompatActivity {
             Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
 
         BackPressed = System.currentTimeMillis();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(drawerLayout.isShown())
+            drawerLayout.closeDrawer(Gravity.LEFT, false);
     }
 }
