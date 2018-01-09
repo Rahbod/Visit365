@@ -32,7 +32,7 @@ public class UserInfoDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_fragment_select_time, container);
+        View view = inflater.inflate(R.layout.dialog_fragment_profile, container);
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.radius);
         getDialog().setCancelable(false);
@@ -117,7 +117,7 @@ public class UserInfoDialogFragment extends DialogFragment {
         if (getDialog() == null)
             return;
 
-        getDialog().getWindow().setLayout(550,
+        getDialog().getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
     }
