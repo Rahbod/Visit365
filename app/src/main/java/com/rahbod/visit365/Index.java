@@ -49,6 +49,11 @@ public class Index extends AppCompatActivity {
         setContentView(R.layout.activity_index);
         setContentView(R.layout.navigationdraw_index);
 
+        // show dialog fragment
+        if(SessionManager.validUserInfo(this)){
+
+        }
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
 
         View header =navigationView.getHeaderView(0);

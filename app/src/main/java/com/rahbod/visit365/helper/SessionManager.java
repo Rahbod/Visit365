@@ -128,4 +128,17 @@ public class SessionManager {
         userInfo.put("nationalCode", UserPref.getString("nationalCode", ""));
         return userInfo;
     }
+
+
+    public static boolean validUserInfo(Context context) {
+        HashMap<String, String> userInfo = SessionManager.getUserInfo(context);
+        return !(userInfo.get("firstName").isEmpty() ||
+                userInfo.get("lastName").isEmpty() ||
+                userInfo.get("mobile").isEmpty() ||
+                userInfo.get("email").isEmpty() ||
+                userInfo.get("phone").isEmpty() ||
+                userInfo.get("address").isEmpty() ||
+                userInfo.get("zipCode").isEmpty() ||
+                userInfo.get("nationalCode").isEmpty());
+    }
 }
