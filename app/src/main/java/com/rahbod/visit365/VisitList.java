@@ -1,9 +1,11 @@
 package com.rahbod.visit365;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.android.volley.Response;
 import com.rahbod.visit365.Adapters.AdapterVisitList;
@@ -85,5 +87,16 @@ public class VisitList extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void goToIndex_VisitList(View view) {
+        Intent intent = new Intent(this, Index.class);
+        startActivity(intent);
+        finish();
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, Index.class);
+        startActivity(intent);
+        finish();
     }
 }

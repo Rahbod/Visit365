@@ -44,6 +44,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.listVi
             public void onClick(View v) {
                 Intent intent = new Intent(context, Step1Activity.class);
                 intent.putExtra("Id", data.get(position)[0]);
+                intent.putExtra("ExpDr", data.get(position)[1]);
                 context.startActivity(intent);
             }
         });

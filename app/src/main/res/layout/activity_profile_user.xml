@@ -30,9 +30,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/menu_index"
-            android:onClick="openNvProfile"
-            tools:ignore="OnClick" />
+            android:background="@drawable/back"
+            android:onClick="goToIndex_ProfileUser"/>
     </RelativeLayout>
 
     <ScrollView
@@ -55,7 +54,7 @@
                 android:textColor="@color/black" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText2"
+                android:id="@+id/etNationalCode"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView16"
@@ -68,10 +67,10 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText3"
+                android:id="@+id/etFirstName"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText2"
+                android:layout_below="@+id/etNationalCode"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
@@ -81,10 +80,10 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText4"
+                android:id="@+id/etLastName"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText3"
+                android:layout_below="@+id/etFirstName"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
@@ -94,12 +93,12 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText5"
+                android:id="@+id/etMobile"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/editText6"
-                android:layout_alignStart="@+id/editText6"
-                android:layout_below="@+id/editText4"
+                android:layout_alignLeft="@+id/etPhone"
+                android:layout_alignStart="@+id/etPhone"
+                android:layout_below="@+id/etLastName"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
                 android:hint="تلفن همراه *"
@@ -108,10 +107,10 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText6"
+                android:id="@+id/etPhone"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText5"
+                android:layout_below="@+id/etMobile"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
@@ -121,23 +120,10 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText7"
+                android:id="@+id/etZipCode"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText6"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/border_edittext_selector"
-                android:hint="پست الکترونیک"
-                android:inputType="textEmailAddress"
-                android:textColorHint="@color/hint"
-                android:textSize="11dp" />
-
-            <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText8"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText7"
+                android:layout_below="@+id/etPhone"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
@@ -147,10 +133,10 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/editText9"
+                android:id="@+id/etAddress"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText8"
+                android:layout_below="@+id/etZipCode"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
@@ -163,10 +149,10 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.ButtonFont
-                android:id="@+id/button5"
+                android:id="@+id/btnSave"
                 android:layout_width="210dp"
                 android:layout_height="37dp"
-                android:layout_below="@+id/editText9"
+                android:layout_below="@+id/etAddress"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="23dp"
                 android:background="@drawable/button_shape"

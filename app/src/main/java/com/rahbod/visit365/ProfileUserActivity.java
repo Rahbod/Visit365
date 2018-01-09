@@ -1,28 +1,34 @@
 package com.rahbod.visit365;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.rahbod.visit365.helper.AccessTokenHelper;
+import com.android.volley.Response;
+import com.rahbod.visit365.helper.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ProfileUserActivity extends AppCompatActivity {
-
-    DrawerLayout drawerProfileUser;
-    private static final int time =1500;
-    private static long BackPressed;
+    HashMap<String, String> userInfo;
+    EditText etNationalCode;
+    EditText etFirstName;
+    EditText etLastName;
+    EditText etZipCode;
+    EditText etMobile;
+    EditText etPhone;
+    EditText etAddress;
+    Button btnSave;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -34,79 +40,91 @@ public class ProfileUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
-        setContentView(R.layout.navigationdraw_profile_user);
 
-        drawerProfileUser = (DrawerLayout) findViewById(R.id.drawer_profile_user);
+        userInfo = SessionManager.getUserInfo(this);
 
-        NavigationView nvProfileUser = (NavigationView) findViewById(R.id.navigationViewProfileUser);
-        nvProfileUser.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        etNationalCode = (EditText) findViewById(R.id.etNationalCode);
+        etNationalCode.setText(userInfo.get("nationalCode"));
+
+        etFirstName = (EditText) findViewById(R.id.etFirstName);
+        etFirstName.setText(userInfo.get("firstName"));
+
+        etLastName = (EditText) findViewById(R.id.etLastName);
+        etLastName.setText(userInfo.get("lastName"));
+
+        etMobile = (EditText) findViewById(R.id.etMobile);
+        etMobile.setText(userInfo.get("mobile"));
+
+        etPhone= (EditText) findViewById(R.id.etPhone);
+        etPhone.setText(userInfo.get("phone"));
+
+        etAddress = (EditText) findViewById(R.id.etAddress);
+        etAddress.setText(userInfo.get("address"));
+
+        etZipCode= (EditText) findViewById(R.id.etZipCode);
+        etZipCode.setText(userInfo.get("zipCode"));
+
+        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public void onClick(View v) {
 
-                switch (item.getItemId()) {
-                    case R.id.credit_card_NavigationView:
-                        Intent goTransactions = new Intent(ProfileUserActivity.this, TransactionActivity.class);
-                        startActivity(goTransactions);
-                        finish();
-                        break;
+                btnSave = (Button) findViewById(R.id.btnSave);
+                btnSave.setText("در حال ثبت...");
+                btnSave.setEnabled(false);
 
-                    case R.id.help_NavigationView:
-                        Intent goHelp = new Intent(ProfileUserActivity.this, HelpActivity.class);
-                        startActivity(goHelp);
-                        finish();
-                        break;
+                try {
+                    JSONObject params = new JSONObject();
 
-                    case R.id.user_NavigationView:
-                        drawerProfileUser.closeDrawer(Gravity.LEFT);
-                        break;
+                    JSONObject objparams = new JSONObject();
 
-                    case R.id.abut_NavigationView:
-                        Intent goAbout = new Intent(ProfileUserActivity.this, AboutActivity.class);
-                        startActivity(goAbout);
-                        finish();
-                        break;
+                    objparams.put("first_name", etFirstName.getText().toString());
+                    objparams.put("last_name", etLastName.getText().toString());
+                    objparams.put("phone", etPhone.getText().toString());
+                    objparams.put("mobile", etMobile.getText().toString());
+                    objparams.put("zip_code", etZipCode.getText().toString());
+                    objparams.put("address", etAddress.getText().toString());
+                    objparams.put("national_code", etNationalCode.getText().toString());
 
-                    case R.id.home_NavigationView:
-                        Intent goHome = new Intent(ProfileUserActivity.this, Index.class);
-                        startActivity(goHome);
-                        finish();
-                        break;
+                    params.put("profile", objparams);
+
+                    AppController.getInstance().sendAuthRequest("api/editProfile", params, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                if (response.getBoolean("status")){
+                                    String message = response.getString("message");
+
+                                    SessionManager sessionManager = new SessionManager(ProfileUserActivity.this);
+                                    JSONObject user = response.getJSONObject("user");
+                                    sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
+
+                                    btnSave.setText("ثبت");
+                                    btnSave.setEnabled(true);
+
+                                    Toast.makeText(ProfileUserActivity.this, message, Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-                return true;
             }
         });
-    }
-
-    public void openNvProfile(View view) {
-        drawerProfileUser = (DrawerLayout) findViewById(R.id.drawer_profile_user);
-        drawerProfileUser.openDrawer(Gravity.LEFT);
-        drawerProfileUser.findViewById(R.id.btnExitProfileUser).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AccessTokenHelper.logout(getApplicationContext());
-                restart();
-            }
-        });
-    }
-
-    public void restart() {
-        Intent intent = new Intent(this, Login.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
-        finish();
-        System.exit(2);
     }
     @Override
     public void onBackPressed() {
-        if (time + BackPressed>System.currentTimeMillis()){
-            super.onBackPressed();
-        }
-        else
-            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Index.class);
+        startActivity(intent);
+        finish();
+    }
 
-        BackPressed = System.currentTimeMillis();
+    public void goToIndex_ProfileUser(View view) {
+        Intent intent = new Intent(this, Index.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -39,9 +39,6 @@ public class TransactionActivity extends AppCompatActivity {
     RecyclerView recTrans;
     RecyclerAdapterTransaction adapter;
     ArrayList<ListTrans> data;
-    DrawerLayout drTrans;
-    private static final int time =1500;
-    private static long BackPressed;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -53,51 +50,10 @@ public class TransactionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction_activity);
-        setContentView(R.layout.navigationdraw_trans);
 
         countTrans = (TextView) findViewById(R.id.countTrans);
         sumTrans = (TextView) findViewById(R.id.sumTrans);
 
-        drTrans = (DrawerLayout) findViewById(R.id.drawer_trans);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewTrans);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-
-                    case R.id.credit_card_NavigationView:
-                        drTrans.closeDrawer(Gravity.LEFT);
-                        break;
-
-                    case R.id.help_NavigationView:
-                        Intent goHelp = new Intent(TransactionActivity.this, HelpActivity.class);
-                        startActivity(goHelp);
-                        finish();
-                        break;
-
-                    case R.id.user_NavigationView:
-                        Intent goProfile = new Intent(TransactionActivity.this, ProfileUserActivity.class);
-                        startActivity(goProfile);
-                        finish();
-                        break;
-
-                    case R.id.abut_NavigationView:
-                        Intent goAbout = new Intent(TransactionActivity.this, AboutActivity.class);
-                        startActivity(goAbout);
-                        finish();
-                        break;
-
-                    case R.id.home_NavigationView:
-                        Intent goHome = new Intent(TransactionActivity.this, Index.class);
-                        startActivity(goHome);
-                        finish();
-                        break;
-                }
-
-                return true;
-            }
-        });
 
         AppController.getInstance().sendAuthRequest("api/transactions", null, new Response.Listener<JSONObject>() {
             @Override
@@ -146,34 +102,15 @@ public class TransactionActivity extends AppCompatActivity {
         });
     }
 
-    public void openNvTrans(View view) {
-        drTrans.openDrawer(Gravity.LEFT);
-        drTrans.findViewById(R.id.btnExitProfile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AccessTokenHelper.logout(getApplicationContext());
-                restart();
-            }
-        });
+    public void goToIndex_Trans(View view) {
+            Intent intent = new Intent(this, Index.class);
+            startActivity(intent);
+            finish();
     }
-    public void restart() {
-        Intent intent = new Intent(this, Login.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
-        finish();
-        System.exit(2);
-    }
-
     @Override
     public void onBackPressed() {
-        if (time + BackPressed>System.currentTimeMillis()){
-            super.onBackPressed();
-        }
-        else
-            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
-
-        BackPressed = System.currentTimeMillis();
+        Intent intent = new Intent(this, Index.class);
+        startActivity(intent);
+        finish();
     }
 }

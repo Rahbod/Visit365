@@ -95,6 +95,9 @@ public class AccessTokenHelper {
                             JSONObject token = response.getJSONObject("token");
                             Log.e(ETAG, token.toString());
                             sessionManager.setToken(token.getString("access_token"), token.getString("refresh_token"), token.getLong("expire_in"));
+
+                            JSONObject user = response.getJSONObject("user");
+                            sessionManager.setUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
                             volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
                         } else {
                             Log.e(ETAG, "Get access token error.");
@@ -133,13 +136,16 @@ public class AccessTokenHelper {
             AppController.getInstance().sendRequest("oauth/token", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.e("asdj", response.toString());
                     try {
                         if (response.getBoolean("status")) {
                             // update in shared preference
                             JSONObject token = response.getJSONObject("token");
                             long exp = getNowTime() + token.getInt("expire_in");
                             sessionManager.updateToken(token.getString("access_token"), exp);
+
+                            JSONObject user = response.getJSONObject("user");
+                            sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
+
                             volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
                         } else {
                             Log.e(ETAG, "Error refresh token.");

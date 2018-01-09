@@ -1,5 +1,6 @@
 package com.rahbod.visit365;
 
+import android.animation.ObjectAnimator;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -11,21 +12,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.rahbod.visit365.Adapters.RecyclerAdapter;
 import com.rahbod.visit365.helper.AccessTokenHelper;
+import com.rahbod.visit365.helper.SessionManager;
 
 import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Index extends AppCompatActivity {
-
+    TextView tvUserName, tvMobile;
     RecyclerAdapter adapter;
     RecyclerView listExp;
     DrawerLayout drawerLayout;
@@ -44,9 +49,25 @@ public class Index extends AppCompatActivity {
         setContentView(R.layout.activity_index);
         setContentView(R.layout.navigationdraw_index);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
+
+        View header =navigationView.getHeaderView(0);
+        tvUserName = (TextView) header.findViewById(R.id.tvUserName);
+        tvMobile = (TextView) header.findViewById(R.id.tvMobile);
+
+        if(!SessionManager.getUserInfo(this).get("firstName").isEmpty() && !SessionManager.getUserInfo(this).get("lastName").isEmpty()) {
+            String NameFamily = SessionManager.getUserInfo(this).get("firstName") + " " + SessionManager.getUserInfo(this).get("lastName");
+            tvUserName.setText(NameFamily);
+        }
+
+        String Mobile = SessionManager.getUserInfo(this).get("mobile");
+
+        if(!Mobile.isEmpty())
+            tvMobile.setText(Mobile);
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -55,25 +76,21 @@ public class Index extends AppCompatActivity {
                     case R.id.credit_card_NavigationView:
                         Intent goTransactions = new Intent(Index.this, TransactionActivity.class);
                         startActivity(goTransactions);
-                        finish();
                         break;
 
                     case R.id.help_NavigationView:
                         Intent goHelp = new Intent(Index.this, HelpActivity.class);
                         startActivity(goHelp);
-                        finish();
                         break;
 
                     case R.id.user_NavigationView:
                         Intent goProfile = new Intent(Index.this, ProfileUserActivity.class);
                         startActivity(goProfile);
-                        finish();
                         break;
 
                     case R.id.abut_NavigationView:
                         Intent goAbout = new Intent(Index.this, AboutActivity.class);
                         startActivity(goAbout);
-                        finish();
                         break;
 
                     case R.id.home_NavigationView:
@@ -82,7 +99,6 @@ public class Index extends AppCompatActivity {
                     case R.id.visit_NavigationView:
                         Intent goVisits = new Intent(Index.this, VisitList.class);
                         startActivity(goVisits);
-                        finish();
                         break;
                 }
 
@@ -137,6 +153,7 @@ public class Index extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        drawerLayout.closeDrawer(Gravity.LEFT);
         if (time + BackPressed>System.currentTimeMillis()){
             super.onBackPressed();
         }

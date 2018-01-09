@@ -27,13 +27,13 @@
 
         <Button
             android:id="@+id/btnNv"
-            android:layout_width="24dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/menu_index"
-            android:onClick="openNvTrans"
+            android:background="@drawable/back"
+            android:onClick="goToIndex_Trans"
             tools:ignore="OnClick" />
     </RelativeLayout>
 

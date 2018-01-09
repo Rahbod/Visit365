@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +19,14 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.rahbod.visit365.helper.AccessTokenHelper;
+import com.rahbod.visit365.helper.SessionManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import saman.zamani.persiandate.PersianDate;
 import saman.zamani.persiandate.PersianDateFormat;
@@ -48,45 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_dr);
         setContentView(R.layout.navigationdraw_profile_dr);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_profile_dr);
-
         Bundle bundle = getIntent().getExtras();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nvProfileDr);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.credit_card_NavigationView:
-                        Intent goTransactions = new Intent(ProfileActivity.this, TransactionActivity.class);
-                        startActivity(goTransactions);
-                        break;
-
-                    case R.id.help_NavigationView:
-                        Intent goHelp = new Intent(ProfileActivity.this, HelpActivity.class);
-                        startActivity(goHelp);
-                        break;
-
-                    case R.id.user_NavigationView:
-                        Intent goProfile = new Intent(ProfileActivity.this, ProfileUserActivity.class);
-                        startActivity(goProfile);
-                        break;
-
-                    case R.id.abut_NavigationView:
-                        Intent goAbout = new Intent(ProfileActivity.this, AboutActivity.class);
-                        startActivity(goAbout);
-                        break;
-
-                    case R.id.home_NavigationView:
-                        Intent goHome = new Intent(ProfileActivity.this, Index.class);
-                        startActivity(goHome);
-                        break;
-                }
-
-                return true;
-            }
-        });
 
 //      profile
         drName = (TextView) findViewById(R.id.drNameProfile);
@@ -108,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
             params.put("doctor_id", bundle.getInt("doctorId"));
             params.put("clinic_id", bundle.getInt("clinicId"));
 
-            AppController.getInstance().sendRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
+            AppController.getInstance().sendAuthRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
