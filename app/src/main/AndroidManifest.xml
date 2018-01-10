@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name=".Index"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Login">
 
         </activity>
         <activity

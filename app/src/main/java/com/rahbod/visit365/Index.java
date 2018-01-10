@@ -134,7 +134,7 @@ public class Index extends AppCompatActivity {
         listExp.setAdapter(adapter);
     }
 
-    public void openNv(View view) {
+    public void openNvIndex(View view) {
         drawerLayout.openDrawer(Gravity.LEFT);
         drawerLayout.findViewById(R.id.btnExitIndex).setOnClickListener(new View.OnClickListener() {
             @Override
