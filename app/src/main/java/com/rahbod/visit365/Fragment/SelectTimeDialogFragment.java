@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.rahbod.visit365.Adapters.SelectTimeAdapter;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.R;
+import com.rahbod.visit365.models.DateTime;
 import com.rahbod.visit365.models.Dates;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class SelectTimeDialogFragment extends DialogFragment {
         String am = bundle.getString("am");
         String pm = bundle.getString("pm");
         if (!am.isEmpty() && !pm.isEmpty()) {
-            datesList.add(new Dates(am));
+            datesList.add(new DateTime());
             datesList.add(new Dates(pm));
         } else if (!am.isEmpty() && pm.isEmpty()) {
             datesList.add(new Dates(am));
