@@ -54,10 +54,24 @@
                 android:textColor="@color/black" />
 
             <com.rahbod.visit365.Font.EditTextFont
+                android:id="@+id/etMobile"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/border_edittext_selector"
+                android:inputType="number"
+                android:textColorHint="@color/hint"
+                android:enabled="false"
+                android:textSize="11dp"
+                android:layout_below="@+id/textView16"
+                android:layout_alignLeft="@+id/etNationalCode"
+                android:layout_alignStart="@+id/etNationalCode" />
+
+            <com.rahbod.visit365.Font.EditTextFont
                 android:id="@+id/etNationalCode"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView16"
+                android:layout_below="@+id/etMobile"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
@@ -93,31 +107,18 @@
                 android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
-                android:id="@+id/etMobile"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/etPhone"
-                android:layout_alignStart="@+id/etPhone"
-                android:layout_below="@+id/etLastName"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/border_edittext_selector"
-                android:hint="تلفن همراه *"
-                android:inputType="number"
-                android:textColorHint="@color/hint"
-                android:textSize="11dp" />
-
-            <com.rahbod.visit365.Font.EditTextFont
                 android:id="@+id/etPhone"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etMobile"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
                 android:hint="تلفن"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/hint"
-                android:textSize="11dp" />
+                android:textSize="11dp"
+                android:layout_below="@+id/etLastName"
+                android:layout_alignLeft="@+id/etLastName"
+                android:layout_alignStart="@+id/etLastName" />
 
             <com.rahbod.visit365.Font.EditTextFont
                 android:id="@+id/etZipCode"

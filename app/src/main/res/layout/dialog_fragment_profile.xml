@@ -63,17 +63,40 @@
                 android:textColorHint="@color/hint"
                 android:textSize="11dp" />
 
-            <com.rahbod.visit365.Font.ButtonFont
-                android:id="@+id/btnSave"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="210dp"
-                android:layout_height="37dp"
+            <LinearLayout
                 android:layout_below="@+id/etLastName"
-                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
-                android:background="@drawable/button_shape"
-                android:text="ثبت"
-                android:textColor="@color/white" />
+                android:orientation="horizontal"
+                android:layout_alignLeft="@+id/etLastName"
+                android:layout_alignStart="@+id/etLastName"
+                android:layout_alignRight="@+id/etLastName"
+                android:layout_alignEnd="@+id/etLastName">
+                <com.rahbod.visit365.Font.ButtonFont
+                    android:id="@+id/btnLogout"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/button_shape2"
+                    android:text="خروج"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
+                    />
+                <com.rahbod.visit365.Font.ButtonFont
+                    android:id="@+id/btnSave"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/button_shape"
+                    android:text="ثبت"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
         </RelativeLayout>
 

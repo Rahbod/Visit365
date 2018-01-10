@@ -1,5 +1,9 @@
 package com.rahbod.visit365.Fragment;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -13,7 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.android.volley.Response;
 import com.rahbod.visit365.AppController;
+import com.rahbod.visit365.Login;
 import com.rahbod.visit365.R;
+import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.rahbod.visit365.helper.SessionManager;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +31,7 @@ public class UserInfoDialogFragment extends DialogFragment {
     EditText etFirstName;
     EditText etLastName;
     Button btnSave;
+    Button btnLogout;
 
     @Nullable
     @Override
@@ -43,12 +50,21 @@ public class UserInfoDialogFragment extends DialogFragment {
         etLastName = (EditText) view.findViewById(R.id.etLastName);
         etLastName.setText(userInfo.get("lastName"));
 
+        btnLogout = (Button) view.findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AccessTokenHelper.logout(getContext());
+                restart();
+            }
+        });
+
         btnSave = (Button) view.findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btnSave.setText("در حال ثبت...");
-//                btnSave.setEnabled(false);
+                btnSave.setEnabled(false);
                 try {
                     JSONObject params = new JSONObject();
                     JSONObject userParams = new JSONObject();
@@ -57,7 +73,6 @@ public class UserInfoDialogFragment extends DialogFragment {
                     userParams.put("national_code", etNationalCode.getText().toString());
 
                     params.put("profile", userParams);
-                    Log.e("Yusef", params.toString());
                     AppController.getInstance().sendAuthRequest("api/editProfile", params, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -67,14 +82,12 @@ public class UserInfoDialogFragment extends DialogFragment {
                                     SessionManager sessionManager = new SessionManager(getContext());
                                     JSONObject user = response.getJSONObject("user");
                                     sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
-
-                                    btnSave.setText("ثبت");
-                                    btnSave.setEnabled(true);
-
                                     Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                                     getDialog().dismiss();
                                 }else
                                     Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                                btnSave.setText("ثبت");
+                                btnSave.setEnabled(true);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -99,5 +112,15 @@ public class UserInfoDialogFragment extends DialogFragment {
         getDialog().getWindow().setLayout(RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+    }
+
+    public void restart() {
+        Intent intent = new Intent(getContext(), Login.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        AlarmManager mgr = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+        getActivity().finish();
+        System.exit(2);
     }
 }
