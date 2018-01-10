@@ -1,5 +1,6 @@
 package com.rahbod.visit365.Fragment;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -32,6 +33,7 @@ public class UserInfoDialogFragment extends DialogFragment {
     EditText etLastName;
     Button btnSave;
     Button btnLogout;
+    private dialogDoneListener mListener;
 
     @Nullable
     @Override
@@ -81,9 +83,12 @@ public class UserInfoDialogFragment extends DialogFragment {
                                 if (response.getBoolean("status")){
                                     SessionManager sessionManager = new SessionManager(getContext());
                                     JSONObject user = response.getJSONObject("user");
-                                    sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
-                                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-                                    getDialog().dismiss();
+                                    if(sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"))) {
+                                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                                        mListener.onDone(true);
+                                        getDialog().dismiss();
+                                    }else
+                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
                                 }else
                                     Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                                 btnSave.setText("ثبت");
@@ -122,5 +127,20 @@ public class UserInfoDialogFragment extends DialogFragment {
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
         getActivity().finish();
         System.exit(2);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (dialogDoneListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement dialogDoneistener");
+        }
+    }
+
+    public interface dialogDoneListener{
+        void onDone(boolean state);
     }
 }

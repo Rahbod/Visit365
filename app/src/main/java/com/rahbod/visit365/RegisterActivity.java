@@ -1,5 +1,6 @@
 package com.rahbod.visit365;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -63,16 +64,12 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (password.getText().toString().isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "کلمه عبور نمی تواند خالی باشد", Toast.LENGTH_LONG).show();
                 } else
-
                     register();
             }
         });
     }
 
     public void goToLogin(View view) {
-
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
         finish();
     }
 
@@ -97,8 +94,10 @@ public class RegisterActivity extends AppCompatActivity {
                         String toast = response.getString("message");
                         Toast.makeText(RegisterActivity.this, toast, Toast.LENGTH_LONG).show();
                         if (response.getBoolean("status")) {
-                            Intent intent = new Intent(RegisterActivity.this, Login.class);
-                            startActivity(intent);
+                            Intent intent = new Intent();
+                            intent.putExtra("mobile", user.getText().toString());
+                            intent.putExtra("pass", password.getText().toString());
+                            setResult(Activity.RESULT_OK, intent);
                             finish();
                         }else{
                             register.setEnabled(true);

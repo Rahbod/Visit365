@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class Index extends AppCompatActivity {
+public class Index extends AppCompatActivity implements UserInfoDialogFragment.dialogDoneListener{
     TextView tvUserName, tvMobile;
     RecyclerAdapter adapter;
     RecyclerView listExp;
@@ -51,6 +51,9 @@ public class Index extends AppCompatActivity {
             udf.setCancelable(false);
             udf.show(getSupportFragmentManager(),"UserInfoDialog");
         }
+
+        // clear session extras
+        SessionManager.getExtrasPref(this).clearExtras();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
 
@@ -165,5 +168,18 @@ public class Index extends AppCompatActivity {
             Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
 
         BackPressed = System.currentTimeMillis();
+    }
+
+    @Override
+    public void onDone(boolean state) {
+        if(!SessionManager.getUserInfo(this).get("firstName").isEmpty() && !SessionManager.getUserInfo(this).get("lastName").isEmpty()) {
+            String NameFamily = SessionManager.getUserInfo(this).get("firstName") + " " + SessionManager.getUserInfo(this).get("lastName");
+            tvUserName.setText(NameFamily);
+        }
+
+        String Mobile = SessionManager.getUserInfo(this).get("mobile");
+
+        if(!Mobile.isEmpty())
+            tvMobile.setText(Mobile);
     }
 }

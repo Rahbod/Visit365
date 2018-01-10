@@ -1,16 +1,9 @@
 package com.rahbod.visit365.helper;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.android.volley.Response;
-import com.android.volley.toolbox.RequestFuture;
 import com.rahbod.visit365.AppController;
-import com.rahbod.visit365.DbHelper;
-import com.rahbod.visit365.Login;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,12 +28,12 @@ public class AccessTokenHelper {
         mContext = context;
         sessionManager = new SessionManager(context);
         if (sessionManager.isLoggedIn()) {
-            if (isExpired(sessionManager.getExpireTime())){
+            if (isExpired(sessionManager.getExpireTime())) {
                 String refreshToken = sessionManager.getRefreshToken();
                 if (refreshToken != null) {
                     RefreshToken(refreshToken, volleyCallback);
                 }
-            }else
+            } else
                 return true;
         }
         return false;
@@ -61,12 +54,10 @@ public class AccessTokenHelper {
             AppController.getInstance().sendRequest("oauth/authorize", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.e(ETAG + "response", response.toString());
                     try {
-                        if (response.getBoolean("status")) {
-                            Log.e(ETAG, response.getString("authorization_code"));
+                        if (response.getBoolean("status"))
                             gerAccessTokenFromServer(response.getString("authorization_code"), volleyCallback);
-                        } else {
+                        else {
                             Log.e(ETAG, "Get authorization code error.");
                             volleyCallback.onErrorResponse(response.getString("message"));
                         }
@@ -93,9 +84,8 @@ public class AccessTokenHelper {
                         if (response.getBoolean("status")) {
                             // save in shared preference
                             JSONObject token = response.getJSONObject("token");
-                            Log.e(ETAG, token.toString());
-                            sessionManager.setToken(token.getString("access_token"), token.getString("refresh_token"), token.getLong("expire_in"));
-
+                            long exp = getNowTime() + token.getInt("expire_in");
+                            sessionManager.setToken(token.getString("access_token"), token.getString("refresh_token"), exp);
                             JSONObject user = response.getJSONObject("user");
                             sessionManager.setUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
                             volleyCallback.onSuccessResponse(sessionManager.getAccessToken());

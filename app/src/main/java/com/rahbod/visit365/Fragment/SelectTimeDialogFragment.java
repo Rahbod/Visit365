@@ -9,18 +9,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import com.rahbod.visit365.Adapters.SelectTimeAdapter;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.R;
+import com.rahbod.visit365.helper.SessionManager;
 import com.rahbod.visit365.models.DateTime;
-import com.rahbod.visit365.models.Dates;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class SelectTimeDialogFragment extends DialogFragment {
-    List<Dates> datesList = new ArrayList<>();
+    List<DateTime> datesList = new ArrayList<>();
     RecyclerView recyclerView;
     FontTextView date ;
 
@@ -34,16 +34,16 @@ public class SelectTimeDialogFragment extends DialogFragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.rec_select_time);
         Bundle bundle = getArguments();
         date = (FontTextView) view.findViewById(R.id.title_date);
-        date.setText(bundle.getString("date"));
+        date.setText(SessionManager.getExtrasPref(getContext()).getString("date"));
         String am = bundle.getString("am");
         String pm = bundle.getString("pm");
         if (!am.isEmpty() && !pm.isEmpty()) {
-            datesList.add(new DateTime());
-            datesList.add(new Dates(pm));
+            datesList.add(new DateTime(am, "AM"));
+            datesList.add(new DateTime(pm, "PM"));
         } else if (!am.isEmpty() && pm.isEmpty()) {
-            datesList.add(new Dates(am));
+            datesList.add(new DateTime(am, "AM"));
         } else
-            datesList.add(new Dates(pm));
+            datesList.add(new DateTime(pm, "PM"));
         SelectTimeAdapter selectTimeAdapter = new SelectTimeAdapter(datesList, (AppCompatActivity) getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(selectTimeAdapter);
@@ -58,8 +58,8 @@ public class SelectTimeDialogFragment extends DialogFragment {
         if (getDialog() == null)
             return;
 
-        getDialog().getWindow().setLayout(550,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        getDialog().getWindow().setLayout(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
     }
 }

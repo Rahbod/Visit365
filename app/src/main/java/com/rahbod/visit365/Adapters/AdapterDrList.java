@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.ProfileActivity;
 import com.rahbod.visit365.R;
 import com.rahbod.visit365.Step2Fragment;
+import com.rahbod.visit365.helper.SessionManager;
 import com.rahbod.visit365.models.DrList;
 
 import java.util.List;
@@ -43,17 +45,18 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
     public void onBindViewHolder(DrListViewHolder holder, int position) {
         doctorId = drLists.get(position).getDoctorId();
         clinicId = drLists.get(position).getClinicId();
-        //Picasso.with(context).load(drLists.get(position).getAvatar()).error(R.drawable.doctor).into(holder.imgAvatarDr);
+
         holder.txtTitleDr.setText(drLists.get(position).getName());
         holder.txtPresentDayDr.setText(drLists.get(position).getReserveDay());
         holder.btnReserveDr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("doctorId", doctorId);
-                bundle.putInt("clinicId", clinicId);
+                // save doctor id and clinic id to session
+                SessionManager extras = SessionManager.getExtrasPref(context);
+                extras.putExtra("doctorId", doctorId);
+                extras.putExtra("clinicId", clinicId);
+
                 Step2Fragment step2Fragment = new Step2Fragment();
-                step2Fragment.setArguments(bundle);
                 android.support.v4.app.FragmentTransaction transaction = context.getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, step2Fragment).commit();
             }

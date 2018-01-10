@@ -33,8 +33,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/back"
-            android:onClick="goToIndex_About"
-            tools:ignore="OnClick" />
+            android:onClick="goToIndex_About"/>
     </RelativeLayout>
 
     <ScrollView

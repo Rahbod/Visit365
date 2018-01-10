@@ -43,9 +43,8 @@ public class AboutActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        if (response.getBoolean("status")){
+                        if (response.getBoolean("status")) {
                             String strHtml = response.getString("text");
-                            Log.e("asd", strHtml);
                             if (Build.VERSION.SDK_INT >= 24)
                                 txtWebView.setText(Html.fromHtml(strHtml, Html.FROM_HTML_MODE_COMPACT));
                             else
@@ -65,9 +64,8 @@ public class AboutActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
+
     public void goToIndex_About(View view) {
-//        Intent intent = new Intent(this, Index.class);
-//        startActivity(intent);
         finish();
     }
 }

@@ -1,59 +1,29 @@
 package com.rahbod.visit365.models;
 
+import java.util.Objects;
+
 public class DateTime {
-    private String am;
-    private String pm;
-    private String dateShow;
+    private String text;
+    private String time;
 
-    public DateTime(String date, String dateShow, String am, String pm) {
-        this.date = date;
-        this.dateShow = dateShow;
-        this.pm = pm;
-        this.am = am;
+    public DateTime(String text, String time) {
+        this.text = text;
+        this.time = time;
     }
 
-    public DateTime(String am, String pm) {
-        this.am = am;
-        this.pm = pm;
+    public String getText() {
+        return text;
     }
 
-
-    public DateTime(String pm) {
-        this.pm = pm;
+    public String getTime() {
+        return time;
     }
 
-
-
-
-    public String getDate() {
-        return date;
+    public boolean hasAM() {
+        return Objects.equals(time, "AM");
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getAm() {
-        return am;
-    }
-
-    public void setAm(String am) {
-        this.am = am;
-    }
-
-    public String getPm() {
-        return pm;
-    }
-
-    public void setPm(String pm) {
-        this.pm = pm;
-    }
-
-    public String getDateShow() {
-        return dateShow;
-    }
-
-    public void setDateShow(String dateShow) {
-        this.dateShow = dateShow;
+    public boolean hasPM() {
+        return Objects.equals(time, "PM");
     }
 }

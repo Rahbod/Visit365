@@ -1,9 +1,5 @@
 package com.rahbod.visit365.models;
 
-/**
- * Created by moien on 31/12/2017.
- */
-
 public class DrList {
     private String doctorName;
     private String reserveDay;
@@ -12,10 +8,6 @@ public class DrList {
     private long clinicPhone;
     private int clinicId;
     private int doctorId;
-
-    public DrList() {
-    }
-
 
     public DrList(String name, String avatar, int doctorId, int clinicId, String reserveDay) {
         this.doctorName = name;
@@ -68,12 +60,6 @@ public class DrList {
         this.reserveDay = reserveDay;
     }
 
-    public DrList(int clinicId, int doctorId) {
-        this.clinicId = clinicId;
-        this.doctorId = doctorId;
-    }
-
-
     public String getName() {
         return doctorName;
     }
@@ -105,6 +91,4 @@ public class DrList {
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
-
-
 }

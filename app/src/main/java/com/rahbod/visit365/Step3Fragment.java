@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class Step4Fragment extends Fragment {
+public class Step3Fragment extends Fragment {
 
 
-    public Step4Fragment() {
+    public Step3Fragment() {
     }
 
 
