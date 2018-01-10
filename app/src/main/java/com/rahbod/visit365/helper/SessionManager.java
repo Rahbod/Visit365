@@ -134,7 +134,6 @@ public class SessionManager {
         HashMap<String, String> userInfo = SessionManager.getUserInfo(context);
         return !(userInfo.get("firstName").isEmpty() ||
                 userInfo.get("lastName").isEmpty() ||
-                userInfo.get("mobile").isEmpty() ||
                 userInfo.get("nationalCode").isEmpty());
     }
 }
