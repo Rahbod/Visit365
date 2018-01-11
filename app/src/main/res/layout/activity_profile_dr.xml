@@ -25,16 +25,15 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnNvProfileDr"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/back"
-            android:onClick="openStep1"
-            tools:ignore="OnClick" />
+            app:srcCompat="@drawable/back"
+            android:onClick="openStep1" />
     </RelativeLayout>
 
     <ScrollView
@@ -59,10 +58,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/profile"
+                    app:srcCompat="@drawable/user"
                     app:civ_border_color="@color/hint"
-                    app:civ_border_width="1px"
-                    tools:ignore="VectorDrawableCompat" />
+                    app:civ_border_width="1px"/>
 
                 <com.rahbod.visit365.Font.FontTextView
                     android:id="@+id/drNameProfile"

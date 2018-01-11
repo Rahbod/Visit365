@@ -1,12 +1,17 @@
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
     tools:context="com.rahbod.visit365.Step1Activity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <!--header-->
     <RelativeLayout
@@ -27,31 +32,19 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnNvv"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/back"
+            app:srcCompat="@drawable/back"
             android:onClick="openIndex"
             tools:ignore="OnClick" />
     </RelativeLayout>
 
 
-
-
-
-    <FrameLayout
-        android:layout_below="@id/header"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:id="@+id/fragment_container">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
         <!--header2-->
         <RelativeLayout
             android:id="@+id/header_step_1"
@@ -60,7 +53,7 @@
             android:layout_below="@+id/header"
             android:background="#efefef">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
@@ -68,8 +61,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/circle_1"
-                tools:ignore="VectorDrawableCompat" />
+                app:srcCompat="@drawable/circle_1" />
 
             <com.rahbod.visit365.Font.FontTextView
                 android:id="@+id/textView4"
@@ -116,6 +108,6 @@
                 android:layout_below="@+id/drExp"
                 android:padding="10dp" />
         </RelativeLayout>
-        </LinearLayout>
-    </FrameLayout>
-</RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,6 +1,11 @@
 package com.rahbod.visit365.models;
 
+/**
+ * Created by moien on 02/01/2018.
+ */
+
 public class DateTime {
+    private String date;
     private String am;
     private String pm;
     private String dateShow;

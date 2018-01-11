@@ -6,14 +6,43 @@
     android:background="#ffffff"
     tools:context="com.rahbod.visit365.Fragment.Step_2">
 
+    <!--header-->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/green1">
+
+        <com.rahbod.visit365.Font.FontTextView
+            android:id="@+id/textw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="ویزیت 365"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnBackToStep1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/back"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/header_step_2"
+        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#efefef">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/image"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -21,8 +50,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/circle_2"
-            tools:ignore="VectorDrawableCompat" />
+            app:srcCompat="@drawable/circle_2"/>
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"
@@ -75,7 +103,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/doctor"
+                    android:src="@drawable/user"
                     app:civ_border_color="@color/hint"
                     app:civ_border_width="1px" />
 

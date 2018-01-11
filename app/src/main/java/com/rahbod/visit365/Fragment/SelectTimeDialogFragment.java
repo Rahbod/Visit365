@@ -9,11 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import com.rahbod.visit365.Adapters.SelectTimeAdapter;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.R;
-import com.rahbod.visit365.models.DateTime;
 import com.rahbod.visit365.models.Dates;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ public class SelectTimeDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_fragment_select_time, container);
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.radius);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rec_select_time);
         Bundle bundle = getArguments();
@@ -38,7 +39,7 @@ public class SelectTimeDialogFragment extends DialogFragment {
         String am = bundle.getString("am");
         String pm = bundle.getString("pm");
         if (!am.isEmpty() && !pm.isEmpty()) {
-            datesList.add(new DateTime());
+            datesList.add(new Dates(am));
             datesList.add(new Dates(pm));
         } else if (!am.isEmpty() && pm.isEmpty()) {
             datesList.add(new Dates(am));

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import  android.support.v4.widget.DrawerLayout;
@@ -45,14 +46,17 @@ public class Index extends AppCompatActivity {
         setContentView(R.layout.activity_index);
         setContentView(R.layout.navigationdraw_index);
 
-        // show dialog fragment
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+
+//         show dialog fragment
         if(!SessionManager.validUserInfo(this)){
             UserInfoDialogFragment udf = new UserInfoDialogFragment();
             udf.setCancelable(false);
             udf.show(getSupportFragmentManager(),"UserInfoDialog");
         }
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationViewIndex);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.btnNav);
 
         View header =navigationView.getHeaderView(0);
         tvUserName = (TextView) header.findViewById(R.id.tvUserName);
@@ -136,13 +140,13 @@ public class Index extends AppCompatActivity {
 
     public void openNvIndex(View view) {
         drawerLayout.openDrawer(Gravity.LEFT);
-        drawerLayout.findViewById(R.id.btnExitIndex).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AccessTokenHelper.logout(getApplicationContext());
-                restart();
-            }
-        });
+//        drawerLayout.findViewById(R.id.btnExitIndex).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                AccessTokenHelper.logout(getApplicationContext());
+//                restart();
+//            }
+//        });
     }
 
     public void restart() {

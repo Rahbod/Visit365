@@ -14,11 +14,11 @@ import com.rahbod.visit365.ProfileActivity;
 import com.rahbod.visit365.R;
 import com.rahbod.visit365.Step2Fragment;
 import com.rahbod.visit365.models.DrList;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
 
 
 public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListViewHolder> {
@@ -43,7 +43,11 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
     public void onBindViewHolder(DrListViewHolder holder, int position) {
         doctorId = drLists.get(position).getDoctorId();
         clinicId = drLists.get(position).getClinicId();
-        //Picasso.with(context).load(drLists.get(position).getAvatar()).error(R.drawable.doctor).into(holder.imgAvatarDr);
+        if (!drLists.get(position).getAvatar().isEmpty())
+            Picasso.with(context).load(drLists.get(position).getAvatar()).error(R.drawable.profile).into(holder.imgAvatarDr);
+        else
+            holder.imgAvatarDr.setImageResource(R.drawable.profile);
+
         holder.txtTitleDr.setText(drLists.get(position).getName());
         holder.txtPresentDayDr.setText(drLists.get(position).getReserveDay());
         holder.btnReserveDr.setOnClickListener(new View.OnClickListener() {

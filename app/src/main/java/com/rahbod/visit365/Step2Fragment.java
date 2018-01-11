@@ -1,5 +1,6 @@
 package com.rahbod.visit365;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -54,12 +57,27 @@ public class Step2Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_step2, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_step2, container, false);
+
+        ImageView btnBackToStep1 = (ImageView) rootView.findViewById(R.id.btnBackToStep1);
+        btnBackToStep1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Step1Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
         final Bundle bundle = this.getArguments();
 
         params = new JSONObject();

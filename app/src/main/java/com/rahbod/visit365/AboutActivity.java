@@ -61,8 +61,6 @@ public class AboutActivity extends AppCompatActivity {
         finish();
     }
     public void goToIndex_About(View view) {
-//        Intent intent = new Intent(this, Index.class);
-//        startActivity(intent);
         finish();
     }
 }

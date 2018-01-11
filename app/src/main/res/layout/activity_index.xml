@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_index"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.rahbod.visit365.Index">
+    android:layout_height="match_parent">
 
     <!--header-->
     <RelativeLayout
         android:id="@+id/header_transaction"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/green1">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/green1"
+        android:layoutDirection="ltr">
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView"
@@ -26,15 +28,16 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnNv"
-            android:layout_width="24dp"
-            android:layout_height="25dp"
+            android:layout_width="25dp"
+            android:layout_height="24dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/menu_index"
-            android:onClick="openNvIndex" />
+            app:srcCompat="@drawable/menu_index"
+            android:onClick="openNvIndex"
+            android:layout_marginStart="10dp" />
     </RelativeLayout>
 
     <com.rahbod.visit365.Font.FontTextView

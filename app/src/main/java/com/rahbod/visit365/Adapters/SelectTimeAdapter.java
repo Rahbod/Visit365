@@ -35,8 +35,6 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<SelectTimeAdapter.Se
         holder.timeSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(datesList.get(position).getPm().toString())
-                Toast.makeText(context, , Toast.LENGTH_LONG).show();
             }
         });
     }

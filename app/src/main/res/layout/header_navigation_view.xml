@@ -16,10 +16,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/profile"
         app:civ_border_color="#b1b1b1"
         app:civ_border_width="1dp"
-        tools:ignore="VectorDrawableCompat" />
+        android:src="@drawable/user" />
 
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/tvUserName"
@@ -36,8 +35,8 @@
         android:id="@+id/tvMobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvUserName"
         android:layout_alignRight="@+id/imageUser_navigationView"
+        android:layout_alignTop="@+id/tvUserName"
         android:layout_marginRight="85dp"
         android:layout_marginTop="22dp"
         android:text="bgh1371@gmail.com"
