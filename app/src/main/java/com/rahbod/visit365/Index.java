@@ -134,7 +134,7 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
         expertises.add(new String[]{"11", "زنان و زایمان", "givingbirth_index"});
         expertises.add(new String[]{"12", "روماتولوژی", "rheumatology_index"});
 
-        adapter = new RecyclerAdapter(expertises, this);
+        adapter = new RecyclerAdapter(expertises, Index.this);
 
         listExp = (RecyclerView) findViewById(R.id.recSelectExp);
         listExp.setLayoutManager(new GridLayoutManager(this, 2));

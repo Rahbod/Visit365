@@ -103,8 +103,6 @@ public class TransactionActivity extends AppCompatActivity {
     }
 
     public void goToIndex_Trans(View view) {
-            Intent intent = new Intent(this, Index.class);
-            startActivity(intent);
             finish();
     }
     @Override

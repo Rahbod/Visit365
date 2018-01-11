@@ -58,7 +58,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/user"
+                    android:src="@drawable/user"
                     app:civ_border_color="@color/hint"
                     app:civ_border_width="1px"/>
 
