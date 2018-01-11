@@ -1,5 +1,7 @@
 package com.rahbod.visit365;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,7 @@ import java.util.HashMap;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ProfileUserActivity extends AppCompatActivity {
+    ProgressDialog pd;
     HashMap<String, String> userInfo;
     EditText etNationalCode;
     EditText etFirstName;
@@ -70,7 +73,11 @@ public class ProfileUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 btnSave.setText("در حال ثبت...");
                 btnSave.setEnabled(false);
-
+                pd = new ProgressDialog(ProfileUserActivity.this);
+                pd.setMessage("لطفا صبر کنید ...");
+                pd.setCancelable(false);
+                pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                pd.show();
                 try {
                     JSONObject params = new JSONObject();
 
@@ -89,19 +96,20 @@ public class ProfileUserActivity extends AppCompatActivity {
                     AppController.getInstance().sendAuthRequest("api/editProfile", params, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            pd.dismiss();
                             try {
+                                String message = response.getString("message");
                                 if (response.getBoolean("status")){
-                                    String message = response.getString("message");
-
                                     SessionManager sessionManager = new SessionManager(ProfileUserActivity.this);
                                     JSONObject user = response.getJSONObject("user");
                                     sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
-
                                     btnSave.setText("ثبت");
                                     btnSave.setEnabled(true);
-
-                                    Toast.makeText(ProfileUserActivity.this, message, Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent();
+                                    setResult(Activity.RESULT_OK, intent);
+                                    finish();
                                 }
+                                Toast.makeText(ProfileUserActivity.this, message, Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

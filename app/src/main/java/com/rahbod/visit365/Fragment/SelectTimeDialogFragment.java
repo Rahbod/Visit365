@@ -36,7 +36,7 @@ public class SelectTimeDialogFragment extends DialogFragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.rec_select_time);
         Bundle bundle = getArguments();
         date = (FontTextView) view.findViewById(R.id.title_date);
-        date.setText(SessionManager.getExtrasPref(getContext()).getString("date"));
+        date.setText(bundle.getString("date"));
         String am = bundle.getString("am");
         String pm = bundle.getString("pm");
         if (!am.isEmpty() && !pm.isEmpty()) {
@@ -46,7 +46,7 @@ public class SelectTimeDialogFragment extends DialogFragment {
             datesList.add(new DateTime(am, "AM"));
         } else
             datesList.add(new DateTime(pm, "PM"));
-        SelectTimeAdapter selectTimeAdapter = new SelectTimeAdapter(datesList, (AppCompatActivity) getActivity());
+        SelectTimeAdapter selectTimeAdapter = new SelectTimeAdapter(datesList, (AppCompatActivity) getActivity(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(selectTimeAdapter);
 

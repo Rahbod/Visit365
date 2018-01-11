@@ -41,10 +41,11 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
             public void onClick(View v) {
                 // save date to session
                 SessionManager extras = SessionManager.getExtrasPref(context);
-                extras.putExtra("date", datesList.get(position).getDate());
+                extras.putExtra("date", datesList.get(position).getUnix());
 
                 // send times to SelectTimeDialogFragment
                 Bundle bundle = new Bundle();
+                bundle.putString("date",datesList.get(position).getDate());
                 bundle.putString("pm",datesList.get(position).getPm());
                 bundle.putString("am",datesList.get(position).getAm());
 

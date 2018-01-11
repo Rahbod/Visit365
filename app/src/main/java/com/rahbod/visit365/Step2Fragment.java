@@ -224,7 +224,8 @@ public class Step2Fragment extends Fragment {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 jsonObject = jsonArray.getJSONObject(i);
-                                persianDate = new PersianDate(Long.parseLong(jsonObject.getString("date")) * 1000);
+                                Long unixTime = Long.parseLong(jsonObject.getString("date"));
+                                persianDate = new PersianDate(unixTime * 1000);
                                 persianDateFormat = new PersianDateFormat("j F 13y");
                                 dateShow = jsonObject.getString("dateShow");
                                 am = "";
@@ -236,7 +237,7 @@ public class Step2Fragment extends Fragment {
                                     pm = jsonObject.getString("PM");
                                 }
                                 String str = persianDateFormat.format(persianDate);
-                                dates.add(new Dates(str, dateShow, am, pm));
+                                dates.add(new Dates(unixTime, str, dateShow, am, pm));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

@@ -52,7 +52,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         user = (EditText) findViewById(R.id.user_register);
-
+        pd = new ProgressDialog(this);
+        pd.setMessage("لطفا صبر کنید ...");
+        pd.setCancelable(false);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.show();
         // check user login
         if (AccessTokenHelper.checkAccessToken(this,new AppController.VolleyCallback() {
             @Override
@@ -66,7 +70,7 @@ public class Login extends AppCompatActivity {
         })) {
             afterLogin();
         }
-
+        pd.dismiss();
         // Do Login
 
         password = (EditText) findViewById(R.id.password_register);
@@ -109,6 +113,8 @@ public class Login extends AppCompatActivity {
         Log.e("ATH","logged in");
         Intent index = new Intent(this, Index.class);
         startActivity(index);
+        if(pd != null)
+            pd.dismiss();
         finish();
     }
 
@@ -133,7 +139,6 @@ public class Login extends AppCompatActivity {
                 AccessTokenHelper.getAccessToken(getApplicationContext(), data.getStringExtra("mobile"), data.getStringExtra("pass"), new AppController.VolleyCallback() {
                     @Override
                     public void onSuccessResponse(String result) {
-                        Log.e("ATH", "login");
                         afterLogin();
                     }
 

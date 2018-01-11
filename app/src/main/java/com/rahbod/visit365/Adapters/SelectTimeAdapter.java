@@ -1,6 +1,7 @@
 package com.rahbod.visit365.Adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,7 +13,10 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.rahbod.visit365.AppController;
 import com.rahbod.visit365.Font.FontTextView;
+import com.rahbod.visit365.Fragment.SelectTimeDialogFragment;
 import com.rahbod.visit365.R;
+import com.rahbod.visit365.Step2Fragment;
+import com.rahbod.visit365.Step3Fragment;
 import com.rahbod.visit365.helper.SessionManager;
 import com.rahbod.visit365.models.DateTime;
 
@@ -24,10 +28,12 @@ import java.util.List;
 public class SelectTimeAdapter extends RecyclerView.Adapter<SelectTimeAdapter.SelectTimeViewHolder> {
     List<DateTime> datesList;
     AppCompatActivity context;
+    SelectTimeDialogFragment dialog;
 
-    public SelectTimeAdapter(List<DateTime> datesList, AppCompatActivity context) {
+    public SelectTimeAdapter(List<DateTime> datesList, AppCompatActivity context, SelectTimeDialogFragment dialog) {
         this.datesList = datesList;
         this.context = context;
+        this.dialog = dialog;
     }
 
     @Override
@@ -42,21 +48,11 @@ public class SelectTimeAdapter extends RecyclerView.Adapter<SelectTimeAdapter.Se
         holder.timeSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    JSONObject params = new JSONObject();
-                    params.put("c", SessionManager.getExtrasPref(context).getInt("clinicId"));
-                    params.put("d", SessionManager.getExtrasPref(context).getInt("doctorId"));
-                    Log.e("sd", params.toString());
-//                    AppController.getInstance().sendAuthRequest("api/userInfo", params, new Response.Listener<JSONObject>() {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//
-//                        }
-//                    });
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(context, datesList.get(position).hasAM()+"", Toast.LENGTH_LONG).show();
+                SessionManager.getExtrasPref(context).putExtra("time", datesList.get(position).hasAM()?"am":"pm");
+                Step3Fragment step3Fragment = new Step3Fragment();
+                android.support.v4.app.FragmentTransaction transaction = context.getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.fragment_container, step3Fragment).addToBackStack(null).commit();
+                dialog.dismiss();
             }
         });
     }
