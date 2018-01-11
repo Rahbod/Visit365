@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.rahbod.visit365.Adapters.DateAdapter;
 import com.rahbod.visit365.Font.FontTextView;
+import com.rahbod.visit365.helper.SessionManager;
 import com.rahbod.visit365.models.Dates;
 import com.squareup.picasso.Picasso;
 
@@ -51,6 +52,10 @@ public class Step2Fragment extends Fragment {
     String dateShow, am, pm;
     boolean detailsFilled = false;
 
+    int doctorId;
+    int clinicId;
+    int expId;
+
     public Step2Fragment() {
     }
 
@@ -75,10 +80,11 @@ public class Step2Fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
-        final Bundle bundle = this.getArguments();
+        // save doctor id and clinic id to session
+        SessionManager extras = SessionManager.getExtrasPref(getContext());
+        doctorId = extras.getInt("doctorId");
+        clinicId= extras.getInt("clinicId");
+        expId= extras.getInt("expId");
 
         params = new JSONObject();
         miliNow = System.currentTimeMillis() / 1000;
@@ -91,8 +97,8 @@ public class Step2Fragment extends Fragment {
         avatarDoctor = (CircleImageView) view.findViewById(R.id.drAvatarProfile);
 
         try {
-            params.put("doctor_id", bundle.getInt("doctorId"));
-            params.put("clinic_id", bundle.getInt("clinicId"));
+            params.put("doctor_id", doctorId);
+            params.put("clinic_id", clinicId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

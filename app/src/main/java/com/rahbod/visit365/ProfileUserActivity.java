@@ -119,8 +119,6 @@ public class ProfileUserActivity extends AppCompatActivity {
     }
 
     public void goToIndex_ProfileUser(View view) {
-        Intent intent = new Intent(this, Index.class);
-        startActivity(intent);
         finish();
     }
 }

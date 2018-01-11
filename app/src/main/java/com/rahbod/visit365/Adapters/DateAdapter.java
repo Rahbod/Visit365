@@ -11,6 +11,7 @@ import com.rahbod.visit365.Font.ButtonFont;
 import com.rahbod.visit365.Font.FontTextView;
 import com.rahbod.visit365.Fragment.SelectTimeDialogFragment;
 import com.rahbod.visit365.R;
+import com.rahbod.visit365.helper.SessionManager;
 import com.rahbod.visit365.models.Dates;
 
 import java.util.List;
@@ -38,10 +39,14 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.dateViewHolder
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // save date to session
+                SessionManager extras = SessionManager.getExtrasPref(context);
+                extras.putExtra("date", datesList.get(position).getDate());
+
+                // send times to SelectTimeDialogFragment
                 Bundle bundle = new Bundle();
                 bundle.putString("pm",datesList.get(position).getPm());
                 bundle.putString("am",datesList.get(position).getAm());
-                bundle.putString("date", datesList.get(position).getDate());
 
                 SelectTimeDialogFragment selectTimeDialogFragment = new SelectTimeDialogFragment();
                 selectTimeDialogFragment.setCancelable(true);

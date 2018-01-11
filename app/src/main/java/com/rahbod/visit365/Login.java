@@ -1,5 +1,6 @@
 package com.rahbod.visit365;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -25,6 +26,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class Login extends AppCompatActivity {
 
     EditText user, password;
+    Button button_login;
     private static final int time =1500;
     private static long BackPressed;
 
@@ -69,7 +71,7 @@ public class Login extends AppCompatActivity {
 
         password = (EditText) findViewById(R.id.password_register);
 
-        final Button button_login = (Button) findViewById(R.id.button_login);
+        button_login = (Button) findViewById(R.id.button_login);
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,10 +113,42 @@ public class Login extends AppCompatActivity {
     }
 
     public void goToRegister(View view) {
-
         Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-        finish();
+        startActivityForResult(intent, 123);
+    }
+
+    ProgressDialog pd;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 123 && resultCode == RESULT_OK){
+            if (isNetworkConnected()) {
+                pd = new ProgressDialog(this);
+                pd.setMessage("لطفا صبر کنید ...");
+                pd.setCancelable(false);
+                pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                pd.show();
+                button_login.setEnabled(false);
+                button_login.setText("در حال انتقال ...");
+                AccessTokenHelper.getAccessToken(getApplicationContext(), data.getStringExtra("mobile"), data.getStringExtra("pass"), new AppController.VolleyCallback() {
+                    @Override
+                    public void onSuccessResponse(String result) {
+                        Log.e("ATH", "login");
+                        afterLogin();
+                    }
+
+                    @Override
+                    public void onErrorResponse(String result) {
+                        button_login.setEnabled(true);
+                        button_login.setText("ورود");
+                        pd.dismiss();
+                        Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }else{
+                Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void goToForget(View view) {

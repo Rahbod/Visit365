@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.rahbod.visit365.Adapters.AdapterDrList;
+import com.rahbod.visit365.helper.SessionManager;
 import com.rahbod.visit365.models.DrList;
 
 import org.json.JSONArray;
@@ -42,7 +43,8 @@ public class Step1Activity extends AppCompatActivity {
         setContentView(R.layout.step1activity);
         recyclerView = (RecyclerView) findViewById(R.id.rec_step1);
         params = new JSONObject();
-        Bundle bundle = getIntent().getExtras();
+        final Bundle bundle = getIntent().getExtras();
+        SessionManager.getExtrasPref(this).putExtra("expId",Integer.parseInt(bundle.getString("Id")));
 
         TextView txtExp = (TextView) findViewById(R.id.drExp);
         String strExp = bundle.getString("ExpDr");

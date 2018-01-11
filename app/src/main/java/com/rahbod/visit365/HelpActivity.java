@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -53,9 +54,10 @@ public class HelpActivity extends AppCompatActivity {
                     try {
                         if (response.getBoolean("status")){
                             String strHtml = response.getString("text");
-
-                            txtWebView.setText(Html.fromHtml(strHtml, Html.FROM_HTML_MODE_COMPACT));
-
+                            if (Build.VERSION.SDK_INT >= 24)
+                                txtWebView.setText(Html.fromHtml(strHtml, Html.FROM_HTML_MODE_COMPACT));
+                            else
+                                txtWebView.setText(Html.fromHtml(strHtml));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
