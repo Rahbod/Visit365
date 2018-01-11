@@ -5,12 +5,14 @@ package com.rahbod.visit365.models;
  */
 
 public class Dates {
+    private Long unixTime;
     private String date;
     private String am;
     private String pm;
     private String dateShow;
 
-    public Dates(String date, String dateShow, String am, String pm) {
+    public Dates(Long unixTime, String date, String dateShow, String am, String pm) {
+        this.unixTime = unixTime;
         this.date = date;
         this.dateShow = dateShow;
         this.pm = pm;
@@ -28,10 +30,16 @@ public class Dates {
     }
 
 
-
+    public Long getUnix() {
+        return unixTime;
+    }
 
     public String getDate() {
         return date;
+    }
+
+    public void setUnix(Long unixTime) {
+        this.unixTime = unixTime;
     }
 
     public void setDate(String date) {

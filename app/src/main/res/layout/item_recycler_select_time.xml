@@ -13,8 +13,8 @@
 
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/time_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"

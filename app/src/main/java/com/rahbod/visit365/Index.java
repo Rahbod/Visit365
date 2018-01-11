@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import  android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Index extends AppCompatActivity implements UserInfoDialogFragment.dialogDoneListener{
+    private static final int USER_PROFILE_REQUEST = 111;
     TextView tvUserName, tvMobile;
     RecyclerAdapter adapter;
     RecyclerView listExp;
@@ -65,15 +67,7 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
         tvUserName = (TextView) header.findViewById(R.id.tvUserName);
         tvMobile = (TextView) header.findViewById(R.id.tvMobile);
 
-        if(!SessionManager.getUserInfo(this).get("firstName").isEmpty() && !SessionManager.getUserInfo(this).get("lastName").isEmpty()) {
-            String NameFamily = SessionManager.getUserInfo(this).get("firstName") + " " + SessionManager.getUserInfo(this).get("lastName");
-            tvUserName.setText(NameFamily);
-        }
-
-        String Mobile = SessionManager.getUserInfo(this).get("mobile");
-
-        if(!Mobile.isEmpty())
-            tvMobile.setText(Mobile);
+        updateDrawerUserText();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_index);
 
@@ -93,7 +87,7 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
 
                     case R.id.user_NavigationView:
                         Intent goProfile = new Intent(Index.this, ProfileUserActivity.class);
-                        startActivity(goProfile);
+                        startActivityForResult(goProfile, USER_PROFILE_REQUEST);
                         break;
 
                     case R.id.abut_NavigationView:
@@ -176,6 +170,18 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
 
     @Override
     public void onDone(boolean state) {
+        updateDrawerUserText();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == USER_PROFILE_REQUEST && resultCode == RESULT_OK){
+            updateDrawerUserText();
+        }
+    }
+
+    private void updateDrawerUserText(){
         if(!SessionManager.getUserInfo(this).get("firstName").isEmpty() && !SessionManager.getUserInfo(this).get("lastName").isEmpty()) {
             String NameFamily = SessionManager.getUserInfo(this).get("firstName") + " " + SessionManager.getUserInfo(this).get("lastName");
             tvUserName.setText(NameFamily);

@@ -63,7 +63,7 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
 
                 Step2Fragment step2Fragment = new Step2Fragment();
                 android.support.v4.app.FragmentTransaction transaction = context.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, step2Fragment).commit();
+                transaction.add(R.id.fragment_container, step2Fragment).addToBackStack(null).commit();
             }
         });
         holder.btnProfileDr.setOnClickListener(new View.OnClickListener() {
