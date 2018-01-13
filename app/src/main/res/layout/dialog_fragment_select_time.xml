@@ -17,8 +17,8 @@
             android:text="Date"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginBottom="26dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"/>
 
     </LinearLayout>
 

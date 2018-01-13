@@ -12,28 +12,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import  android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.rahbod.visit365.Adapters.RecyclerAdapter;
 import com.rahbod.visit365.Fragment.UserInfoDialogFragment;
 import com.rahbod.visit365.helper.AccessTokenHelper;
 import com.rahbod.visit365.helper.SessionManager;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class Index extends AppCompatActivity implements UserInfoDialogFragment.dialogDoneListener{
+public class Index extends AppCompatActivity implements UserInfoDialogFragment.dialogDoneListener {
     private static final int USER_PROFILE_REQUEST = 111;
     TextView tvUserName, tvMobile;
     RecyclerAdapter adapter;
     RecyclerView listExp;
     DrawerLayout drawerLayout;
-    private static final int time =1500;
+    ImageView imgAvatar;
+    private static final int time = 2000;
     private static long BackPressed;
 
     @Override
@@ -48,14 +54,14 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
         setContentView(R.layout.activity_index);
         setContentView(R.layout.navigationdraw_index);
 
-            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
 
 //         show dialog fragment
-        if(!SessionManager.validUserInfo(this)){
+        if (!SessionManager.validUserInfo(this)) {
             UserInfoDialogFragment udf = new UserInfoDialogFragment();
             udf.setCancelable(false);
-            udf.show(getSupportFragmentManager(),"UserInfoDialog");
+            udf.show(getSupportFragmentManager(), "UserInfoDialog");
         }
 
         // clear session extras
@@ -63,9 +69,10 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.btnNav);
 
-        View header =navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
         tvUserName = (TextView) header.findViewById(R.id.tvUserName);
         tvMobile = (TextView) header.findViewById(R.id.tvMobile);
+        imgAvatar = (ImageView) header.findViewById(R.id.imageUser_navigationView);
 
         updateDrawerUserText();
 
@@ -158,11 +165,11 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
 
     @Override
     public void onBackPressed() {
-        drawerLayout.closeDrawer(Gravity.LEFT);
-        if (time + BackPressed>System.currentTimeMillis()){
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else if (time + BackPressed > System.currentTimeMillis()) {
             super.onBackPressed();
-        }
-        else
+        } else
             Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
 
         BackPressed = System.currentTimeMillis();
@@ -176,20 +183,20 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == USER_PROFILE_REQUEST && resultCode == RESULT_OK){
+        if (requestCode == USER_PROFILE_REQUEST && resultCode == RESULT_OK) {
             updateDrawerUserText();
         }
     }
 
-    private void updateDrawerUserText(){
-        if(!SessionManager.getUserInfo(this).get("firstName").isEmpty() && !SessionManager.getUserInfo(this).get("lastName").isEmpty()) {
+    private void updateDrawerUserText() {
+        if (!SessionManager.getUserInfo(this).get("firstName").isEmpty() && !SessionManager.getUserInfo(this).get("lastName").isEmpty()) {
             String NameFamily = SessionManager.getUserInfo(this).get("firstName") + " " + SessionManager.getUserInfo(this).get("lastName");
             tvUserName.setText(NameFamily);
         }
 
         String Mobile = SessionManager.getUserInfo(this).get("mobile");
 
-        if(!Mobile.isEmpty())
+        if (!Mobile.isEmpty())
             tvMobile.setText(Mobile);
     }
 }

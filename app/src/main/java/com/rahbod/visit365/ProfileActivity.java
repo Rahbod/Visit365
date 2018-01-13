@@ -50,6 +50,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        Log.e("bundle= ", bundle.toString());
+
 //      profile
         drName = (TextView) findViewById(R.id.drNameProfile);
         drEmail = (TextView) findViewById(R.id.tvClinicTitle);
@@ -69,8 +71,9 @@ public class ProfileActivity extends AppCompatActivity {
             JSONObject params = new JSONObject();
             params.put("doctor_id", bundle.getInt("doctorId"));
             params.put("clinic_id", bundle.getInt("clinicId"));
+            Log.e("drid", bundle.getInt("doctorId")+"");
 
-            AppController.getInstance().sendAuthRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
+            AppController.getInstance().sendRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
