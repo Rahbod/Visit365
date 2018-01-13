@@ -84,7 +84,7 @@ public class SessionManager {
         return loginEditor.commit();
     }
 
-    public boolean setUserInfo(String firstName, String lastName, String mobile, String email, String phone, String address, String zipCode, String nationalCode) {
+    public boolean setUserInfo(String firstName, String lastName, String mobile, String email, String phone, String address, String zipCode, String nationalCode, String avatarUrl) {
         userEditor.putString("firstName", firstName);
         userEditor.putString("lastName", lastName);
         userEditor.putString("mobile", mobile);
@@ -93,12 +93,13 @@ public class SessionManager {
         userEditor.putString("address", address);
         userEditor.putString("zipCode", zipCode);
         userEditor.putString("nationalCode", nationalCode);
+        userEditor.putString("avatarUrl", avatarUrl);
         // commit changes
         Log.d(TAG, "User Info modified!");
         return userEditor.commit();
     }
 
-    public boolean updateUserInfo(String firstName, String lastName, String mobile, String email, String phone, String address, String zipCode, String nationalCode) {
+    public boolean updateUserInfo(String firstName, String lastName, String mobile, String email, String phone, String address, String zipCode, String nationalCode, String avatarUrl) {
         userEditor.putString("firstName", firstName);
         userEditor.putString("lastName", lastName);
         userEditor.putString("mobile", mobile);
@@ -107,6 +108,7 @@ public class SessionManager {
         userEditor.putString("address", address);
         userEditor.putString("zipCode", zipCode);
         userEditor.putString("nationalCode", nationalCode);
+        userEditor.putString("avatarUrl", avatarUrl);
         // commit changes
         Log.d(TAG, "User Info modified!");
         return userEditor.commit();

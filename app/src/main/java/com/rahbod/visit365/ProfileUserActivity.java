@@ -102,7 +102,7 @@ public class ProfileUserActivity extends AppCompatActivity {
                                 if (response.getBoolean("status")){
                                     SessionManager sessionManager = new SessionManager(ProfileUserActivity.this);
                                     JSONObject user = response.getJSONObject("user");
-                                    sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
+                                    sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"), user.getString("avatar"));
                                     btnSave.setText("ثبت");
                                     btnSave.setEnabled(true);
                                     Intent intent = new Intent();

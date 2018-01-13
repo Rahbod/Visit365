@@ -83,7 +83,7 @@ public class UserInfoDialogFragment extends DialogFragment {
                                 if (response.getBoolean("status")){
                                     SessionManager sessionManager = new SessionManager(getContext());
                                     JSONObject user = response.getJSONObject("user");
-                                    if(sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"))) {
+                                    if(sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"), user.getString("avatar"))) {
                                         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                                         mListener.onDone(true);
                                         getDialog().dismiss();

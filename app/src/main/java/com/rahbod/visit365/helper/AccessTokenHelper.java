@@ -87,7 +87,7 @@ public class AccessTokenHelper {
                             long exp = getNowTime() + token.getInt("expire_in");
                             sessionManager.setToken(token.getString("access_token"), token.getString("refresh_token"), exp);
                             JSONObject user = response.getJSONObject("user");
-                            sessionManager.setUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
+                            sessionManager.setUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"), user.getString("avatar"));
                             volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
                         } else {
                             Log.e(ETAG, "Get access token error.");
@@ -134,7 +134,7 @@ public class AccessTokenHelper {
                             sessionManager.updateToken(token.getString("access_token"), exp);
 
                             JSONObject user = response.getJSONObject("user");
-                            sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"));
+                            sessionManager.updateUserInfo(user.getString("firstName"), user.getString("lastName"), user.getString("mobile"), user.getString("email"), user.getString("phone"), user.getString("address"), user.getString("zipCode"), user.getString("nationalCode"), user.getString("avatar"));
 
                             volleyCallback.onSuccessResponse(sessionManager.getAccessToken());
                         } else {
