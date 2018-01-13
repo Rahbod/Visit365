@@ -70,7 +70,6 @@
                     android:layout_alignTop="@+id/drAvatarProfile"
                     android:layout_marginRight="100dp"
                     android:layout_marginTop="15dp"
-                    android:text="دکتر سعید امامی"
                     android:textColor="@color/black"
                     android:textSize="13dp" />
 
@@ -80,7 +79,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@+id/drNameProfile"
                     android:layout_below="@+id/drNameProfile"
-                    android:text="bgh@gmail.com"
                     android:textColor="@color/hint"
                     android:textSize="10dp" />
 

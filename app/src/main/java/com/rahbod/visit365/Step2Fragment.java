@@ -73,6 +73,14 @@ public class Step2Fragment extends Fragment {
             }
         });
 
+        ImageView bac = (ImageView) rootView.findViewById(R.id.btnBackToStep1);
+        bac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+
         return rootView;
 
     }

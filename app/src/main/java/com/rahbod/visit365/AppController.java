@@ -1,6 +1,7 @@
 package com.rahbod.visit365;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.text.TextUtils;
@@ -33,6 +34,9 @@ import java.util.Map;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class AppController extends Application {
+    ProgressDialog pd;
+    boolean withProgress = false;
+
     private static final int socketTimeout = 30000;
     private static final int socketRetries = 2;
     private static final String BASE_URL = "http://visit365.ir/";
@@ -56,11 +60,16 @@ public class AppController extends Application {
                 .setFontAttrId(com.rahbod.visit365.R.attr.fontPath)
                 .build()
         );
-
         mInstance = this;
     }
 
-    public static synchronized AppController getInstance() {
+    public static synchronized AppController getInstance() {return mInstance;}
+    public static synchronized AppController getInstance(Context context) {
+        mInstance.withProgress = true;
+        mInstance.pd = new ProgressDialog(context);
+        mInstance.pd.setMessage("لطفا صبر کنید ...");
+        mInstance.pd.setCancelable(false);
+        mInstance.pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         return mInstance;
     }
 
@@ -117,11 +126,15 @@ public class AppController extends Application {
         if (!isNetworkConnected())
             Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
         else {
+            if(withProgress)
+                pd.show();
             final JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, BASE_URL + url, params, resListener, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e(TAG, "On Response Error");
                     errorHandler(error);
+                    if(withProgress)
+                        pd.dismiss();
                 }
             }) {
                 public Map<String, String> getHeaders() throws AuthFailureError {
@@ -164,6 +177,8 @@ public class AppController extends Application {
         if (!isNetworkConnected())
             Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
         else {
+            if(withProgress)
+                pd.show();
             final String accessToken = AccessTokenHelper.getAccessToken(getApplicationContext());
             Log.e("ATH", "AC: " + accessToken);
             if (accessToken != null) {
@@ -174,6 +189,8 @@ public class AppController extends Application {
                     public void onErrorResponse(VolleyError error) {
                         Log.e(TAG, "On Response Error");
                         errorHandler(error);
+                        if(withProgress)
+                            pd.dismiss();
                     }
                 }) {
                     public Map<String, String> getHeaders() throws AuthFailureError {

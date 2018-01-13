@@ -70,11 +70,12 @@ public class ProfileActivity extends AppCompatActivity {
             params.put("doctor_id", bundle.getInt("doctorId"));
             params.put("clinic_id", bundle.getInt("clinicId"));
 
-            AppController.getInstance().sendAuthRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
+            AppController.getInstance().sendRequest("api/doctorProfile", params, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
                         if (response.getBoolean("status")) {
+                            Log.e("sdaaaa",response.toString());
                             JSONObject doctor = response.getJSONObject("doctor");
                             String drname = doctor.getString("name");
                             String dremail = doctor.getString("email");
@@ -98,9 +99,10 @@ public class ProfileActivity extends AppCompatActivity {
                             drName.setText(drname);
                             drEmail.setText(dremail);
                             memberShipDate.setText(str);
-                            if (!dravatar.isEmpty()) {
-                                Picasso.with(ProfileActivity.this).load(dravatar).into(drAvatar);
-                            }
+                            Picasso.with(ProfileActivity.this).load(dravatar).error(R.drawable.doctor).into(drAvatar);
+//                            if (!dravatar.isEmpty()) {
+//
+//                            }
 
                             JSONObject clinic = response.getJSONObject("clinic");
                             String clinicname = clinic.getString("name");

@@ -24,7 +24,7 @@ public class Step3Fragment extends Fragment {
 
         Log.e("sd", SessionManager.getExtrasPref(getContext()).getExtras().toString());
 
-        return inflater.inflate(R.layout.fragment_step4, container, false);
+        return inflater.inflate(R.layout.fragment_step3, container, false);
     }
 
 }
