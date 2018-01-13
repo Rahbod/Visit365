@@ -65,6 +65,7 @@ public class Step1Activity extends AppCompatActivity {
                             JSONArray json = response.getJSONArray("doctors");
                             for (int i = 0; i < json.length(); i++) {
                                 doctor = json.getJSONObject(i);
+                                Log.e("abcd", doctor.toString());
                                 DrList.add(new DrList(doctor.getString("name"), doctor.getString("avatar"), doctor.getInt("doctorID"), doctor.getInt("clinicID"), doctor.getString("days")));
                             }
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

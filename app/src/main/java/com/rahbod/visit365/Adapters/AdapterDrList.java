@@ -72,6 +72,7 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
                 Intent intent = new Intent(context, ProfileActivity.class);
                 intent.putExtra("doctorId", doctorId);
                 intent.putExtra("clinicId", clinicId);
+                Log.e("doctorId= ", doctorId + "");
                 context.startActivity(intent);
             }
         });

@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_index"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <!--header-->
     <RelativeLayout
-        android:id="@+id/header_transaction"
+        android:id="@+id/headerIndex"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentLeft="true"
@@ -35,45 +36,31 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/menu_index"
+            android:layout_marginStart="10dp"
             android:onClick="openNvIndex"
-            android:layout_marginStart="10dp" />
+            app:srcCompat="@drawable/menu_index" />
     </RelativeLayout>
 
-    <com.rahbod.visit365.Font.FontTextView
-        android:id="@+id/textView_index"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header_transaction"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
-        android:text="جهت رزرو نوبت، یکی از تخصص های زیر را انتخاب کنید"
-        android:textAlignment="center"
-        android:textColor="@color/black" />
+                <com.rahbod.visit365.Font.FontTextView
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/headerIndex"
+                    android:id="@+id/textView_index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="جهت رزرو نوبت، یکی از تخصص های زیر را انتخاب کنید"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textSize="14dp"/>
 
-    <ScrollView
-        android:id="@+id/scrollViewIndex"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView_index"
-        android:scrollbars="none">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <!--text view-->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recSelectExp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </RelativeLayout>
-
-    </ScrollView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recSelectExp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/textView_index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 </RelativeLayout>

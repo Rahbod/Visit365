@@ -25,16 +25,15 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnNv"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/back"
-            android:onClick="goToIndex_Trans"
-            tools:ignore="OnClick" />
+            app:srcCompat="@drawable/back"
+            android:onClick="goToIndex_Trans"/>
     </RelativeLayout>
 
     <!--header-->
@@ -45,7 +44,7 @@
         android:layout_below="@+id/header_transaction"
         android:background="#efefef">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/image"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -53,9 +52,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/card"
-            app:civ_border_color="@color/hint"
-            app:civ_border_width="1px" />
+            app:srcCompat="@drawable/card" />
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"
@@ -119,7 +116,8 @@
                     android:layout_toLeftOf="@+id/tex"
                     android:layout_toStartOf="@+id/tex"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:text="بدون تراکنش"/>
 
             </LinearLayout>
 
@@ -137,7 +135,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:text="بدون تراکنش"/>
 
                 <com.rahbod.visit365.Font.FontTextView
                     android:id="@+id/tex1"

@@ -26,13 +26,14 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginLeft="10dp">
 
             <ImageView
                 android:id="@+id/btnExitIndex"
                 android:layout_width="50dp"
                 android:layout_height="17dp"
+                android:layout_marginRight="17dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 app:srcCompat="@drawable/exit_item_vn" />

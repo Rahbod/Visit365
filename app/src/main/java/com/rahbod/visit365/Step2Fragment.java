@@ -8,11 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -38,7 +36,6 @@ import saman.zamani.persiandate.PersianDate;
 import saman.zamani.persiandate.PersianDateFormat;
 
 public class Step2Fragment extends Fragment {
-    private static final String TAG = "Tag";
     long miliFrom, miliTo, miliNow;
     CircleImageView avatarDoctor;
     FontTextView doctorTitle, clinicTitle, clinicPhone, tvFromDate, tvToDate;
