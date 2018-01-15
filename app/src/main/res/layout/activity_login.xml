@@ -87,6 +87,7 @@
                     android:id="@+id/password_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
+                    android:textDirection="rtl"
                     android:background="@drawable/border_edittext_selector"
                     android:hint="کلمه عبور"
                     android:inputType="textPassword"

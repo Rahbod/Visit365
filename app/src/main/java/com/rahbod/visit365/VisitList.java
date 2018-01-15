@@ -1,15 +1,16 @@
 package com.rahbod.visit365;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.rahbod.visit365.Adapters.AdapterVisitList;
-import com.rahbod.visit365.Adapters.RecyclerAdapter;
 import com.rahbod.visit365.models.VisList;
 
 import org.json.JSONArray;
@@ -26,6 +27,7 @@ public class VisitList extends AppCompatActivity {
     ArrayList<VisList> data;
     RecyclerView recVisList;
     AdapterVisitList adapter;
+    TextView txtMassage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +68,7 @@ public class VisitList extends AppCompatActivity {
                                 PersianDate perVisitDate = new PersianDate(Long.parseLong(objVisitDate) * 1000);
                                 PersianDateFormat perVisitDateFormat = new PersianDateFormat("j  F  13y");
                                 strVisitData = perVisitDateFormat.format(perVisitDate);
-                            }
-                            else
+                            } else
                                 strVisitData = "---";
 
 
@@ -81,6 +82,11 @@ public class VisitList extends AppCompatActivity {
                         }
 
 
+                    } else {
+                        String massage = response.getString("message");
+                        Log.e("massage= ", massage);
+                        txtMassage = (TextView) findViewById(R.id.txtMassage);
+                        txtMassage.setText(massage);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -88,9 +94,11 @@ public class VisitList extends AppCompatActivity {
             }
         });
     }
+
     public void goToIndex_VisitList(View view) {
         finish();
     }
+
     @Override
     public void onBackPressed() {
         finish();

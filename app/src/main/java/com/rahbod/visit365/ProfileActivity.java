@@ -102,10 +102,10 @@ public class ProfileActivity extends AppCompatActivity {
                             drName.setText(drname);
                             drEmail.setText(dremail);
                             memberShipDate.setText(str);
+                            if(!dravatar.isEmpty()){
                             Picasso.with(ProfileActivity.this).load(dravatar).error(R.drawable.doctor).into(drAvatar);
-//                            if (!dravatar.isEmpty()) {
-//
-//                            }
+                          }
+
 
                             JSONObject clinic = response.getJSONObject("clinic");
                             String clinicname = clinic.getString("name");

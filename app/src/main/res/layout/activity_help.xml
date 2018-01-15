@@ -27,13 +27,15 @@
 
         <ImageView
             android:id="@+id/btnNvH"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/back"
-            android:onClick="goToIndex_Help" />
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/background"
+            android:onClick="goToIndex_Help"
+            android:padding="10dp"
+            app:srcCompat="@drawable/back" />
     </RelativeLayout>
 
     <ScrollView

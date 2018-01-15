@@ -27,13 +27,15 @@
 
         <ImageView
             android:id="@+id/btnNvProfileDr"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/back"
-            android:onClick="openStep1" />
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/background"
+            android:onClick="openStep1"
+            android:padding="10dp"
+            app:srcCompat="@drawable/back" />
+
     </RelativeLayout>
 
     <ScrollView
@@ -60,7 +62,7 @@
                     android:layout_marginRight="10dp"
                     android:src="@drawable/user"
                     app:civ_border_color="@color/hint"
-                    app:civ_border_width="1px"/>
+                    app:civ_border_width="1px" />
 
                 <com.rahbod.visit365.Font.FontTextView
                     android:id="@+id/drNameProfile"
@@ -112,8 +114,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linExpProfile"
                 android:layout_marginRight="10dp"
-                android:layoutDirection="rtl"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:layoutDirection="rtl">
 
                 <com.rahbod.visit365.Font.FontTextView
                     android:id="@+id/tetx62"

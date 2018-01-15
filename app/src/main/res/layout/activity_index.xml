@@ -31,36 +31,37 @@
 
         <ImageView
             android:id="@+id/btnNv"
-            android:layout_width="25dp"
-            android:layout_height="24dp"
+            android:layout_width="45dp"
+            android:layout_height="44dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
+            android:background="@drawable/background"
             android:onClick="openNvIndex"
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
             app:srcCompat="@drawable/menu_index" />
     </RelativeLayout>
 
-                <com.rahbod.visit365.Font.FontTextView
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/headerIndex"
-                    android:id="@+id/textView_index"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="20dp"
-                    android:text="جهت رزرو نوبت، یکی از تخصص های زیر را انتخاب کنید"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center"
-                    android:textSize="14dp"/>
+    <com.rahbod.visit365.Font.FontTextView
+        android:id="@+id/textView_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerIndex"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:text="جهت رزرو نوبت، یکی از تخصص های زیر را انتخاب کنید"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
 
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recSelectExp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/textView_index"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recSelectExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_index"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

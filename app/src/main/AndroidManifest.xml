@@ -24,34 +24,37 @@
         </activity>
         <activity
             android:name=".Index"
-            android:theme="@style/Login" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Register" />
+            android:theme="@style/Login" />
         <activity
             android:name=".Step1Activity"
-            android:theme="@style/Step1" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".TransactionActivity"
-            android:theme="@style/Index" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".ForgetActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Login" />
         <activity
             android:name=".ProfileActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".ProfileUserActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".HelpActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".AboutActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AllApp" />
         <activity
             android:name=".VisitList"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AllApp" />
+        <activity
+            android:name=".TrackingActivity"
+            android:theme="@style/AllApp" />
     </application>
 
 </manifest>

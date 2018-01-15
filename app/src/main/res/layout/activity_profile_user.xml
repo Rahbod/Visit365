@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <!--header-->
     <RelativeLayout
@@ -25,13 +25,15 @@
 
         <ImageView
             android:id="@+id/btnNv"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/back"
-            android:onClick="goToIndex_ProfileUser"/>
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/background"
+            android:onClick="goToIndex_ProfileUser"
+            android:padding="10dp"
+            app:srcCompat="@drawable/back" />
     </RelativeLayout>
 
     <ScrollView
@@ -57,15 +59,15 @@
                 android:id="@+id/etMobile"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/etNationalCode"
+                android:layout_alignStart="@+id/etNationalCode"
+                android:layout_below="@+id/textView16"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
+                android:enabled="false"
                 android:inputType="number"
                 android:textColorHint="@color/hint"
-                android:enabled="false"
-                android:textSize="11dp"
-                android:layout_below="@+id/textView16"
-                android:layout_alignLeft="@+id/etNationalCode"
-                android:layout_alignStart="@+id/etNationalCode" />
+                android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
                 android:id="@+id/etNationalCode"
@@ -110,15 +112,15 @@
                 android:id="@+id/etPhone"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/etLastName"
+                android:layout_alignStart="@+id/etLastName"
+                android:layout_below="@+id/etLastName"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border_edittext_selector"
                 android:hint="تلفن"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/hint"
-                android:textSize="11dp"
-                android:layout_below="@+id/etLastName"
-                android:layout_alignLeft="@+id/etLastName"
-                android:layout_alignStart="@+id/etLastName" />
+                android:textSize="11dp" />
 
             <com.rahbod.visit365.Font.EditTextFont
                 android:id="@+id/etZipCode"
@@ -151,6 +153,7 @@
 
             <com.rahbod.visit365.Font.ButtonFont
                 android:id="@+id/btnSave"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="210dp"
                 android:layout_height="37dp"
                 android:layout_below="@+id/etAddress"
@@ -158,8 +161,7 @@
                 android:layout_marginTop="23dp"
                 android:background="@drawable/button_shape"
                 android:text="ثبت"
-                android:textColor="@color/white"
-                style="?android:attr/borderlessButtonStyle"/>
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 
