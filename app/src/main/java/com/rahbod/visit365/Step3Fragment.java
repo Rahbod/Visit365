@@ -42,7 +42,7 @@ public class Step3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView =inflater.inflate(R.layout.fragment_step3, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_step3, container, false);
 
         HashMap<String, String> userInfo = SessionManager.getUserInfo(getActivity());
 
@@ -50,7 +50,6 @@ public class Step3Fragment extends Fragment {
         String user = userInfo.get("firstName") + " " + userInfo.get("lastName");
         String nationalCode = userInfo.get("nationalCode");
         String mobile = userInfo.get("mobile");
-
 
 
         TextView txtUser = (TextView) rootView.findViewById(R.id.user);
@@ -74,6 +73,7 @@ public class Step3Fragment extends Fragment {
 
     String visitID;
     Button btnGateway;
+
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
 
@@ -92,11 +92,11 @@ public class Step3Fragment extends Fragment {
 
         Map<String, ?> visitInfo = SessionManager.getExtrasPref(getContext()).getExtras();
 
-        final String strClinicId  = visitInfo.get("clinicId").toString();
+        final String strClinicId = visitInfo.get("clinicId").toString();
         final String strDoctorId = visitInfo.get("doctorId").toString();
-        final String strExpertise  = visitInfo.get("expId").toString();
-        final String strDate  = visitInfo.get("date").toString();
-        final String StrTime  = visitInfo.get("time").toString();
+        final String strExpertise = visitInfo.get("expId").toString();
+        final String strDate = visitInfo.get("date").toString();
+        final String StrTime = visitInfo.get("time").toString();
 
         JSONObject params = new JSONObject();
 
@@ -111,52 +111,39 @@ public class Step3Fragment extends Fragment {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        if (response.getBoolean("status"));
-                        int commission = response.getInt("commission");
+                        if (response.getBoolean("status")) {
+                            final int commission = response.getInt("commission");
 
-                        JSONObject visit = response.getJSONObject("visit");
-                        visitID = visit.getString("visitID");
-                        String clinicName = visit.getString("clinicName");
-                        String doctorName = visit.getString("doctorName");
-                        String doctorExpertise = visit.getString("doctorExpertise");
-                        String date = visit.getString("date");
-                        String doctorTime = visit.getString("doctorTime");
+                            JSONObject visit = response.getJSONObject("visit");
+                            visitID = visit.getString("visitID");
+                            String clinicName = visit.getString("clinicName");
+                            String doctorName = visit.getString("doctorName");
+                            String doctorExpertise = visit.getString("doctorExpertise");
+                            String date = visit.getString("date");
+                            String doctorTime = visit.getString("doctorTime");
 
-                        PersianDate pdate = new PersianDate(Long.parseLong(date) * 1000);
-                        PersianDateFormat pdformater = new PersianDateFormat("j  F  13y");
-                        String strData = pdformater.format(pdate);
+                            PersianDate pdate = new PersianDate(Long.parseLong(date) * 1000);
+                            PersianDateFormat pdformater = new PersianDateFormat("j  F  13y");
+                            String strData = pdformater.format(pdate);
 
-                        txtClinicId.setText(clinicName);
-                        txtDoctorId.setText(doctorName);
-                        txtExpertiseId.setText(doctorExpertise);
-                        txtDate.setText(strData);
-                        txtTime.setText(doctorTime);
+                            txtClinicId.setText(clinicName);
+                            txtDoctorId.setText(doctorName);
+                            txtExpertiseId.setText(doctorExpertise);
+                            txtDate.setText(strData);
+                            txtTime.setText(doctorTime);
 
-                        if (commission == 0){
-                            btnGateway.setText("تایید نهایی");
-                            TextView txtCommission = (TextView) view.findViewById(R.id.txtcommission);
-                            txtCommission.setText("جهت دریافت کد رهگیری لطفا اطلاعات فوق را تایید کنید.");
-                            txtCommission.setLines(2);
-                            txtCommission.setWidth(450);
+                            if (commission == 0) {
+                                btnGateway.setText("تایید نهایی");
+                                TextView txtCommission = (TextView) view.findViewById(R.id.txtcommission);
+                                txtCommission.setText("جهت دریافت کد رهگیری لطفا اطلاعات فوق را تایید کنید.");
+                                txtCommission.setLines(2);
+                                txtCommission.setWidth(450);
+                            } else
+                                txtcommission.setText(commission + " تومان");
+
                             btnGateway.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(getActivity(), TrackingActivity.class);
-                                    intent.putExtra("id", visitID);
-                                    startActivity(intent);
-                                    getActivity().finish();
-                                }
-                            });
-
-                        }
-                        else {
-                            txtcommission.setText(commission + " تومان");
-                            btnGateway.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-
-
                                     JSONObject params = new JSONObject();
                                     try {
                                         params.put("id", visitID);
@@ -165,11 +152,25 @@ public class Step3Fragment extends Fragment {
                                             @Override
                                             public void onResponse(JSONObject response) {
                                                 try {
-                                                    if (response.getBoolean("status"));
-                                                    String url = response.getString("url");
-                                                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                                                    intent.setData(Uri.parse(url));
-                                                    startActivity(intent);
+                                                    if (commission != 0) {
+                                                        if (response.getBoolean("status")) {
+                                                            String url = response.getString("url");
+                                                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                                                            intent.setData(Uri.parse(url));
+                                                            startActivity(intent);
+                                                            new Handler().postDelayed(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    getActivity().finish();
+                                                                }
+                                                            }, 10000);
+                                                        }
+                                                    } else {
+                                                        Intent intent = new Intent(getActivity(), TrackingActivity.class);
+                                                        intent.putExtra("id", visitID);
+                                                        startActivity(intent);
+                                                        getActivity().finish();
+                                                    }
 
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
@@ -179,21 +180,10 @@ public class Step3Fragment extends Fragment {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
-
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            getActivity().finish();
-                                        }
-                                    }, 10000);
-
-
-
                                 }
                             });
                         }
-
-                    } catch (JSONException e) {
+                    }catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
