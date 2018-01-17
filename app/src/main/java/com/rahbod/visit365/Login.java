@@ -13,14 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.toolbox.ImageLoader;
 import com.rahbod.visit365.helper.AccessTokenHelper;
-import com.rahbod.visit365.helper.SessionManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Login extends AppCompatActivity {
@@ -50,6 +43,24 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        TextView txtForget = (TextView) findViewById(R.id.forget_login);
+        txtForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, ForgetActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView txtRigester = (TextView) findViewById(R.id.register_login);
+        txtRigester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, RegisterActivity.class);
+                startActivityForResult(intent, 123);
+            }
+        });
 
         user = (EditText) findViewById(R.id.user_register);
         pd = new ProgressDialog(this);
@@ -118,11 +129,6 @@ public class Login extends AppCompatActivity {
         finish();
     }
 
-    public void goToRegister(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivityForResult(intent, 123);
-    }
-
     ProgressDialog pd;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -155,12 +161,6 @@ public class Login extends AppCompatActivity {
             }
         }
     }
-
-    public void goToForget(View view) {
-        Intent intent = new Intent(this, ForgetActivity.class);
-        startActivity(intent);
-    }
-
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected() && cm.getActiveNetworkInfo().isAvailable();

@@ -132,9 +132,7 @@
                     android:text="ورود"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
-                    android:textStyle="bold"
-                    android:onClick="goToLogin"
-                    tools:ignore="OnClick" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

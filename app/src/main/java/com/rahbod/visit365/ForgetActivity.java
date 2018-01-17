@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -21,8 +22,6 @@ public class ForgetActivity extends AppCompatActivity {
 
     Button btnSms;
     EditText user;
-    private static final int time =1500;
-    private static long BackPressed;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -31,28 +30,22 @@ public class ForgetActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        if (time + BackPressed>System.currentTimeMillis()){
-            super.onBackPressed();
-        }
-        else
-            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
-
-        BackPressed = System.currentTimeMillis();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget);
 
+        TextView txtlogin_forget = (TextView) findViewById(R.id.login_forget);
+        txtlogin_forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         btnSms = (Button) findViewById(R.id.button_forget);
     }
 
-    public void goToLogin(View view) {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-    }
+
 
     public void SendSms(View view) {
 

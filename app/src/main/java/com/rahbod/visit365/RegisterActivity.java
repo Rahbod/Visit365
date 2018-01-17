@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -22,31 +23,24 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText user, password;
     Button register;
-    private static final int time =1500;
-    private static long BackPressed;
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
 
     }
-
-    @Override
-    public void onBackPressed() {
-        if (time + BackPressed>System.currentTimeMillis()){
-            super.onBackPressed();
-        }
-        else
-            Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
-
-        BackPressed = System.currentTimeMillis();
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+
+        TextView txtlogin_register = (TextView) findViewById(R.id.login_register);
+        txtlogin_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         user = (EditText) findViewById(R.id.user_register);
         password = (EditText) findViewById(R.id.password_register);
@@ -67,10 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
                     register();
             }
         });
-    }
-
-    public void goToLogin(View view) {
-        finish();
     }
 
     private void register() {

@@ -110,14 +110,10 @@
                     android:id="@+id/login_forget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:onClick="goToLogin"
                     android:text="ورود"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
-                    android:textStyle="bold"
-                    tools:ignore="OnClick" />
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
