@@ -1,10 +1,22 @@
 package com.rahbod.visit365.Adapters;
 
+import android.app.ActivityOptions;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.transition.ChangeBounds;
+import android.transition.ChangeImageTransform;
+import android.transition.ChangeTransform;
+import android.transition.Fade;
+import android.transition.TransitionInflater;
+import android.transition.TransitionSet;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +54,7 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
     }
 
     @Override
-    public void onBindViewHolder(DrListViewHolder holder, int position) {
+    public void onBindViewHolder(final DrListViewHolder holder, int position) {
         doctorId = drLists.get(position).getDoctorId();
         clinicId = drLists.get(position).getClinicId();
 
@@ -56,24 +68,37 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
         holder.btnReserveDr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // save doctor id and clinic id to session
-                SessionManager extras = SessionManager.getExtrasPref(context);
-                extras.putExtra("doctorId", doctorId);
-                extras.putExtra("clinicId", clinicId);
+                    // save doctor id and clinic id to session
+                    SessionManager extras = SessionManager.getExtrasPref(context);
+                    extras.putExtra("doctorId", doctorId);
+                    extras.putExtra("clinicId", clinicId);
 
-                Step2Fragment step2Fragment = new Step2Fragment();
-                android.support.v4.app.FragmentTransaction transaction = context.getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.fragment_container, step2Fragment).addToBackStack(null).commit();
+                    Step2Fragment step2Fragment = new Step2Fragment();
+                    FragmentTransaction transaction = context.getFragmentManager().beginTransaction();
+                    transaction.add(R.id.fragment_container, step2Fragment).addToBackStack(null).commit();
+
             }
         });
         holder.btnProfileDr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("doctorId", doctorId);
-                intent.putExtra("clinicId", clinicId);
-                Log.e("doctorId= ", doctorId + "");
-                context.startActivity(intent);
+                if (Build.VERSION.SDK_INT >= 24) {
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    Pair[] pair = new Pair[2];
+                    pair[0] = new Pair<View, String>(holder.imgAvatarDr, "ImageProfileDr");
+                    pair[1] = new Pair<View, String>(holder.txtTitleDr, "NameProfileDr");
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(context, pair);
+                    intent.putExtra("doctorId", doctorId);
+                    intent.putExtra("clinicId", clinicId);
+                    Log.e("doctorId= ", doctorId + "");
+                    context.startActivity(intent, options.toBundle());
+                } else {
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    intent.putExtra("doctorId", doctorId);
+                    intent.putExtra("clinicId", clinicId);
+                    Log.e("doctorId= ", doctorId + "");
+                    context.startActivity(intent);
+                }
             }
         });
     }
@@ -97,6 +122,15 @@ public class AdapterDrList extends RecyclerView.Adapter<AdapterDrList.DrListView
             txtPresentDayDr = (FontTextView) itemView.findViewById(R.id.textView7);
             btnProfileDr = (ButtonFont) itemView.findViewById(R.id.button);
             btnReserveDr = (ButtonFont) itemView.findViewById(R.id.button2);
+        }
+    }
+
+    public class DetailsTransition extends TransitionSet {
+        public DetailsTransition() {
+            setOrdering(ORDERING_TOGETHER);
+            addTransition(new ChangeBounds()).
+                    addTransition(new ChangeTransform()).
+                    addTransition(new ChangeImageTransform());
         }
     }
 }

@@ -72,7 +72,8 @@ public class Step1Activity extends AppCompatActivity {
                             adapterDrList = new AdapterDrList(Step1Activity.this, DrList);
                             recyclerView.setAdapter(adapterDrList);
                         } else {
-                            Toast.makeText(Step1Activity.this, "پزشکی برای این تخصص ثبت نشده است", Toast.LENGTH_SHORT).show();
+                            TextView txtDrExp = (TextView) findViewById(R.id.drExp);
+                            txtDrExp.setText("پزشکی برای این تخصص ثبت نشده است");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -84,8 +85,6 @@ public class Step1Activity extends AppCompatActivity {
     }
 
     public void openIndex(View view) {
-        Intent intent = new Intent(this, Index.class);
-        startActivity(intent);
-        finish();
+        this.onBackPressed();
     }
 }

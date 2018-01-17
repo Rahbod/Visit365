@@ -62,7 +62,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/circle_1" />
+                app:srcCompat="@drawable/circle_1"
+                android:transitionName="ImageTrans"/>
 
             <com.rahbod.visit365.Font.FontTextView
                 android:id="@+id/textView4"

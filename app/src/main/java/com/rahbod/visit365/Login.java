@@ -14,31 +14,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rahbod.visit365.helper.AccessTokenHelper;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Login extends AppCompatActivity {
 
     EditText user, password;
     Button button_login;
-    private static final int time =1500;
+    private static final int time = 1500;
     private static long BackPressed;
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-
     }
 
     @Override
     public void onBackPressed() {
-        if (time + BackPressed>System.currentTimeMillis()){
+        if (time + BackPressed > System.currentTimeMillis()) {
             super.onBackPressed();
-        }
-        else
+        } else
             Toast.makeText(this, "لطفا کلید برگشت را مجددا فشار دهید.", Toast.LENGTH_SHORT).show();
 
         BackPressed = System.currentTimeMillis();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,11 +69,12 @@ public class Login extends AppCompatActivity {
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.show();
         // check user login
-        if (AccessTokenHelper.checkAccessToken(this,new AppController.VolleyCallback() {
+        if (AccessTokenHelper.checkAccessToken(this, new AppController.VolleyCallback() {
             @Override
             public void onSuccessResponse(String result) {
                 afterLogin();
             }
+
             @Override
             public void onErrorResponse(String result) {
                 Log.e("LOGIN", "Refresh token error!");
@@ -92,7 +93,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String strUser = user.getText().toString();
                 String strPassword = password.getText().toString();
-                if(strUser.isEmpty() || strPassword.isEmpty())
+                if (strUser.isEmpty() || strPassword.isEmpty())
                     Toast.makeText(Login.this, "فیلدهای ورود نباید خالی باشند.", Toast.LENGTH_SHORT).show();
                 else {
                     if (isNetworkConnected()) {
@@ -112,7 +113,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
                             }
                         });
-                    }else{
+                    } else {
                         Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -120,20 +121,21 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void afterLogin(){
-        Log.e("ATH","logged in");
+    public void afterLogin() {
+        Log.e("ATH", "logged in");
         Intent index = new Intent(this, Index.class);
         startActivity(index);
-        if(pd != null)
+        if (pd != null)
             pd.dismiss();
         finish();
     }
 
     ProgressDialog pd;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 123 && resultCode == RESULT_OK){
+        if (requestCode == 123 && resultCode == RESULT_OK) {
             if (isNetworkConnected()) {
                 pd = new ProgressDialog(this);
                 pd.setMessage("لطفا صبر کنید ...");
@@ -156,11 +158,12 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, result, Toast.LENGTH_LONG).show();
                     }
                 });
-            }else{
+            } else {
                 Toast.makeText(getApplicationContext(), "No internet access. Please check it.", Toast.LENGTH_LONG).show();
             }
         }
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected() && cm.getActiveNetworkInfo().isAvailable();

@@ -12,7 +12,8 @@
         android:id="@+id/exp_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/heart_index"/>
+        app:srcCompat="@drawable/heart_index"
+        android:transitionName="ImageTrans"/>
 
     <com.rahbod.visit365.Font.FontTextView
         android:id="@+id/txtName"

@@ -1,32 +1,20 @@
 package com.rahbod.visit365;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
-import com.rahbod.visit365.helper.AccessTokenHelper;
-import com.rahbod.visit365.helper.SessionManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 import saman.zamani.persiandate.PersianDate;
 import saman.zamani.persiandate.PersianDateFormat;
@@ -137,11 +125,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void openStep1(View view) {
-        finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
+        this.onBackPressed();
     }
 }

@@ -106,7 +106,8 @@
                     android:layout_marginRight="10dp"
                     android:src="@drawable/user"
                     app:civ_border_color="@color/hint"
-                    app:civ_border_width="1px" />
+                    app:civ_border_width="1px"
+                    android:transitionName="ImageProfileDr"/>
 
                 <com.rahbod.visit365.Font.FontTextView
                     android:id="@+id/drNameProfile"
@@ -118,7 +119,8 @@
                     android:layout_marginTop="15dp"
                     android:text="دکتر سعید امامی"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:transitionName="NameProfileDr"/>
 
                 <com.rahbod.visit365.Font.FontTextView
                     android:id="@+id/tvClinicTitle"
