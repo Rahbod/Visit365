@@ -198,5 +198,11 @@ public class Index extends AppCompatActivity implements UserInfoDialogFragment.d
 
         if (!Mobile.isEmpty())
             tvMobile.setText(Mobile);
+
+        String avatarUrl = SessionManager.getUserInfo(this).get("avatarUrl");
+
+        if (!SessionManager.getUserInfo(this).get("avatarUrl").isEmpty()){
+            Picasso.with(this).load(avatarUrl).error(R.drawable.user).into(imgAvatar);
+        }
     }
 }

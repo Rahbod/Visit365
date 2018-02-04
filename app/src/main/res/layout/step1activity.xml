@@ -1,4 +1,3 @@
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,36 +12,38 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <!--header-->
-    <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/green1">
+        <!--header-->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/green1">
 
-        <com.rahbod.visit365.Font.FontTextView
-            android:id="@+id/textw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="ویزیت 365"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            <com.rahbod.visit365.Font.FontTextView
+                android:id="@+id/textw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="ویزیت 365"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/btnNvv"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/back"
-            android:onClick="openIndex"
-            tools:ignore="OnClick" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/btnNvv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/background"
+                android:onClick="openIndex"
+                android:padding="10dp"
+                app:srcCompat="@drawable/back"
+                tools:ignore="OnClick" />
+        </RelativeLayout>
 
 
         <!--header2-->
@@ -51,17 +52,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header"
-            android:background="#efefef">
+            android:background="#efefef"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/circle_1" />
+                app:srcCompat="@drawable/circle_1"
+                android:transitionName="ImageTrans"/>
 
             <com.rahbod.visit365.Font.FontTextView
                 android:id="@+id/textView4"

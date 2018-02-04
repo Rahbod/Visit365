@@ -68,7 +68,7 @@
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edittext_selector"
-                    android:hint="شماره موبایل یا کد ملی"
+                    android:hint="شماره موبایل"
                     android:inputType="number"
                     android:textColorHint="@color/hint"
                     android:textSize="11dp" />
@@ -87,6 +87,7 @@
                     android:id="@+id/password_register"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content"
+                    android:textDirection="rtl"
                     android:background="@drawable/border_edittext_selector"
                     android:hint="کلمه عبور"
                     android:inputType="textPassword"
@@ -131,9 +132,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/hint"
                     android:textSize="11dp"
-                    android:textStyle="bold"
-                    android:onClick="goToForget"
-                    tools:ignore="OnClick" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -154,9 +153,7 @@
                     android:text="ثبت نام"
                     android:textColor="@color/green1"
                     android:textSize="13dp"
-                    android:textStyle="bold"
-                    android:onClick="goToRegister"
-                    tools:ignore="OnClick" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

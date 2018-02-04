@@ -12,6 +12,7 @@
         android:layout_marginRight="2dp"/>
 
     <com.rahbod.visit365.Font.FontTextView
+        android:textDirection="ltr"
         android:id="@+id/time_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

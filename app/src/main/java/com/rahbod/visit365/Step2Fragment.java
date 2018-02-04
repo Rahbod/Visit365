@@ -1,13 +1,15 @@
 package com.rahbod.visit365;
 
-import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +59,14 @@ public class Step2Fragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 24) {
+            setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_step2, container, false);
@@ -65,8 +75,7 @@ public class Step2Fragment extends Fragment {
         btnBackToStep1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Step1Activity.class);
-                startActivity(intent);
+                getActivity().onBackPressed();
             }
         });
 
@@ -86,7 +95,7 @@ public class Step2Fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // save doctor id and clinic id to session
-        SessionManager extras = SessionManager.getExtrasPref(getContext());
+        SessionManager extras = SessionManager.getExtrasPref(getActivity());
         doctorId = extras.getInt("doctorId");
         clinicId= extras.getInt("clinicId");
         expId= extras.getInt("expId");

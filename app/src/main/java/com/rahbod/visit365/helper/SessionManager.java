@@ -147,6 +147,7 @@ public class SessionManager {
         userInfo.put("address", UserPref.getString("address", ""));
         userInfo.put("zipCode", UserPref.getString("zipCode", ""));
         userInfo.put("nationalCode", UserPref.getString("nationalCode", ""));
+        userInfo.put("avatarUrl", UserPref.getString("avatarUrl", ""));
         return userInfo;
     }
 

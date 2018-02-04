@@ -20,7 +20,7 @@ public class DateTime {
     }
 
     public boolean hasAM() {
-        return Objects.equals(time, "AM");
+        return time == "AM";
     }
 
     public boolean hasPM() {

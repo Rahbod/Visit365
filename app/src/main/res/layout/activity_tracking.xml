@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context="com.rahbod.visit365.Step3Fragment">
+    tools:context="com.rahbod.visit365.TrackingActivity">
 
     <!--header-->
     <RelativeLayout
@@ -26,7 +26,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/btnBackToStep2"
+            android:id="@+id/btnBackToIndex"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -52,7 +52,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/circle_3" />
+            app:srcCompat="@drawable/circle_4" />
 
         <com.rahbod.visit365.Font.FontTextView
             android:id="@+id/textView4"
@@ -61,7 +61,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="37dp"
             android:layout_toLeftOf="@+id/image"
-            android:text="اطلاعات نوبت"
+            android:text="دریافت کد رهگیری"
             android:textColor="@color/black"
             android:textSize="13dp" />
 
@@ -72,7 +72,7 @@
             android:layout_below="@+id/textView4"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/image"
-            android:text="مرحله سوم"
+            android:text="مرحله چهارم"
             android:textColor="@color/hint"
             android:textSize="11dp" />
 
@@ -101,7 +101,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="25dp"
-                android:text="لطفا همه اطلاعات را بررسی نمایید"
+                android:text="نوبت شما با موفقیت ثبت شد"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -213,9 +213,9 @@
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignEnd="@+id/dataVisit"
+                android:layout_alignRight="@+id/dataVisit"
                 android:layout_below="@+id/dataPersonal"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="35dp"
                 android:text="اطلاعات نوبت"
                 android:textColor="@color/black"
@@ -228,8 +228,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/textView30"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
                 android:layoutDirection="rtl"
                 android:orientation="vertical">
@@ -245,6 +243,7 @@
                         android:id="@+id/textView31"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:layout_weight=".4"
                         android:text="مطب"
                         android:textColor="@color/black"
@@ -254,6 +253,7 @@
                         android:id="@+id/clinicId"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight=".6"
                         android:textColor="@color/hint"
                         android:textSize="12dp" />
@@ -272,6 +272,7 @@
                         android:id="@+id/textView32"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:layout_weight=".4"
                         android:text="پزشک"
                         android:textColor="@color/black"
@@ -281,6 +282,7 @@
                         android:id="@+id/doctorId"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight=".6"
                         android:textColor="@color/hint"
                         android:textSize="12dp" />
@@ -299,6 +301,7 @@
                         android:id="@+id/textView33"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:layout_weight=".4"
                         android:text="تخصص"
                         android:textColor="@color/black"
@@ -308,6 +311,7 @@
                         android:id="@+id/expertiseId"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight=".6"
                         android:textColor="@color/hint"
                         android:textSize="12dp" />
@@ -317,6 +321,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
@@ -342,8 +348,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/textView89"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
@@ -368,50 +377,60 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/lin_track"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#efefef"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.rahbod.visit365.Font.FontTextView
+                        android:id="@+id/textView36"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight=".4"
+                        android:text="کد رهگیری"
+                        android:textColor="@color/black"
+                        android:textSize="12dp" />
+
+                    <com.rahbod.visit365.Font.FontTextView
+                        android:id="@+id/trackingCode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight=".6"
+                        android:textColor="@color/hint"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.rahbod.visit365.Font.ButtonFont
+                        android:id="@+id/btnTracking"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="160dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/button_shape2"
+                        android:text="بازگشت به داشبورد"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_below="@+id/dataVisit"
-                android:layout_marginTop="35dp"
-                android:background="#efefef">
-
-                <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/txtcommission"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:text="کمیسیون سایت:"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <com.rahbod.visit365.Font.FontTextView
-                    android:id="@+id/commission"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignRight="@+id/txtcommission"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="85dp"
-                    android:textColor="@color/orange"
-                    android:textSize="13dp"
-                    android:textStyle="bold" />
-
-                <com.rahbod.visit365.Font.ButtonFont
-                    android:id="@+id/btnGateway"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/button_shape2"
-                    android:text="پرداخت"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
 
         </RelativeLayout>
 
